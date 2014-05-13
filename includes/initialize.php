@@ -8,7 +8,7 @@
 defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
 
 defined('SITE_ROOT') ? null : 
-	define('SITE_ROOT', DS.'wamp'.DS.'www'.DS.'mainProjectSample');
+	define('SITE_ROOT', DS.'wamp'.DS.'www'.DS.'PLUMDM-Help');
 
 defined('LIB_PATH') ? null : define('LIB_PATH', SITE_ROOT.DS.'includes');
 
@@ -24,9 +24,9 @@ require_once(LIB_PATH.DS.'database.php');
 require_once(LIB_PATH.DS.'databaseobject.php');
 
 // load database-related classes
-require_once(LIB_PATH.DS.'admin.php');
-require_once(LIB_PATH.DS.'faculty.php');
-require_once(LIB_PATH.DS.'student.php');
-require_once(LIB_PATH.DS.'message.php');
+//require_once(LIB_PATH.DS.'admin.php');
+//require_once(LIB_PATH.DS.'faculty.php');
+//require_once(LIB_PATH.DS.'student.php');
+//require_once(LIB_PATH.DS.'message.php');
 
 ?>

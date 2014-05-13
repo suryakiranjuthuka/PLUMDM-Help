@@ -13,12 +13,7 @@ class DatabaseObject{
 	
 	protected static $table_name;
 	protected static $class_name;
-	public $id;
-	public $name;
-	public $email;
-	public $password;
-	public $isAdmin;
-	public $isActive;
+	
 	
 	public static function find_by_id($id=0){
 		global $database;
@@ -47,20 +42,6 @@ class DatabaseObject{
 		$sql .= "LIMIT 1";
 		$result_array = static::find_by_sql($sql);
 		return !empty($result_array) ? array_shift($result_array) : false;
-	}
-	
-	public static function verify_user_email_exists($email){
-		global $database;
-		$email = $database->escape_value($email);
-		
-		$sql = "SELECT * FROM ". static::$table_name;
-		$sql .= " WHERE email='{$email}'";
-		$result = static::find_by_sql($sql);
-			if(empty($result)){
-				return true;
-			}else{
-				return false;
-			}
 	}
 	
 	public static function delete_faculty_and_student($id=""){

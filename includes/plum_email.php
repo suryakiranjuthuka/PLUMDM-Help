@@ -2,26 +2,21 @@
 
 require_once(LIB_PATH.DS.'database.php');
 
-class Faculty extends DatabaseObject{
+class PlumEmail extends DatabaseObject{
 	
-	protected static $table_name="faculty";
+	protected static $table_name="plumemail";
 	public $id;
-	public $name;
-	public $first_name; 
-	public $last_name; 
-	public $qualification; 
-	public $designation;
-	public $department; 
-	public $mobile;
-	public $email;
-	public $password;
-	public $isActive;
-	public $photo_url;
-	public static $key = "facultyofcollege";
-	public static $faculty_register = false;
+	public $salesrep_id;
+	public $client_name;
+	public $send_date;
+	public $email_list;
+	public $notes;
+	public $leads;
+	public $page_complete;
+	public $attachment_url;
 	
 	
-	public static function secret_key($secret_key){
+/*	public static function secret_key($secret_key){
 		global $database;
 		$secret_key = $database->escape_value($secret_key);
 		if(self::$key == $secret_key){
@@ -99,7 +94,7 @@ class Faculty extends DatabaseObject{
 		$database->query($sql);
 		
 		return ($database->affected_rows() == 1)? true : false;
-	}
+	}*/
 	
 	
 }
