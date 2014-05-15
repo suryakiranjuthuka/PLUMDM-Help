@@ -12,6 +12,16 @@ class Template extends DatabaseObject{
 
 	
 	
+	public static function get_all_templates(){
+		global $database;
+		
+		$sql = "SELECT * from template";
+		
+		return static::find_by_sql($sql);
+		
+	}
+	
+	
 }
 
 

@@ -62,9 +62,47 @@ table {
 /*	Layout Styles	*/
 html, body{
 	height: 100%;
+	background:#CCC;
 }
 
 #container{
 	min-height: 100%;
 	position: relative;
+	margin-right:auto;
+	margin-left:auto;
+}
+
+
+
+
+
+/* Template Styles */
+
+.full_template_container{
+	width: 375px;
+	float: left;
+	margin: 20px;
+}
+
+.browser_bar{
+	
+}
+
+.show_template{
+	background-color: white;
+	margin-right: auto;
+	margin-left: auto;
+	width:375px;
+	overflow:hidden;
+	/*height:263px;*/
+}
+
+.show_template img{
+	margin-right: auto;
+	margin-left: auto;
+
+}
+
+.template_website_url{
+	
 }

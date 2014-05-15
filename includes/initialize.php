@@ -24,7 +24,7 @@ require_once(LIB_PATH.DS.'database.php');
 require_once(LIB_PATH.DS.'databaseobject.php');
 
 // load database-related classes
-//require_once(LIB_PATH.DS.'admin.php');
+require_once(LIB_PATH.DS.'template.php');
 //require_once(LIB_PATH.DS.'faculty.php');
 //require_once(LIB_PATH.DS.'student.php');
 //require_once(LIB_PATH.DS.'message.php');
