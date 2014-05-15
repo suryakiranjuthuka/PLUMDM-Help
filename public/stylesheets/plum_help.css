@@ -36,7 +36,7 @@ time, mark, audio, video {
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section, img {
+footer, header, hgroup, menu, nav, section, img, div {
 	display: block;
 }
 body {
@@ -68,12 +68,17 @@ html, body{
 #container{
 	min-height: 100%;
 	position: relative;
-	margin-right:auto;
+	width:1700px;
 	margin-left:auto;
+	margin-right:auto;
 }
 
-
-
+/*#2container{
+	position:absolute;
+	width:1600px;
+	top:50px;
+}
+*/
 
 
 /* Template Styles */
