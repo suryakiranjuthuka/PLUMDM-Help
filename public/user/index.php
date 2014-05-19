@@ -18,11 +18,11 @@ $templates = Template::get_all_templates();
 <link rel="stylesheet" media="only screen and (min-width: 641px) and (max-width: 1366px)" href="../stylesheets/lowres.css">
 </head>
 
-<body>
+<body><img id="test">
 <div id="container">
 
 <header class="bottomShadow">
-	<div id="headerImage"><a href="www.plumdm.com"><img src="../site_images/plum_logo_name.png" height="100px"></a></div>
+	<div id="headerImage"><a href="www.plumdm.com"><img src="../site_images/plum_logo_name.png" height="90px"></a></div>
 </header>
 
 <section id="mainButtonsBackgroundContainer">
@@ -44,9 +44,13 @@ $templates = Template::get_all_templates();
             <div class="dot1"></div>
         </div> 
         
-        <div class="templateAllShadow show_template"><a href="<?php echo $template->website_url; ?>"><img height="263" src="<?php echo $template->url_path; ?>"></a></div>
+        <div class="templateAllShadow show_template"><a href="<?php echo $template->website_url; ?>"><img height="238" src="<?php echo $template->url_path; ?>"></a></div>
         
-        <!--<div class="template_website_url"><h3><?php echo $template->website_url; ?></h3></div>-->
+        <div class="templateAllShadow eachTemplateButtonsContainer">
+        	<div class="selectButton">SELECT</div>
+            <div class="buttonsBorder"></div>
+            <div class="viewButton">VIEW</div>
+        </div>
         
         </div>
         

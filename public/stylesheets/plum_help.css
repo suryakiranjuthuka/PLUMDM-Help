@@ -1,6 +1,6 @@
 /* CSS Document */
 
-@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600);
 
 /*------ COLOR PALLET-----*/
 /*
@@ -59,6 +59,17 @@ table {
 	border-spacing: 0;
 }
 
+a {
+	color:black;
+    text-decoration: none;
+}
+
+a:hover 
+{
+     text-decoration:none; 
+     cursor:pointer;  
+}
+
 /*	Layout Styles	*/
 html, body{
 	background-color: #F5F5F5;
@@ -74,7 +85,7 @@ html, body{
 
 /* Header Styles */
 header{
-	height: 100px;
+	height: 90px;
 	background-color: #7A1249;
 	position: relative;
 	z-index: 10;
@@ -130,7 +141,7 @@ header{
 
 /* Templates Container */
 #allTemplatesContainer{
-	width: 1660px;
+	width: 1600px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 50px;
@@ -139,15 +150,16 @@ header{
 /* Template Styles */
 
 .full_template_container{
-	width: 375px;
+	width: 350px;
 	float: left;
-	margin-left:32px;
+	margin-top:50px;
+	margin-left:40px;
 	margin-bottom:40px;
-	border-top-right-radius:3px;
+	/*border-top-right-radius:3px;
 	border-top-left-radius:3px;
 	border-bottom-right-radius:3px;
 	border-bottom-left-radius:3px;
-	border: 1px solid lightgrey;
+	border: 1px solid lightgrey;*/
 }
 
 .browser_bar{
@@ -172,7 +184,7 @@ header{
 	background-color: white;
 	margin-right: auto;
 	margin-left: auto;
-	width:375px;
+	width:350px;
 	overflow:hidden;
 	/*height:263px;*/
 }
@@ -183,8 +195,73 @@ header{
 
 }
 
+.eachTemplateButtonsContainer{
+	margin-top:10px;
+	width:350px;
+	height:40px;
+	position:relative;
+}
+
+.selectButton{
+	width: 174px;
+	position: absolute;
+	text-align: center;
+	padding-top: 12px;
+	padding-bottom: 13px;
+	color: #67B0D1;
+	border: 2px solid #67B0D1;
+	border-right:none;
+	border-top-right-radius:20px;
+	border-bottom-left-radius:10px;
+	-webkit-transition:all 3s; /* For Safari 3.1 to 6.0 */
+	transition:all .3s;
+}
+
+.selectButton:hover{
+	cursor:pointer;
+	background-color:#67B0D1;
+	color:white;
+}
+
+.viewButton{
+	width:175px;
+	position:absolute;
+	right:0px;
+	text-align:center;
+	padding-top:12px;
+	padding-bottom:13px;
+	color: #E87352;
+	border: 2px solid #E87352;
+	border-left:none;
+	border-top-left-radius:20px;
+	border-bottom-right-radius:10px;
+	-webkit-transition:all 3s; /* For Safari 3.1 to 6.0 */
+	transition:all .3s;
+}
+
+.viewButton:hover{
+	cursor:pointer;
+	background-color:#E87352;
+	color:white;
+}
+
+.buttonsBorder{
+	position:absolute;
+	height:20px;
+	width:1px;
+	margin-top:15px;
+	background-color:lightgrey;
+	left:174px;
+}
+
 .template_website_url{
-	
+	font-size:12px;
+	text-align:center;
+	color:#181818;
+	margin-top:10px;
+	letter-spacing:1px;
+	font-weight:600;
+	font-family: 'Open Sans', sans-serif;
 }
 
 /* Shadows */
