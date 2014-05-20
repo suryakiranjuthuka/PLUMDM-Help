@@ -16,6 +16,7 @@ $templates = Template::get_all_templates();
 <title>Choose a Template</title>
 <link href="../stylesheets/plum_help.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" media="only screen and (min-width: 641px) and (max-width: 1366px)" href="../stylesheets/lowres.css">
+<script type="text/javascript" src="../javascripts/d3.min.js"></script>
 </head>
 
 <body><img id="test">
@@ -29,10 +30,15 @@ $templates = Template::get_all_templates();
     <div id="mainButtonsContainer">
             <div class="allShadow" id="emailButton">Email</div>
             <div class="allShadow" id="landingPageButton">Landing Pages</div>
+            <div id="sliderLine"></div>
+            <div id="selectCircle"></div>
+            <div id="circleLetter"></div>
     </div>
 </section>
 
-<section id="allTemplatesContainer">
+<section id="allEmailTemplatesContainer">
+
+	<h1><div class="topLineHeading"></div>PLUM MARKETING EMAILS<div class="bottomLineHeading"></div></h1>
 
 <?php foreach($templates as $template): ?>
 		
@@ -44,7 +50,7 @@ $templates = Template::get_all_templates();
             <div class="dot1"></div>
         </div> 
         
-        <div class="templateAllShadow show_template"><a href="<?php echo $template->website_url; ?>"><img height="238" src="<?php echo $template->url_path; ?>"></a></div>
+        <div class="templateAllShadow show_template"><a href="<?php echo $template->website_url; ?>"><img class="templateImage" height="238" src="<?php echo $template->url_path; ?>"></a></div>
         
         <div class="templateAllShadow eachTemplateButtonsContainer">
         	<div class="selectButton">SELECT</div>
@@ -60,5 +66,8 @@ $templates = Template::get_all_templates();
 
 
 </div>
+
+
+<script type="text/javascript" src="../javascripts/plumdm_help.js"></script>
 </body>
 </html>
