@@ -49,6 +49,21 @@ d3.select("body")
 	d3.select("#circleLetter")
 	.text("L")
 	
+	d3.select("#allEmailTemplatesContainer")
+	.style("display","none")
+	
+	d3.select("#allLandingPageTemplatesContainer")
+	.transition()
+	.duration(500)
+	.each("start",function(){
+		d3.select(this)
+		.style("opacity",.0)	
+	})
+	.style("display","block")
+	.style("opacity",1)
+	
+	
+	
 });
 
 
@@ -111,4 +126,20 @@ d3.select("body")
 	
 	d3.select("#circleLetter")
 	.text("E")
+	
+	d3.select("#allLandingPageTemplatesContainer")
+	.style("display","none")
+	
+	d3.select("#allEmailTemplatesContainer")
+	.transition()
+	.duration(500)
+	.each("start",function(){
+		d3.select(this)
+		.style("opacity",.0)	
+	})
+	.style("display","block")
+	.style("opacity",1)
+	
 });
+
+

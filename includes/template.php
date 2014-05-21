@@ -9,20 +9,25 @@ class Template extends DatabaseObject{
 	public $type;
 	public $website_url;
 	public $url_path;
+	public $visibility;
 
 	
 	
-	public static function get_all_templates(){
+	public static function get_all_templates_p_e(){
 		global $database;
-		
-		$sql = "SELECT * from template";
-		
+		$sql = "SELECT * from template WHERE visibility=1 && type='p_e'";
 		return static::find_by_sql($sql);
-		
+	}
+	
+	public static function get_all_templates_c_e(){
+		global $database;
+		$sql = "SELECT * from template WHERE visibility=1 && type='c_e'";
+		return static::find_by_sql($sql);
 	}
 	
 	
+	
+	
+	
 }
-
-
 ?>
