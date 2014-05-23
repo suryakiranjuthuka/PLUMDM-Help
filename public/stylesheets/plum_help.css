@@ -1,7 +1,7 @@
 /* CSS Document */
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600);
-
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
 /*------ COLOR PALLET-----*/
 /*
 #565347  :  GREY(link & Paragraph)
@@ -193,11 +193,11 @@ footer img:hover{
 	left:0px;
 	right:0px;
 	border-radius:50%;  
-      box-shadow:0 0 5px grey;
+    box-shadow:0 0 5px grey;
 }
 
 #circleLetter{
-	position:fixed;
+	position:absolute;
 	width:10px;
 	margin-left:290px;
 	margin-top:-28px;
@@ -355,8 +355,6 @@ h1#plumEmails,h1#clientEmails{
 	margin-left: auto;
 	-webkit-transition: .2s;
 	transition: .2s;
-	-webkit-transform:scale(1);
-    transform:scale(1);
 
 }
 
@@ -385,21 +383,39 @@ h1#plumEmails,h1#clientEmails{
 
 .selectButton{
 	width: 174px;
+	height:100%;
+	position:absolute;
+}
+
+.insideSelectButton{
+	width:100%;
+	font-size:16px;
+	font-family: 'Open Sans', sans-serif;
 	position: absolute;
+	top:0px;
+	left:0px;
 	text-align: center;
-	padding-top: 12px;
-	padding-bottom: 13px;
+	padding-top: 9px;
+	padding-bottom: 9px;
 	color: #67B0D1;
 	letter-spacing:0px;
 	-webkit-transition: .2s;
 	transition: .2s;
 }
 
-.selectButton:hover{
+.selectButton:hover .insideSelectButton{
 	cursor:pointer;
 	background-color:#afd3e3;
 	color:white;
 	letter-spacing:5px;
+}
+
+.selectButton:active{
+	border-style:none; cursor:pointer;  border:0;
+}
+
+.selectButton:focus{
+	border-style:none; cursor:pointer;  border:0;
 }
 
 .viewButton{
@@ -497,3 +513,4 @@ box-shadow: inset 0px 0px 13px 1px #B1B1B1;
     text-shadow:rgba(0,0,0,0.8) 0px -2px 0px,rgba(255,255,255,0.3) 0px 2px 2px;
   }
   
+
