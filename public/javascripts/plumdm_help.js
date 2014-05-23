@@ -63,6 +63,12 @@ d3.select("body")
 	.style("opacity",1)
 	
 	
+	d3.select("#overlaylp")
+	.classed("md-overlay",true)
+	
+	d3.select("#overlaye")
+	.classed("md-overlay",false)
+	
 	
 });
 
@@ -139,6 +145,12 @@ d3.select("body")
 	})
 	.style("display","block")
 	.style("opacity",1)
+	
+	d3.select("#overlaye")
+	.classed("md-overlay",true)
+	
+	d3.select("#overlaylp")
+	.classed("md-overlay",false)
 	
 });
 

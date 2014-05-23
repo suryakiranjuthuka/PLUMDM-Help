@@ -128,7 +128,7 @@ $templates_c_e = Template::get_all_templates_c_e();
     																<!--Start CLIENT EMAIL MODAL CONTENT -->  
       
       <div class="md-modal md-effect-1" id="c_e_modal">
-		<div class="md-content1"></br>
+		<div class="md-content"></br>
       		<h2>Template</h2>
 				<form action="index.php" method="post">
                   <div class="firstHalfForm">
@@ -161,7 +161,7 @@ $templates_c_e = Template::get_all_templates_c_e();
       	</div>
       </div><!--END CLIENT EMAIL MODAL CONTENT --> 
       
-	<div class="md-overlay"></div><!-- the overlay element -->
+	<div id="overlayemail" class="md-overlay"></div><!-- the overlay element -->
 </section><!--**************************************************** END OF EMAIL TEMPLATES CONTAINER ******************************************************-->
 
 
@@ -174,7 +174,7 @@ $templates_c_e = Template::get_all_templates_c_e();
 <!--******************************************************** START LANDINGPAGE TEMPLATES CONTAINER ******************************************************-->
 <section id="allLandingPageTemplatesContainer">
 
-	<h1 id="plumEmails" class="innerShadow2">	<!-- **********PLUM EMAILS Heading**********-->
+	<h1 id="plumEmails" class="innerShadow2">	<!-- **********PLUM LANDING PAGES Heading**********-->
     	<div id="plumEmailsContainer">
           <!--<div class="topLineHeading"></div>-->
               PLUM LANDING PAGES
@@ -183,7 +183,7 @@ $templates_c_e = Template::get_all_templates_c_e();
     </h1>
     
 
-<div id="allClientEmailsContainer">	<!-- Start All Client Emails Container-->    
+<div id="allClientEmailsContainer">	<!-- Start All Plum Landing Pages Container-->    
 <?php foreach($templates_c_e as $template_c_e): ?>
 	<div class="full_template_container">
           <div class="browser_bar">		<!-- BROWSER BAR-->
@@ -195,23 +195,61 @@ $templates_c_e = Template::get_all_templates_c_e();
           <img class="templateImage" height="238" src="<?php echo $template_c_e->url_path; ?>"></a>
           </div>
           <div class="templateAllShadow eachTemplateButtonsContainer">	<!-- VIEW & SELECT Buttons-->
-              <div class="selectButton">SELECT</div>
+              <a class="md-trigger" data-modal="p_lp_modal"><button class="selectButton" language="javascript"  onclick="return ClickMenu(this);" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);"><div class="insideSelectButton">SELECT</div></button></a>
               <div class="buttonsBorder"></div>
               <div class="viewButton"><a href="<?php echo $template_c_e->website_url; ?>" target="_blank">VIEW</a></div>
           </div>
-     </div><!-- END of PLUM EMAILS Container-->
+     </div><!-- END of PLUM LP Container-->
 <?php endforeach; ?>
 </div>
 
 
-	<h1 id="clientEmails" class="innerShadow2">		<!--*****************CLIENT EMAILS Heading***************-->
+    																<!--Start PLUM LP MODAL CONTENT -->  
+      
+      <div class="md-modal md-effect-1" id="p_lp_modal">
+		<div class="md-content1"></br>
+      		<h2>Template</h2>
+				<form action="index.php" method="post">
+                  <div class="firstHalfForm">
+                  <p><label>Client Name</label><input type="text" /></p>
+                  <p><label>Email</label><input type="text" /></p>
+                  <p><label>City</label><input type="text" /></p>
+                  <p><label>State</label><input type="text" /></p>
+                  <p><label>Zip Code</label><input type="text" /></p>
+                  <p><label>Google AdWords</label><input style="position:relative; right:-120px; top:-15px;" type="checkbox" /></p>
+                  </div>
+                  
+                  <div class="formDividerLine"></div>
+                  
+                  <div class="secondHalfForm">
+                  <p><label>Sales Rep</label>
+                  <select>
+                      <option value="volvo">Volvo</option>
+                      <option value="saab">Saab</option>
+                      <option value="mercedes">Mercedes</option>
+                      <option value="audi">Audi</option>
+                  </select></p>
+                  <p><label>Start Date</label><input type="text" /></p>
+                  <p><label>Expire Date</label><input type="text" /></p>
+                  <p><label>Notes</label><textarea id="updateArticleTextArea" name="body"  cols="40" rows="4" ></textarea></p>
+                  <input type="hidden" id="updateArticleId" type="text" name="inputHiddenFieldId" value="" />
+                  </div>
+                  
+                  <button class="md-close" name="update_article" type="submit">Submit</button></br>
+                </form>
+      	</div>
+      </div><!--END PLUM LP MODAL CONTENT --> 
+
+
+
+	<h1 id="clientEmails" class="innerShadow2">		<!--*****************CLIENT LANDING PAGE Heading***************-->
     	<div id="clientEmailsContainer">
                 CLIENT LANDING PAGES
         </div>
     </h1>
     
 
-<div id="allPlumEmailsContainer">	<!-- Start All Plum Emails Container-->
+<div id="allPlumEmailsContainer">	<!-- Start All CLIENT LP Container-->
 <?php foreach($templates_p_e as $template_p_e): ?>
 	<div class="full_template_container">
           <div class="browser_bar">		<!-- BROWSER BAR-->
@@ -223,14 +261,53 @@ $templates_c_e = Template::get_all_templates_c_e();
           <img class="templateImage" height="238" src="<?php echo $template_p_e->url_path; ?>"></a>
           </div>
           <div class="templateAllShadow eachTemplateButtonsContainer">	<!-- VIEW & SELECT Buttons-->
-              <div class="selectButton">SELECT</div>
+              <a class="md-trigger" data-modal="c_lp_modal"><button class="selectButton" language="javascript"  onclick="return ClickMenu(this);" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);"><div class="insideSelectButton">SELECT</div></button></a>
               <div class="buttonsBorder"></div>
               <div class="viewButton"><a href="<?php echo $template_p_e->website_url; ?>" target="_blank">VIEW</a></div>
           </div>
-     </div><!-- END of PLUM EMAILS Container-->
+     </div><!-- END of CLIENT LP Container-->
 <?php endforeach; ?>
 </div>
     
+    
+    
+    																<!--Start CLIENT LP MODAL CONTENT -->  
+      
+      <div class="md-modal md-effect-1" id="c_lp_modal">
+		<div class="md-content1"></br>
+      		<h2>Template</h2>
+				<form action="index.php" method="post">
+                  <div class="firstHalfForm">
+                  <p><label>Client Name</label><input type="text" /></p>
+                  <p><label>Email</label><input type="text" /></p>
+                  <p><label>City</label><input type="text" /></p>
+                  <p><label>State</label><input type="text" /></p>
+                  <p><label>Zip Code</label><input type="text" /></p>
+                  <p><label>Google AdWords</label><input style="position:relative; right:-120px; top:-15px;" type="checkbox" /></p>
+                  </div>
+                  
+                  <div class="formDividerLine"></div>
+                  
+                  <div class="secondHalfForm">
+                  <p><label>Sales Rep</label>
+                  <select>
+                      <option value="volvo">Volvo</option>
+                      <option value="saab">Saab</option>
+                      <option value="mercedes">Mercedes</option>
+                      <option value="audi">Audi</option>
+                  </select></p>
+                  <p><label>Start Date</label><input type="text" /></p>
+                  <p><label>Expire Date</label><input type="text" /></p>
+                  <p><label>Notes</label><textarea id="updateArticleTextArea" name="body"  cols="40" rows="4" ></textarea></p>
+                  <input type="hidden" id="updateArticleId" type="text" name="inputHiddenFieldId" value="" />
+                  </div>
+                  
+                  <button class="md-close" name="update_article" type="submit">Submit</button></br>
+                </form>
+      	</div>
+      </div><!--END CLIENT LP MODAL CONTENT --> 
+    
+    <div id="overlaylp" class="md-close md-overlay1"></div><!-- the overlay element -->
 </section><!--****************************************** END OF EMAIL TEMPLATES CONTAINER ******************************************************-->
 
 
@@ -242,6 +319,9 @@ $templates_c_e = Template::get_all_templates_c_e();
 <footer><div class="topLineHeading"></div>
 	<a href="http://plumdirectmarketing.com" target="_blank"><img class="transition" src="../site_images/plum_logo.png" width="60px" height="60px" ></a>
 </footer>
+
+
+
 
 </div><!-- ***** END OF CONTAINER***** -->
 
