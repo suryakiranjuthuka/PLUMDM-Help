@@ -62,13 +62,11 @@ d3.select("body")
 	.style("display","block")
 	.style("opacity",1)
 	
-	
-	d3.select("#overlaylp")
-	.classed("md-overlay",true)
-	
-	d3.select("#overlaye")
-	.classed("md-overlay",false)
-	
+	d3.select(".eClientScroll")
+		.attr("id","none")
+		
+	d3.select(".lpClientScroll")
+		.attr("id","CLIENT")
 	
 });
 
@@ -146,12 +144,11 @@ d3.select("body")
 	.style("display","block")
 	.style("opacity",1)
 	
-	d3.select("#overlaye")
-	.classed("md-overlay",true)
-	
-	d3.select("#overlaylp")
-	.classed("md-overlay",false)
+	d3.select(".lpClientScroll")
+		.attr("id","none")
+		
+	d3.select(".eClientScroll")
+		.attr("id","CLIENT")
 	
 });
-
 

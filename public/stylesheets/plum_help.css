@@ -88,6 +88,50 @@ html, body{
 	
 }
 
+/* Fixed Side Bar Styles */
+#fixedSidebar{
+	position:fixed;
+	right:0px;
+	right:10px;
+	z-index:1000 !important;
+	margin-top:200px;
+	list-style:none;
+	background-color:none;
+}
+
+#fixedSidebar span{
+	font-size:20px;
+	position:relative;
+	top:15px;
+	left:18px;
+}
+
+#plumScrollFix{
+	width:50px;
+	height:50px;
+	background-color:#e87352;	
+	color:white;
+	margin-bottom:10px;	
+	border-radius:50%;
+}
+
+#clientScrollFix{
+	width:50px;
+	height:50px;
+	background-color:#4ad486;
+	color:white;
+	margin-bottom:10px;
+	border-radius:50%;		
+}
+
+#topFix{
+	width:50px;
+	height:50px;
+	background-color:#3abec0;	
+	color:white;
+	border-radius:50%;
+}
+
 /* Header Styles */
 header{
 	height: 90px;
@@ -216,14 +260,14 @@ footer img:hover{
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
-	display:none;
+	/*display:none;*/
 }
 
 #allLandingPageTemplatesContainer{
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
-	display:none;
+	/*display:none;*/
 }
 
 #allPlumEmailsContainer{
@@ -344,6 +388,7 @@ h1#plumEmails,h1#clientEmails{
 	margin-left: auto;
 	width:350px;
 	opacity:1;
+	overflow:hidden;
 	/*height:263px;*/
 	-webkit-transition: .2s;
 	transition: .2s;

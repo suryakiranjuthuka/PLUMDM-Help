@@ -25,7 +25,17 @@ class Template extends DatabaseObject{
 		return static::find_by_sql($sql);
 	}
 	
+	public static function get_all_templates_p_lp(){
+		global $database;
+		$sql = "SELECT * from template WHERE visibility=1 && type='p_lp'";
+		return static::find_by_sql($sql);
+	}
 	
+	public static function get_all_templates_c_lp(){
+		global $database;
+		$sql = "SELECT * from template WHERE visibility=1 && type='c_lp'";
+		return static::find_by_sql($sql);
+	}
 	
 	
 	
