@@ -2,7 +2,7 @@
 /* CSS Document */
 
 
-@media (min-width: 641px) and (max-width: 1366px) {
+@media only screen and (min-width:641px) and (max-width:1366px) {
 
 
 /*body {
@@ -14,8 +14,14 @@
 	top:-50px;
 }*/
 
-#allTemplatesContainer{
+/*#allTemplatesContainer{
 	width:1500px;	
+}*/
+
+body {
+    -moz-transform: scale(0.5, 0.5); /* Moz-browsers */
+    zoom: 0.5; /* Other non-webkit browsers */
+    zoom: 50%; /* Webkit browsers */
 }
 
 }

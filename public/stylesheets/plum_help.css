@@ -141,9 +141,10 @@ header{
 }
 
 #headerImage{
-	width:150px;
-	margin-left:auto;
-	margin-right:auto;
+	width: 150px;
+	margin-left: auto;
+	margin-right: auto;
+	position:relative;
 }
 
 /* Footer Styles */
@@ -165,6 +166,7 @@ footer img:hover{
 	opacity:.5;
 }
 
+/* Main Buttons Styles */
 #mainButtonsBackgroundContainer{
 	height:110px;
  	background-color:white;
@@ -559,3 +561,100 @@ box-shadow: inset 0px 0px 13px 1px #B1B1B1;
   }
   
 
+/* Different Resolution styles */
+
+/*@media only screen and (min-width:641px) and (max-width:1366px) {*/
+
+@media only screen and (max-width:1680px) {
+/* Header Styles */
+header{
+	height:73px;
+}
+
+#headerImage {
+    -moz-transform: scale(0.8, 0.8);
+    zoom: 0.8; 
+    zoom: 80%; 
+	top: -3px;
+}
+
+/* Footer Styles */
+footer{
+	height:70px;
+	margin-top:80px;
+}
+
+footer img{	
+	-moz-transform: scale(0.8, 0.8);
+    zoom: 0.8; 
+    zoom: 80%; 
+}
+
+/* Main Buttons Styles */
+#mainButtonsBackgroundContainer{
+	height:90px;
+}
+
+#mainButtonsContainer{
+	width:500px;
+	height:50px;
+	margin-left:auto;
+	margin-right:auto;
+	padding-top:35px;
+	position:relative;
+}
+
+#emailButton{
+	width:110px;
+	padding:12px;
+	font-size:13px;
+}
+
+#landingPageButton{
+	width:120px;
+	padding:12px;
+	font-size:13px;
+}
+
+#selectCircle{
+	height:30px;
+	width:30px;
+	margin-top:-15px;
+	margin-left:225px;
+}
+
+#circleLetter{
+	position:absolute;
+	width:10px;
+	margin-left:290px;
+	margin-top:-28px;
+	color:white;
+	}
+
+#sliderLine{
+	margin-top:20px;
+}
+
+/*#headerImage{
+	zoom: 0.8;
+    -webkit-transform: scale(0.9);
+    transform: scale(0.7);
+	top:-6px;
+}*/
+
+/*body {
+    zoom: 0.8;
+    -moz-transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+	position:relative;
+	top:-50px;
+}*/
+
+/*#allTemplatesContainer{
+	width:1500px;	
+}*/
+
+
+
+}

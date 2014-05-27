@@ -18,8 +18,7 @@ $templates_c_lp = Template::get_all_templates_c_lp();
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>PLUMDM-HELP</title>
 <link rel="shortcut icon" href="../site_images/plum_logo-favicon.ico" >
-<link href="../stylesheets/plum_help.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" media="only screen and (min-width: 641px) and (max-width: 1366px)" href="../stylesheets/lowres.css">
+<link href="../stylesheets/plum_help.css" rel="stylesheet" type="text/css" media="screen,projection">
 <link rel="stylesheet" type="text/css" href="../stylesheets/component.css" />
 <script type="text/javascript" src="../javascripts/d3.min.js"></script>
 </head>
