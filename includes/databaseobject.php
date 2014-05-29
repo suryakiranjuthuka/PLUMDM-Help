@@ -9,6 +9,7 @@ In the same fasion, if we want to instantiate a object here we use a function ca
 
 require_once(LIB_PATH.DS.'database.php');
 
+
 class DatabaseObject{
 	
 	protected static $table_name;

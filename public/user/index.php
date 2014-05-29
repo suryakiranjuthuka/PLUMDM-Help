@@ -7,6 +7,195 @@ $templates_p_e = Template::get_all_templates_p_e();
 $templates_c_e = Template::get_all_templates_c_e();
 $templates_p_lp = Template::get_all_templates_p_lp();
 $templates_c_lp = Template::get_all_templates_c_lp();
+
+$sales_reps = SalesRep::get_all_salesrep();
+
+
+//**************Plum Email Form Submittion***************
+if(isset($_POST['p_e_submit'])){
+	
+	$plum_email = new PlumEmail();
+	
+	if($_POST['p_e_client_name']){	
+		$plum_email->client_name = trim($_POST['p_e_client_name']);}
+		
+	if($_POST['p_e_sales_rep']){	
+		$plum_email->salesrep_id = trim($_POST['p_e_sales_rep']);}
+		
+	if($_POST['p_e_send_date']){	
+		$plum_email->send_date = trim($_POST['p_e_send_date']);}
+		
+	if($_POST['p_e_email_list']){	
+		$plum_email->email_list = trim($_POST['p_e_email_list']);}
+		
+	if($_POST['p_e_notes']){	
+		$plum_email->notes = trim($_POST['p_e_notes']);}
+	
+	if($_POST['p_e_website_url']){	
+		$plum_email->website_url = trim($_POST['p_e_website_url']);}
+	
+	
+	$sucess_p_e = $plum_email->create_p_e_template_info();
+	
+	//Verifying if information is updated
+	if($sucess_p_e){
+		$session->message("Successfully saved information to Plum Emails Template.");
+		redirect_to("index.php");
+	} else{
+		$session->message("Failed to save information to Plum Emails Template.");
+		redirect_to("index.php");
+	}
+}
+
+
+//**************Client Email Form Submittion***************
+if(isset($_POST['c_e_submit'])){
+	
+	$client_email = new ClientEmail();
+	
+	if($_POST['c_e_client_name']){	
+		$client_email->client_name = trim($_POST['c_e_client_name']);}
+		
+	if($_POST['c_e_sales_rep']){	
+		$client_email->salesrep_id = trim($_POST['c_e_sales_rep']);}
+		
+	if($_POST['c_e_send_date']){	
+		$client_email->send_date = trim($_POST['c_e_send_date']);}
+		
+	if($_POST['c_e_email_list']){	
+		$client_email->email_list = trim($_POST['c_e_email_list']);}
+		
+	if($_POST['c_e_notes']){	
+		$client_email->notes = trim($_POST['c_e_notes']);}
+	
+	if($_POST['c_e_website_url']){	
+		$client_email->website_url = trim($_POST['c_e_website_url']);}
+	
+	
+	$sucess_c_e = $client_email->create_c_e_template_info();
+	
+	//Verifying if information is updated
+	if($sucess_c_e){
+		$session->message("Successfully saved information to Client Emails Template.");
+		redirect_to("index.php");
+	} else{
+		$session->message("Failed to save information to Client Emails Template.");
+		redirect_to("index.php");
+	}
+}
+
+
+
+//**************Plum Landing Page Form Submittion***************
+if(isset($_POST['p_lp_submit'])){
+	
+	$plum_landing_page = new PlumLP();
+	
+	if($_POST['p_lp_client_name']){	
+		$plum_landing_page->client_name = trim($_POST['p_lp_client_name']);}
+		
+	if($_POST['p_lp_sales_rep']){	
+		$plum_landing_page->salesrep_id = trim($_POST['p_lp_sales_rep']);}
+		
+	if($_POST['p_lp_email']){	
+		$plum_landing_page->email = trim($_POST['p_lp_email']);}
+		
+	if($_POST['p_lp_city']){	
+		$plum_landing_page->city = trim($_POST['p_lp_city']);}
+		
+	if($_POST['p_lp_state']){	
+		$plum_landing_page->state = trim($_POST['p_lp_state']);}
+		
+	if($_POST['p_lp_zip_code']){	
+		$plum_landing_page->zip_code = trim($_POST['p_lp_zip_code']);}
+		
+	if($_POST['p_lp_google_ad']){	
+		$plum_landing_page->google_ad = 1; }
+		else{ $plum_landing_page->google_ad = 0; }
+		
+	if($_POST['p_lp_start_date']){	
+		$plum_landing_page->start_date = trim($_POST['p_lp_start_date']);}
+		
+	if($_POST['p_lp_expire_date']){	
+		$plum_landing_page->expire_date = trim($_POST['p_lp_expire_date']);}
+		
+	if($_POST['p_lp_notes']){	
+		$plum_landing_page->notes = trim($_POST['p_lp_notes']);}
+	
+	if($_POST['p_lp_website_url']){	
+		$plum_landing_page->website_url = trim($_POST['p_lp_website_url']);}
+	
+	
+	
+	$sucess_p_lp = $plum_landing_page->create_p_lp_template_info();
+	
+	//Verifying if information is updated
+	if($sucess_p_lp){
+		$session->message("Successfully saved information to Plum Landing Pages Template.");
+		redirect_to("index.php");
+	} else{
+		$session->message("Failed to save information to Plum Landing Pages Template.");
+		redirect_to("index.php");
+	}
+}
+
+
+
+//**************Client Landing Page Form Submittion***************
+if(isset($_POST['c_lp_submit'])){
+	
+	$client_landing_page = new ClientLp();
+	
+	if($_POST['c_lp_client_name']){	
+		$client_landing_page->client_name = trim($_POST['c_lp_client_name']);}
+		
+	if($_POST['c_lp_sales_rep']){	
+		$client_landing_page->salesrep_id = trim($_POST['c_lp_sales_rep']);}
+		
+	if($_POST['c_lp_email']){	
+		$client_landing_page->email = trim($_POST['c_lp_email']);}
+		
+	if($_POST['c_lp_city']){	
+		$client_landing_page->city = trim($_POST['c_lp_city']);}
+		
+	if($_POST['c_lp_state']){	
+		$client_landing_page->state = trim($_POST['c_lp_state']);}
+		
+	if($_POST['c_lp_zip_code']){	
+		$client_landing_page->zip_code = trim($_POST['c_lp_zip_code']);}
+		
+	if($_POST['c_lp_google_ad']){	
+		$client_landing_page->google_ad = 1; }
+		else{ $client_landing_page->google_ad = 0; }
+		
+	if($_POST['c_lp_start_date']){	
+		$client_landing_page->start_date = trim($_POST['c_lp_start_date']);}
+		
+	if($_POST['c_lp_expire_date']){	
+		$client_landing_page->expire_date = trim($_POST['c_lp_expire_date']);}
+		
+	if($_POST['c_lp_notes']){	
+		$client_landing_page->notes = trim($_POST['c_lp_notes']);}
+	
+	if($_POST['c_lp_website_url']){	
+		$client_landing_page->website_url = trim($_POST['c_lp_website_url']);}
+	
+	
+	
+	$sucess_c_lp = $client_landing_page->create_c_lp_template_info();
+	
+	//Verifying if information is updated
+	if($sucess_c_lp){
+		$session->message("Successfully saved information to Client Landing Pages Template.");
+		redirect_to("index.php");
+	} else{
+		$session->message("Failed to save information to Client Landing Pages Template.");
+		redirect_to("index.php");
+	}
+}
+
+
+
 ?>
 
 <!doctype html>
@@ -20,16 +209,15 @@ $templates_c_lp = Template::get_all_templates_c_lp();
 <link rel="shortcut icon" href="../site_images/plum_logo-favicon.ico" >
 <link href="../stylesheets/plum_help.css" rel="stylesheet" type="text/css" media="screen,projection">
 <link rel="stylesheet" type="text/css" href="../stylesheets/component.css" />
-<script type="text/javascript" src="../javascripts/d3.min.js"></script>
 </head>
 
-<body><img id="test">
+<body>
 <div id="container"><!-- ***** START CONTAINER***** -->
 
 <a id="TOP"></a>
 
 <header class="bottomShadow">
-	<div id="headerImage"><a href="http://plumdirectmarketing.com" target="_blank";><img src="../site_images/plum_logo_name.png" height="90px"></a></div>
+	<div id="headerImage"><a href="http://plumdirectmarketing.com" target="_blank";><img src="../site_images/plum_logo_name.png" height="81px"></a></div>
 </header>
 
 <section id="mainButtonsBackgroundContainer">
@@ -49,6 +237,17 @@ $templates_c_lp = Template::get_all_templates_c_lp();
     <li><a href="#TOP" class="scroller-link"><div class="allShadow" id="topFix"><span>T</span></div></a></li>
 </div>
 
+<!--****** Error Message after submitting form *******-->
+<?php if($session->message): ?>
+	<div id="error_check"><span><?php echo $session->message; ?></span></div>
+<?php endif; ?>
+
+<div id="introduction">
+	<div id="introductionContainer">
+	<h1>WELCOME TO PLUMDM-HELP</h1>
+    <h2>Choose <span style="color:#4ad486";>Email</span> Templates (or) <span style=" color:rgb(58,190,192);">Landing Page</span> Templates</h2>
+    </div>
+</div>
 
 <!--*************************************************************** START EMAIL TEMPLATES CONTAINER ******************************************************-->
 <section id="allEmailTemplatesContainer">
@@ -72,10 +271,10 @@ $templates_c_lp = Template::get_all_templates_c_lp();
               <div class="dot1"></div>
           </div> 
           <div class="templateAllShadow show_template"><a href="<?php echo $template_p_e->website_url; ?>" target="_blank">		<!-- Template Image -->
-          <img class="templateImage" height="238" src="<?php echo $template_p_e->url_path; ?>"></a>
+          <img class="templateImage" height="220" src="<?php echo $template_p_e->url_path; ?>"></a>
           </div>
           <div class="templateAllShadow eachTemplateButtonsContainer">	<!-- VIEW & SELECT Buttons-->
-          <a class="md-trigger" data-modal="p_e_modal"><button class="selectButton" language="javascript"  onclick="return ClickMenu(this);" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);"><div class="insideSelectButton">SELECT</div></button></a>
+          <a class="md-trigger" data-modal="p_e_modal"><button class="selectButton" language="javascript"  onclick="return p_e(this);" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);" value="<?php echo $template_p_e->website_url;?>"><div class="insideSelectButton">SELECT</div></button></a>
           <div class="buttonsBorder"></div>
           <a href="<?php echo $template_p_e->website_url; ?>" target="_blank"><div class="viewButton">VIEW</div></a>
           </div>
@@ -88,18 +287,17 @@ $templates_c_lp = Template::get_all_templates_c_lp();
 		<div class="md-content"></br>
       		<h2>Template</h2>
 				<form action="index.php" method="post">
-                  <p><label>Client Name</label><input type="text" /></p>
-                  <p><label>Sales Rep</label><select>
-                      <option value="volvo">Volvo</option>
-                      <option value="saab">Saab</option>
-                      <option value="mercedes">Mercedes</option>
-                      <option value="audi">Audi</option>
+                  <p><label>Client Name</label><input name="p_e_client_name" type="text" /></p>
+                  <p><label>Sales Rep</label><select name="p_e_sales_rep">
+                  <?php foreach($sales_reps as $sales_rep): ?>
+                  <option value="<?php echo $sales_rep->id; ?>"><?php echo $sales_rep->first_name; ?></option>
+                  <?php endforeach; ?>
                   </select></p>
-                  <p><label>Send Date</label><input type="text" /></p>
-                  <p><label>Email List</label><input type="text" /></p>
-                  <p><label>Notes</label><textarea id="updateArticleTextArea" name="body"  cols="40" rows="4" ></textarea></p>
-                  <input type="hidden" id="updateArticleId" type="text" name="inputHiddenFieldId" value="" />
-                  <button class="md-close" name="update_article" type="submit">Submit</button></br>
+                  <p><label>Send Date</label><input name="p_e_send_date" type="text" /></p>
+                  <p><label>Email List</label><input name="p_e_email_list" type="text" /></p>
+                  <p><label>Notes</label><textarea name="p_e_notes"  cols="40" rows="4" ></textarea></p>
+                  <input type="hidden" id="p_e_website_url" type="text" name="p_e_website_url" value="" />
+                  <button class="md-close" name="p_e_submit" type="submit">Submit</button></br>
                 </form>
       	</div>
       </div><!--END PLUM EMIAL MODAL CONTENT --> 
@@ -126,10 +324,10 @@ $templates_c_lp = Template::get_all_templates_c_lp();
               <div class="dot1"></div>
           </div> 
           <div class="templateAllShadow show_template"><a href="<?php echo $template_c_e->website_url; ?>" target="_blank">		<!-- Template Image -->
-          <img class="templateImage" height="238" src="<?php echo $template_c_e->url_path; ?>"></a>
+          <img class="templateImage" height="220" src="<?php echo $template_c_e->url_path; ?>"></a>
           </div>
           <div class="templateAllShadow eachTemplateButtonsContainer">	<!-- VIEW & SELECT Buttons-->
-              <a class="md-trigger" data-modal="c_e_modal"><button class="selectButton" language="javascript"  onclick="return ClickMenu(this);" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);"><div class="insideSelectButton">SELECT</div></button></a>
+              <a class="md-trigger" data-modal="c_e_modal"><button class="selectButton" language="javascript"  onclick="return c_e(this);" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);" value="<?php echo $template_c_e->website_url;?>"><div class="insideSelectButton">SELECT</div></button></a>
               <div class="buttonsBorder"></div>
               <a href="<?php echo $template_c_e->website_url; ?>" target="_blank"><div class="viewButton">VIEW</div></a>
           </div>
@@ -143,18 +341,17 @@ $templates_c_lp = Template::get_all_templates_c_lp();
 		<div class="md-content"></br>
       		<h2>Template</h2>
 				<form action="index.php" method="post">
-                  <p><label>Client Name</label><input type="text" /></p>
-                  <p><label>Sales Rep</label><select>
-                      <option value="volvo">Volvo</option>
-                      <option value="saab">Saab</option>
-                      <option value="mercedes">Mercedes</option>
-                      <option value="audi">Audi</option>
+                  <p><label>Client Name</label><input name="c_e_client_name" type="text" /></p>
+                  <p><label>Sales Rep</label><select name="c_e_sales_rep">
+                  <?php foreach($sales_reps as $sales_rep): ?>
+                  <option value="<?php echo $sales_rep->id; ?>"><?php echo $sales_rep->first_name; ?></option>
+                  <?php endforeach; ?>
                   </select></p>
-                  <p><label>Send Date</label><input type="text" /></p>
-                  <p><label>Email List</label><input type="text" /></p>
-                  <p><label>Notes</label><textarea id="updateArticleTextArea" name="body"  cols="40" rows="4" ></textarea></p>
-                  <input type="hidden" id="updateArticleId" type="text" name="inputHiddenFieldId" value="" />
-                  <button class="md-close" name="update_article" type="submit">Submit</button></br>
+                  <p><label>Send Date</label><input name="c_e_send_date" type="text" /></p>
+                  <p><label>Email List</label><input name="c_e_email_list" type="text" /></p>
+                  <p><label>Notes</label><textarea name="c_e_notes"  cols="40" rows="4" ></textarea></p>
+                  <input type="hidden" id="c_e_website_url" type="text" name="c_e_website_url" value="" />
+                  <button class="md-close" name="c_e_submit" type="submit">Submit</button></br>
                 </form>
       	</div>
       </div><!--END CLIENT EMAIL MODAL CONTENT --> 
@@ -190,10 +387,10 @@ $templates_c_lp = Template::get_all_templates_c_lp();
               <div class="dot1"></div>
           </div> 
           <div class="templateAllShadow show_template"><a href="<?php echo $template_p_lp->website_url; ?>" target="_blank">		<!-- Template Image -->
-          <img class="templateImage" height="238" src="<?php echo $template_p_lp->url_path; ?>"></a>
+          <img class="templateImage" height="220" src="<?php echo $template_p_lp->url_path; ?>"></a>
           </div>
           <div class="templateAllShadow eachTemplateButtonsContainer">	<!-- VIEW & SELECT Buttons-->
-              <a class="md-trigger" data-modal="p_lp_modal"><button class="selectButton" language="javascript"  onclick="return ClickMenu(this);" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);"><div class="insideSelectButton">SELECT</div></button></a>
+              <a class="md-trigger" data-modal="p_lp_modal"><button class="selectButton" language="javascript"  onclick="return p_lp(this);" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);" value="<?php echo $template_p_lp->website_url;?>"><div class="insideSelectButton">SELECT</div></button></a>
               <div class="buttonsBorder"></div>
               <a href="<?php echo $template_p_lp->website_url; ?>" target="_blank"><div class="viewButton">VIEW</div></a>
           </div>
@@ -209,31 +406,30 @@ $templates_c_lp = Template::get_all_templates_c_lp();
       		<h2>Template</h2>
 				<form action="index.php" method="post">
                   <div class="firstHalfForm">
-                  <p><label>Client Name</label><input type="text" /></p>
-                  <p><label>Email</label><input type="text" /></p>
-                  <p><label>City</label><input type="text" /></p>
-                  <p><label>State</label><input type="text" /></p>
-                  <p><label>Zip Code</label><input type="text" /></p>
-                  <p><label>Google AdWords</label><input style="position:relative; right:-120px; top:-15px;" type="checkbox" /></p>
+                  <p><label>Client Name</label><input name="p_lp_client_name" type="text" /></p>
+                  <p><label>Email</label><input name="p_lp_email" type="text" /></p>
+                  <p><label>City</label><input name="p_lp_city" type="text" /></p>
+                  <p><label>State</label><input name="p_lp_state" type="text" /></p>
+                  <p><label>Zip Code</label><input name="p_lp_zip_code" type="text" /></p>
+                  <p><label>Google AdWords</label><input name="p_lp_google_ad" style="position:relative; right:-120px; top:-15px;" type="checkbox" /></p>
                   </div>
                   
                   <div class="formDividerLine"></div>
                   
                   <div class="secondHalfForm">
                   <p><label>Sales Rep</label>
-                  <select>
-                      <option value="volvo">Volvo</option>
-                      <option value="saab">Saab</option>
-                      <option value="mercedes">Mercedes</option>
-                      <option value="audi">Audi</option>
+                  <select name="p_lp_sales_rep">
+                      <?php foreach($sales_reps as $sales_rep): ?>
+                      <option value="<?php echo $sales_rep->id; ?>"><?php echo $sales_rep->first_name; ?></option>
+                      <?php endforeach; ?>
                   </select></p>
-                  <p><label>Start Date</label><input type="text" /></p>
-                  <p><label>Expire Date</label><input type="text" /></p>
-                  <p><label>Notes</label><textarea id="updateArticleTextArea" name="body"  cols="40" rows="4" ></textarea></p>
-                  <input type="hidden" id="updateArticleId" type="text" name="inputHiddenFieldId" value="" />
+                  <p><label>Start Date</label><input name="p_lp_start_date" type="text" /></p>
+                  <p><label>Expire Date</label><input name="p_lp_expire_date" type="text" /></p>
+                  <p><label>Notes</label><textarea name="p_lp_notes"  cols="40" rows="4" ></textarea></p>
+                  <input type="hidden" id="p_lp_website_url" type="text" name="p_lp_website_url" value="" />
                   </div>
                   
-                  <button class="md-close" name="update_article" type="submit">Submit</button></br>
+                  <button class="md-close" name="p_lp_submit" type="submit">Submit</button></br>
                 </form>
       	</div>
       </div><!--END PLUM LP MODAL CONTENT --> 
@@ -257,10 +453,10 @@ $templates_c_lp = Template::get_all_templates_c_lp();
               <div class="dot1"></div>
           </div> 
           <div class="templateAllShadow show_template"><a href="<?php echo $template_c_lp->website_url; ?>" target="_blank">		<!-- Template Image -->
-          <img class="templateImage" height="238" src="<?php echo $template_c_lp->url_path; ?>"></a>
+          <img class="templateImage" height="220" src="<?php echo $template_c_lp->url_path; ?>"></a>
           </div>
           <div class="templateAllShadow eachTemplateButtonsContainer">	<!-- VIEW & SELECT Buttons-->
-              <a class="md-trigger" data-modal="c_lp_modal"><button class="selectButton" language="javascript"  onclick="return ClickMenu(this);" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);"><div class="insideSelectButton">SELECT</div></button></a>
+              <a class="md-trigger" data-modal="c_lp_modal"><button class="selectButton" language="javascript"  onclick="return c_lp(this);" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);" value="<?php echo $template_c_lp->website_url;?>"><div class="insideSelectButton">SELECT</div></button></a>
               <div class="buttonsBorder"></div>
               <a href="<?php echo $template_c_lp->website_url; ?>" target="_blank"><div class="viewButton">VIEW</div></a>
           </div>
@@ -277,31 +473,30 @@ $templates_c_lp = Template::get_all_templates_c_lp();
       		<h2>Template</h2>
 				<form action="index.php" method="post">
                   <div class="firstHalfForm">
-                  <p><label>Client Name</label><input type="text" /></p>
-                  <p><label>Email</label><input type="text" /></p>
-                  <p><label>City</label><input type="text" /></p>
-                  <p><label>State</label><input type="text" /></p>
-                  <p><label>Zip Code</label><input type="text" /></p>
-                  <p><label>Google AdWords</label><input style="position:relative; right:-120px; top:-15px;" type="checkbox" /></p>
+                  <p><label>Client Name</label><input name="c_lp_client_name" type="text" /></p>
+                  <p><label>Email</label><input name="c_lp_email" type="text" /></p>
+                  <p><label>City</label><input name="c_lp_city" type="text" /></p>
+                  <p><label>State</label><input name="c_lp_state" type="text" /></p>
+                  <p><label>Zip Code</label><input name="c_lp_zip_code" type="text" /></p>
+                  <p><label>Google AdWords</label><input name="c_lp_google_ad" style="position:relative; right:-120px; top:-15px;" type="checkbox" /></p>
                   </div>
                   
                   <div class="formDividerLine"></div>
                   
                   <div class="secondHalfForm">
                   <p><label>Sales Rep</label>
-                  <select>
-                      <option value="volvo">Volvo</option>
-                      <option value="saab">Saab</option>
-                      <option value="mercedes">Mercedes</option>
-                      <option value="audi">Audi</option>
+                  <select name="c_lp_sales_rep">
+                      <?php foreach($sales_reps as $sales_rep): ?>
+                      <option value="<?php echo $sales_rep->id; ?>"><?php echo $sales_rep->first_name; ?></option>
+                      <?php endforeach; ?>
                   </select></p>
-                  <p><label>Start Date</label><input type="text" /></p>
-                  <p><label>Expire Date</label><input type="text" /></p>
-                  <p><label>Notes</label><textarea id="updateArticleTextArea" name="body"  cols="40" rows="4" ></textarea></p>
-                  <input type="hidden" id="updateArticleId" type="text" name="inputHiddenFieldId" value="" />
+                  <p><label>Start Date</label><input name="c_lp_start_date" type="text" /></p>
+                  <p><label>Expire Date</label><input name="c_lp_expire_date" type="text" /></p>
+                  <p><label>Notes</label><textarea name="c_lp_notes"  cols="40" rows="4" ></textarea></p>
+                  <input type="hidden" id="c_lp_website_url" type="text" name="c_lp_website_url" value="" />
                   </div>
                   
-                  <button class="md-close" name="update_article" type="submit">Submit</button></br>
+                  <button class="md-close" name="c_lp_submit" type="submit">Submit</button></br>
                 </form>
       	</div>
       </div><!--END CLIENT LP MODAL CONTENT --> 
@@ -325,6 +520,7 @@ $templates_c_lp = Template::get_all_templates_c_lp();
 </div><!-- ***** END OF CONTAINER***** -->
 
 <script type="text/javascript" src="../javascripts/jquery-2.0.2.min.js"></script>
+<script type="text/javascript" src="../javascripts/d3.min.js"></script>
 
 <script type="text/javascript">
 $(function(){
@@ -335,6 +531,38 @@ $(function(){
         $('html,body').animate({scrollTop: $("#"+id).offset().top-$(this).closest('ul').height()},'normal');
     });
 });
+
+
+function p_e(button) {
+		var button_value = button.value;
+		
+		$("#p_e_website_url")
+		.attr("value",button_value);
+}
+
+function p_lp(button) {
+		var button_value = button.value;
+		
+		$("#p_lp_website_url")
+		.attr("value",button_value);
+}
+
+function c_e(button) {
+		var button_value = button.value;
+		
+		$("#c_e_website_url")
+		.attr("value",button_value);
+}
+
+function c_lp(button) {
+		var button_value = button.value;
+		
+		$("#c_lp_website_url")
+		.attr("value",button_value);
+}
+
+
+
 </script>
 
 <script type="text/javascript" src="../javascripts/plumdm_help.js"></script>

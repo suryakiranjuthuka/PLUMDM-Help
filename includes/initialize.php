@@ -25,6 +25,13 @@ require_once(LIB_PATH.DS.'databaseobject.php');
 
 // load database-related classes
 require_once(LIB_PATH.DS.'template.php');
+require_once(LIB_PATH.DS.'sales_rep.php');
+require_once(LIB_PATH.DS.'plum_email.php');
+require_once(LIB_PATH.DS.'plum_lp.php');
+require_once(LIB_PATH.DS.'client_email.php');
+require_once(LIB_PATH.DS.'client_lp.php');
+require_once(LIB_PATH.DS.'sales_rep.php');
+require_once(LIB_PATH.DS.'sales_rep.php');
 //require_once(LIB_PATH.DS.'faculty.php');
 //require_once(LIB_PATH.DS.'student.php');
 //require_once(LIB_PATH.DS.'message.php');

@@ -68,6 +68,27 @@ d3.select("body")
 	d3.select(".lpClientScroll")
 		.attr("id","CLIENT")
 	
+	d3.select("footer")
+		.style("position","relative")
+		.style("margin-top",80+"px")
+	
+	d3.select("#introduction")
+		.style("display","none")
+	
+	d3.select("#error_check")
+		.style("display","none")	
+		
+	d3.select("#fixedSidebar")
+	.transition()
+	.duration(200)
+	.each("start",function(){
+		d3.select(this)
+		.style("opacity",.0)	
+	})
+	.style("display","block")
+	.style("opacity",1)
+	
+	
 });
 
 
@@ -149,6 +170,27 @@ d3.select("body")
 		
 	d3.select(".eClientScroll")
 		.attr("id","CLIENT")
+		
+	d3.select("footer")
+		.style("position","relative")
+		.style("margin-top",80+"px")
+	
+	d3.select("#introduction")
+		.style("display","none")
+		
+	d3.select("#error_check")
+		.style("display","none")
+		
+	d3.select("#fixedSidebar")
+	.transition()
+	.duration(200)
+	.each("start",function(){
+		d3.select(this)
+		.style("opacity",.0)	
+	})
+	.style("display","block")
+	.style("opacity",1)
+		
 	
 });
 

@@ -1,0 +1,222 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600);
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+/*------ COLOR PALLET-----*/
+/*
+#565347  :  GREY(link & Paragraph)
+#81785a  :  LIGHT GREY(border bottom)
+#820000  :  RED(Headings)
+#eae9e6  :  BORDER
+*/
+
+/**
+ * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
+ * http://cssreset.com
+ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, img, div {
+	display: block;
+}
+body {
+	line-height: 1;
+	font-family: 'Open Sans', sans-serif;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+a {
+	color:inherit;
+    text-decoration: none;
+}
+
+a:hover 
+{
+     text-decoration:none; 
+     cursor:pointer;  
+}
+
+.transition{
+	-webkit-transition: .2s;
+	transition: .2s;
+}
+
+/*	Layout Styles	*/
+html, body{
+	/*background-color: #F5F5F5;*/
+	/*background-color:#eaedf1;*/
+	/*background-image: url(../site_images/background_images/selected/2l.png);	
+	background-repeat: repeat;*/
+}
+
+#container{
+	position: relative;
+	height:100%;
+	background-color:#eee;
+}
+
+#firstNav{
+	background-color:#D57D7C;
+	width:20px;
+	height:100%;
+	position:fixed;
+	left:0;
+	z-index:1000;
+	
+}
+
+#secondNav{
+	/*background-color:#262A33;*/
+	background-color:#333645;
+	width:250px;
+	height:100%;
+	position:fixed;
+	left:0;
+	z-index:900;
+	
+}
+
+#userNameContainer{
+	background-color: #45C8DC;
+	width: 100%;
+	height: 70px;
+	position: fixed;
+	z-index: 100;
+	padding-left: 800px;
+	color: black;
+	border-bottom-width: 3px;
+	border-bottom-style: solid;
+	border-bottom-color: #e6e6e6;
+}
+
+#userNameContainer h1{
+	margin-left:auto;
+	margin-right:auto;
+	width:100%;
+	font-size:40px;
+	color:#258EA2;
+	font-family: 'Lato','Open Sans', sans-serif;
+	height:inherit;
+	line-height:70px;
+}
+
+#allUserInfoTemplatesContainer{
+	width:1000px;
+	margin-left:400px;
+	opacity:.5;
+	padding-top:100px;
+	z-index:1;
+}
+
+#user_p_lp{
+}
+
+.each_user_p_lp{
+	width: 800px;
+	background-color: white;
+	margin-bottom: 40px;
+	border-radius: 5px;
+}
+
+/* Shadows */
+.templateAllShadow {
+-moz-box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.090);
+-webkit-box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.090);
+box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.090);
+}
+
+/*.allShadow {
+-moz-box-shadow: 0 0 3px black;
+-webkit-box-shadow: 0 0 3px black;
+box-shadow: 0 0 5px grey;
+}*/
+
+.allShadow {
+-moz-box-shadow: 0 0 3px black;
+-webkit-box-shadow: 0 0 3px black;
+box-shadow: 0 0 7px -1px rgba(0, 0, 0, .2);
+}
+
+.rightBottomShadow {
+  -moz-box-shadow:    3px 3px 5px 6px #ccc;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+  box-shadow:         3px 3px 5px 6px #ccc;
+}
+
+.innerShadow1{
+   -moz-box-shadow:    inset 0 0 10px #000000;
+   -webkit-box-shadow: inset 0 0 10px #000000;
+   box-shadow:         inset 0 0 10px #000000;
+}
+
+.innerShadow2{
+box-shadow: inset 0px 0px 13px 1px #B1B1B1;
+-webkit-box-shadow: inset 0px 0px 13px 1px #B1B1B1;
+-moz-box-shadow: inset 0px 0px 13px 1px #B1B1B1;
+-o-box-shadow: inset 0px 0px 13px 1px #B1B1B1;
+}
+
+.bottomShadow {
+	-webkit-box-shadow: 0 8px 6px -6px grey;
+	   -moz-box-shadow: 0 8px 6px -6px grey;
+	        box-shadow: 0 8px 6px -6px grey;
+}
+
+.textShadow{
+    font:100px Lato Bold;
+    text-transform:uppercase;
+    color:#313543;
+    text-align:center;
+    margin-top:10%;
+    margin-bottom:0px;
+    text-shadow:rgba(0,0,0,0.8) 0px -2px 0px,rgba(255,255,255,0.3) 0px 2px 2px;
+  }
+  
+
+/* Different Resolution styles */
+
+/*@media only screen and (min-width:641px) and (max-width:1366px) {*/
+
+@media only screen and (min-width:1367px) and (max-width:1440px) {
+
+}
+
+@media only screen and (max-width:1366px) {
+
+
+}
