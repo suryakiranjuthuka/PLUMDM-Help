@@ -26,6 +26,7 @@ $client_lps = ClientLP::find_all_user_c_lp($current_user->id);
 <title>Plum User</title>
 <link rel="shortcut icon" href="../site_images/plum_logo-favicon.ico" >
 <link href="../stylesheets/plum_help_user.css" rel="stylesheet" type="text/css" media="screen,projection">
+<link rel="stylesheet" href="../stylesheets/jquery.mCustomScrollbar.css" />
 <!--<link href="../stylesheets/plum_help.css" rel="stylesheet" type="text/css" media="screen,projection">
 <link rel="stylesheet" type="text/css" href="../stylesheets/component.css" />-->
 </head>
@@ -52,7 +53,7 @@ $client_lps = ClientLP::find_all_user_c_lp($current_user->id);
 </nav>
 
 
-<div id="userNameContainer">
+<div class="bottomShadow" id="userNameContainer">
 <h1><?php echo $current_user->first_name; ?></h1>
 </div>
 
@@ -88,24 +89,99 @@ $client_lps = ClientLP::find_all_user_c_lp($current_user->id);
 
 <section id="user_p_lp">
 	<?php 
-	
 	foreach($plum_lps as $plum_lp):?>
-		<div class="allShadow each_user_p_lp">
+		<div class=" each_user_p_lp">
+        
+        
+        
+        <div class="p_lp_top_container">
+        	<!--<img alt="Client" class=" allShadow userImage" height="30" src="../site_images/user.png">-->
+        	<h1 class="p_lp_client_name"><?php echo $plum_lp->client_name;?></h1>
+            
+            <div class="p_lp_location">
+                <h5><?php echo "( ".$plum_lp->city;?></h5>
+                <h5><?php echo "&nbsp / ".$plum_lp->state;?></h5>
+                <h5><?php echo "&nbsp / ".$plum_lp->zip_code." )";?></h5>
+            </div>
+            
+            <div class="p_lp_leads_container">
+            	<span class="pound">
+                #
+                </span>
+                <div class="leadsCircle">
+				<span class="inside_leads_circle_text">
+					<?php echo $plum_lp->leads;?>
+                </span>
+                </div>
+                <div class="leadsPlaceHolder">
+                LEADS
+                </div>
+            </div>
+        </div>
+        
+        <div class="p_lp_middle_container">
+          <div class="p_lp_middle_first_container">
+        	<div class="p_lp_url_container">
+            	<img alt="url" class=" allShadow m_c_i" height="30" src="../site_images/link.png">
+                <span class="url_span">URL :</span>
+        		<h4 class="horizontal_scroll p_lp_url"><a href="<?php echo $plum_lp->website_url; ?>" target="_blank"><?php echo $plum_lp->website_url."&nbsp; &nbsp;"; ?></a></h4>
+            </div>
+            <div class="p_lp_email_container">
+            	<img alt="email" class=" allShadow m_c_i" height="30" src="../site_images/email.png">
+                <span>EMAIL :</span>
+				<h4 class="p_lp_email"><?php echo $plum_lp->email; ?></h4>
+            </div>
+            <div class="p_lp_notes_container">
+            	<img alt="notes" class="allShadow m_c_i" height="30" src="../site_images/notes.png">
+            	<span>NOTES :</span>
+				<h4 class="content light mCustomScrollbar p_lp_notes"><?php echo $plum_lp->notes; ?></h4>
+            </div>
+          </div>
+          
+          <div class="p_lp_middle_second_container">
+          		<div class="google_ad_container">
+                	<h5>GOOGLE ADWORDS :</h5>
+          			<h4 class="<?php if($plum_lp->google_ad == 0){ echo "red"; } else{ echo "green"; } ?>">
+						<?php if($plum_lp->google_ad == 0){ echo "NO"; } else{ echo "YES"; } ?></h4>
+                </div>
+                <div class="google_ad_setup_container">
+                	<h5>AD-WORDS SETUP :</h5>
+                	<h4 class="<?php if($plum_lp->google_ad_setup == 0){ echo "red"; } else{ echo "green"; } ?>">
+						<?php if($plum_lp->google_ad_setup == 0){ echo "NO"; } else{ echo "YES"; } ?></h4>
+                </div>
+                <div class="page_complete_container">
+                	<h5>PAGE COMPLETE :</h5>
+                	<h4 class="<?php if($plum_lp->page_complete == 0){ echo "red"; } else{ echo "green"; } ?>">
+						<?php if($plum_lp->page_complete == 0){ echo "NO"; } else{ echo "YES"; } ?></h4>
+                </div>
+                <div class="renewing_page_container">
+                	<h5>RENEWING PAGE :</h5>
+                	<h4 class="<?php if($plum_lp->renewing_page == 0){ echo "red"; } else{ echo "green"; } ?>">
+						<?php if($plum_lp->renewing_page == 0){ echo "NO"; } else{ echo "YES"; } ?></h4>
+                </div>
+          </div>
+          
+        </div>
+        
+        <div class="p_lp_bottom_container">
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 		<?php
-        echo $plum_lp->client_name."</br>";	
-		echo $plum_lp->city."</br>";
-		echo $plum_lp->state."</br>";
-		echo $plum_lp->zip_code."</br>";
-		echo $plum_lp->leads."</br>";
-		echo $plum_lp->website_url."</br>";
-		echo $plum_lp->email."</br>";
-		echo $plum_lp->notes."</br>";
-		echo $plum_lp->start_date."</br>";
-		echo $plum_lp->expire_date."</br>";
-		echo $plum_lp->google_ad."</br>";
-		echo $plum_lp->google_ad_setup."</br>";
-		echo $plum_lp->page_complete."</br>";
-		echo $plum_lp->renewing_page;	
+		echo $plum_lp->start_date;
+		echo $plum_lp->expire_date;
 		?>
 	</div>
 	<?php endforeach;
@@ -133,6 +209,7 @@ $client_lps = ClientLP::find_all_user_c_lp($current_user->id);
 </div><!-- ***** END OF CONTAINER***** -->
 
 <script type="text/javascript" src="../javascripts/jquery-2.0.2.min.js"></script>
+<script type="text/javascript" src="../javascripts/jquery.mCustomScrollbar.concat.min.js"></script>
 <script type="text/javascript" src="../javascripts/d3.min.js"></script>
 
 <script type="text/javascript">
@@ -152,6 +229,20 @@ function p_e(button) {
 		$("#p_e_website_url")
 		.attr("value",button_value);
 }
+
+$(".content").mCustomScrollbar({
+    theme:"dark"
+});
+
+$(".horizontal_scroll").mCustomScrollbar({
+    axis:"x",
+	theme:"dark",
+	autoExpandScrollbar:true,
+	advanced:{autoExpandHorizontalScroll:true},
+	scrollButtons:{enable:true}
+});
+
+
 </script>
 
 <script type="text/javascript" src="../javascripts/plumdm_help.js"></script>
