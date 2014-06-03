@@ -33,6 +33,9 @@ if(isset($_POST['p_e_submit'])){
 	
 	if($_POST['p_e_website_url']){	
 		$plum_email->website_url = trim($_POST['p_e_website_url']);}
+		
+	if($_POST['p_e_url_path']){	
+		$plum_email->url_path = trim($_POST['p_e_url_path']);}
 	
 	
 	$sucess_p_e = $plum_email->create_p_e_template_info();
@@ -70,6 +73,9 @@ if(isset($_POST['c_e_submit'])){
 	
 	if($_POST['c_e_website_url']){	
 		$client_email->website_url = trim($_POST['c_e_website_url']);}
+		
+	if($_POST['c_e_url_path']){	
+		$client_email->url_path = trim($_POST['c_e_url_path']);}
 	
 	
 	$sucess_c_e = $client_email->create_c_e_template_info();
@@ -124,6 +130,10 @@ if(isset($_POST['p_lp_submit'])){
 	
 	if($_POST['p_lp_website_url']){	
 		$plum_landing_page->website_url = trim($_POST['p_lp_website_url']);}
+		
+	if($_POST['p_lp_url_path']){	
+		$plum_landing_page->url_path = trim($_POST['p_lp_url_path']);}
+	
 	
 	
 	
@@ -179,6 +189,9 @@ if(isset($_POST['c_lp_submit'])){
 	
 	if($_POST['c_lp_website_url']){	
 		$client_landing_page->website_url = trim($_POST['c_lp_website_url']);}
+		
+	if($_POST['c_lp_url_path']){	
+		$client_landing_page->url_path = trim($_POST['c_lp_url_path']);}
 	
 	
 	
@@ -274,7 +287,7 @@ if(isset($_POST['c_lp_submit'])){
           <img class="templateImage" height="220" src="<?php echo $template_p_e->url_path; ?>"></a>
           </div>
           <div class="templateAllShadow eachTemplateButtonsContainer">	<!-- VIEW & SELECT Buttons-->
-          <a class="md-trigger" data-modal="p_e_modal"><button class="selectButton" language="javascript"  onclick="return p_e(this);" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);" value="<?php echo $template_p_e->website_url;?>"><div class="insideSelectButton">SELECT</div></button></a>
+          <a class="md-trigger" data-modal="p_e_modal"><button class="selectButton" language="javascript"  onclick="return p_e(this);" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);" value="<?php echo $template_p_e->website_url."***".$template_p_e->url_path;?>"><div class="insideSelectButton">SELECT</div></button></a>
           <div class="buttonsBorder"></div>
           <a href="<?php echo $template_p_e->website_url; ?>" target="_blank"><div class="viewButton">VIEW</div></a>
           </div>
@@ -297,6 +310,7 @@ if(isset($_POST['c_lp_submit'])){
                   <p><label>Email List</label><input name="p_e_email_list" type="text" /></p>
                   <p><label>Notes</label><textarea name="p_e_notes"  cols="40" rows="4" ></textarea></p>
                   <input type="hidden" id="p_e_website_url" type="text" name="p_e_website_url" value="" />
+                  <input type="hidden" id="p_e_url_path" type="text" name="p_e_url_path" value="" />
                   <button class="md-close" name="p_e_submit" type="submit">Submit</button></br>
                 </form>
       	</div>
@@ -327,7 +341,7 @@ if(isset($_POST['c_lp_submit'])){
           <img class="templateImage" height="220" src="<?php echo $template_c_e->url_path; ?>"></a>
           </div>
           <div class="templateAllShadow eachTemplateButtonsContainer">	<!-- VIEW & SELECT Buttons-->
-              <a class="md-trigger" data-modal="c_e_modal"><button class="selectButton" language="javascript"  onclick="return c_e(this);" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);" value="<?php echo $template_c_e->website_url;?>"><div class="insideSelectButton">SELECT</div></button></a>
+              <a class="md-trigger" data-modal="c_e_modal"><button class="selectButton" language="javascript"  onclick="return c_e(this);" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);" value="<?php echo $template_c_e->website_url."***".$template_c_e->url_path;?>"><div class="insideSelectButton">SELECT</div></button></a>
               <div class="buttonsBorder"></div>
               <a href="<?php echo $template_c_e->website_url; ?>" target="_blank"><div class="viewButton">VIEW</div></a>
           </div>
@@ -351,6 +365,7 @@ if(isset($_POST['c_lp_submit'])){
                   <p><label>Email List</label><input name="c_e_email_list" type="text" /></p>
                   <p><label>Notes</label><textarea name="c_e_notes"  cols="40" rows="4" ></textarea></p>
                   <input type="hidden" id="c_e_website_url" type="text" name="c_e_website_url" value="" />
+                  <input type="hidden" id="c_e_url_path" type="text" name="c_e_url_path" value="" />
                   <button class="md-close" name="c_e_submit" type="submit">Submit</button></br>
                 </form>
       	</div>
@@ -390,7 +405,7 @@ if(isset($_POST['c_lp_submit'])){
           <img class="templateImage" height="220" src="<?php echo $template_p_lp->url_path; ?>"></a>
           </div>
           <div class="templateAllShadow eachTemplateButtonsContainer">	<!-- VIEW & SELECT Buttons-->
-              <a class="md-trigger" data-modal="p_lp_modal"><button class="selectButton" language="javascript"  onclick="return p_lp(this);" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);" value="<?php echo $template_p_lp->website_url;?>"><div class="insideSelectButton">SELECT</div></button></a>
+              <a class="md-trigger" data-modal="p_lp_modal"><button class="selectButton" language="javascript"  onclick="return p_lp(this);" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);" value="<?php echo $template_p_lp->website_url."***".$template_p_lp->url_path;?>"><div class="insideSelectButton">SELECT</div></button></a>
               <div class="buttonsBorder"></div>
               <a href="<?php echo $template_p_lp->website_url; ?>" target="_blank"><div class="viewButton">VIEW</div></a>
           </div>
@@ -427,6 +442,7 @@ if(isset($_POST['c_lp_submit'])){
                   <p><label>Expire Date</label><input name="p_lp_expire_date" type="text" /></p>
                   <p><label>Notes</label><textarea name="p_lp_notes"  cols="40" rows="4" ></textarea></p>
                   <input type="hidden" id="p_lp_website_url" type="text" name="p_lp_website_url" value="" />
+                  <input type="hidden" id="p_lp_url_path" type="text" name="p_lp_url_path" value="" />
                   </div>
                   
                   <button class="md-close" name="p_lp_submit" type="submit">Submit</button></br>
@@ -456,7 +472,7 @@ if(isset($_POST['c_lp_submit'])){
           <img class="templateImage" height="220" src="<?php echo $template_c_lp->url_path; ?>"></a>
           </div>
           <div class="templateAllShadow eachTemplateButtonsContainer">	<!-- VIEW & SELECT Buttons-->
-              <a class="md-trigger" data-modal="c_lp_modal"><button class="selectButton" language="javascript"  onclick="return c_lp(this);" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);" value="<?php echo $template_c_lp->website_url;?>"><div class="insideSelectButton">SELECT</div></button></a>
+              <a class="md-trigger" data-modal="c_lp_modal"><button class="selectButton" language="javascript"  onclick="return c_lp(this);" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);" value="<?php echo $template_c_lp->website_url."***".$template_c_lp->url_path;?>"><div class="insideSelectButton">SELECT</div></button></a>
               <div class="buttonsBorder"></div>
               <a href="<?php echo $template_c_lp->website_url; ?>" target="_blank"><div class="viewButton">VIEW</div></a>
           </div>
@@ -494,6 +510,7 @@ if(isset($_POST['c_lp_submit'])){
                   <p><label>Expire Date</label><input name="c_lp_expire_date" type="text" /></p>
                   <p><label>Notes</label><textarea name="c_lp_notes"  cols="40" rows="4" ></textarea></p>
                   <input type="hidden" id="c_lp_website_url" type="text" name="c_lp_website_url" value="" />
+                  <input type="hidden" id="c_lp_url_path" type="text" name="c_lp_url_path" value="" />
                   </div>
                   
                   <button class="md-close" name="c_lp_submit" type="submit">Submit</button></br>
@@ -535,30 +552,46 @@ $(function(){
 
 function p_e(button) {
 		var button_value = button.value;
+		var button_values = button_value.split("***");
 		
 		$("#p_e_website_url")
-		.attr("value",button_value);
+		.attr("value",button_values[0]);
+		
+		$("#p_e_url_path")
+		.attr("value",button_values[1]);
 }
 
 function p_lp(button) {
 		var button_value = button.value;
+		var button_values = button_value.split("***");
 		
 		$("#p_lp_website_url")
-		.attr("value",button_value);
+		.attr("value",button_values[0]);
+		
+		$("#p_lp_url_path")
+		.attr("value",button_values[1]);
 }
 
 function c_e(button) {
 		var button_value = button.value;
+		var button_values = button_value.split("***");
 		
 		$("#c_e_website_url")
-		.attr("value",button_value);
+		.attr("value",button_values[0]);
+		
+		$("#c_e_url_path")
+		.attr("value",button_values[1]);
 }
 
 function c_lp(button) {
 		var button_value = button.value;
+		var button_values = button_value.split("***");
 		
 		$("#c_lp_website_url")
-		.attr("value",button_value);
+		.attr("value",button_values[0]);
+		
+		$("#c_e_url_path")
+		.attr("value",button_values[1]);
 }
 
 

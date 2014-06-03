@@ -76,6 +76,11 @@ a:hover
 	transition: .2s;
 }
 
+.transition1{
+	-webkit-transition: .1s;
+	transition: .1s;
+}
+
 /*	Layout Styles	*/
 html, body{
 	background-color: #F5F5F5;
@@ -495,7 +500,7 @@ h1#plumEmails,h1#clientEmails{
 	background-color:rgba(161,229,191,.5);
 	/*background-color:#a1e5bf;*/
 	opacity:.8;
-	}
+}
 
 
 

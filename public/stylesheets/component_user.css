@@ -202,31 +202,30 @@ perspective effects (not including the modals and the overlay).
 .md-content1 {
 	position: relative;
 	text-align: left;
-	width:1100px;
-	left:-240px;
+	width:950px;
+	left:-120px;
 }
 
 .md-content1 h2 {
-	margin: 0;
-	padding: 0.4em 0 0.3em;
 	text-align: center;
 	font-weight: 300;
-	font-size: 3.5em;
+	font-size: 45px;
 	font-weight:300;
 	font-family:'Lato',Arial;
-	margin-bottom:20px;
+	margin-top:15px;
+	margin-bottom:15px;
 }
 
 .md-content1 form {
 	width:900px;
-	height:600px;
-	margin:35px auto 0;
+	height:520px;
+	margin:0 auto 0;
 	position:relative;
 }
 
 .md-content1 form p {
 	margin: 0 0 5px 0;
-	font-size: 0.7em;
+	font-size: 13px;
 	width:100%;
 	margin-left:auto;
 	margin-right:auto;
@@ -243,13 +242,13 @@ perspective effects (not including the modals and the overlay).
 
 .md-content1 input[type="text"],
 .md-content1 input[type="password"]{
-	padding: 10px;
+	padding: 8px;
 	width: 100%;
 	border: 2px solid #ebd3bd;
 	background: transparent;
 	color: #b09a86;
 	font-weight: 300;
-	font-size: 2em;
+	font-size: 16px;
 }
 
 .md-content1 input[type="checkbox"]{
@@ -275,7 +274,7 @@ perspective effects (not including the modals and the overlay).
 	background: transparent;
 	color: #b09a86;
 	font-weight: 400;
-	font-size: 2em;
+	font-size: 16px;
 	font-family:'Lato',Arial;
 }
 
@@ -301,10 +300,9 @@ perspective effects (not including the modals and the overlay).
 
 .md-content1 button {
 	display: block;
-	padding: 1.2em;
-	width: 50%;
-	height:80px;
-	margin:2em auto 1em;
+	width: 40%;
+	height:60px;
+	margin:0px auto 0px;
 	border: none;
 	background: #e75854;
 	color: #f9f6e5;
@@ -318,7 +316,7 @@ perspective effects (not including the modals and the overlay).
 	transition: all .2s;
 	position:absolute;
 	top:430px;
-	right:200px;
+	right:260px;
 	bottom:0px;
 }
 
@@ -328,22 +326,24 @@ perspective effects (not including the modals and the overlay).
 
 /* md-content1 breaking Form Styles */
 body .md-content1 .firstHalfForm{
-	width:400px;
+	width:350px;
 	float:left;
+	margin-right:50px;
+	margin-left:50px;
 }
 
 body .md-content1 .secondHalfForm{
-	width:400px;
-	float:right;
+	width:350px;
+	float:left;
+	margin-left:30px;
 }
 
 .formDividerLine{
-	height: 430px;
+	height: 390px;
 	width: 1px;
+	margin-top:10px;
 	background-color: #fff;
 	float: left;
-	position: relative;
-	left: 63px;
 	border-left-width: 1px;
 	border-left-style: solid;
 	border-left-color: #EBD3BD;
