@@ -9,7 +9,9 @@ $plum_emails = PlumEmail::find_all_user_p_e($current_user->id);
 
 $client_emails = ClientEmail::find_all_user_c_e($current_user->id);
 
-$plum_lps = PlumLP::find_all_user_p_lp($current_user->id);
+//$plum_lps = PlumLP::find_all_user_p_lp($current_user->id);
+$search_in = trim($_POST['search_input']);
+$plum_lps = PlumLP::search_p_lp($current_user->id,$search_in);
 
 $client_lps = ClientLP::find_all_user_c_lp($current_user->id);
 
@@ -192,9 +194,11 @@ if(isset($_GET['p_lp_id'])){
 <?php endif; ?>
 
 
+<input type="text" name="search_input" id="search_input">
+<input type="button" value="search" onClick="search_p_lp()">
 
-
-	<?php 
+<div id="search_results">
+<?php 
 	foreach($plum_lps as $plum_lp):?>
 		<div class=" allShadow1 each_user_p_lp">
         
@@ -302,6 +306,12 @@ if(isset($_GET['p_lp_id'])){
         
 	</div>
 	<?php endforeach; ?>
+</div>
+
+
+
+
+	
 </section>
 
     																<!--Start PLUM LP EDIT MODAL CONTENT -->  
@@ -506,6 +516,13 @@ function c_lp(button) {
 		.attr("value",button_values[1]);
 }
 
+
+function search_p_lp(){
+	$.post('user.php', { search_input: document.getElementById("search_input").value },
+		function(output) {
+			$('body').html(output).show("#search_results");
+		});
+}
 
 </script>
 
