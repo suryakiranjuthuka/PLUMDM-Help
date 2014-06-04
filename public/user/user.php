@@ -67,6 +67,9 @@ if(isset($_POST['p_lp_submit'])){
 		$plum_landing_page->renewing_page = 1; }
 		else{ $plum_landing_page->renewing_page = 0; }
 		
+	if($_POST['p_lp_leads']){	
+		$plum_landing_page->leads = trim($_POST['p_lp_leads']);}
+		
 	if($_POST['p_lp_id']){	
 		$plum_landing_page->id = trim($_POST['p_lp_id']);}
 	
@@ -85,6 +88,24 @@ if(isset($_POST['p_lp_submit'])){
 	}
 }
 
+
+//********** Hide Template Info **************
+if(isset($_GET['p_lp_id'])){
+
+	$p_lp_id = trim($_GET['p_lp_id']);
+	$current_user_id = trim($_GET['current_user_id']);
+	
+	$hidden = PlumLP::hide_p_lp_template_info($p_lp_id, $current_user_id);
+	
+	//Verifying if information is hidden
+	if($hidden){
+		$session->message("Plum Landing Pages Template Info SUCCESSFULLY HIDDEN.");
+		redirect_to("user.php");
+	} else{
+		$session->message("Failed to HIDE Plum Landing Pages Template Info.");
+		redirect_to("user.php");
+	}
+}
 
 
 ?>
@@ -258,10 +279,11 @@ if(isset($_POST['p_lp_submit'])){
                 </div>
                 <a title="Edit" class="md-trigger" data-modal="p_lp_modal"><button class="editButton transition1" language="javascript"  onclick="return p_lp(this);" style="border-style:none; outline:0; border:0; background:none;" value="
 				
-				<?php echo $plum_lp->client_name."***".$plum_lp->email."***".$plum_lp->city."***".$plum_lp->state."***".$plum_lp->zip_code."***".$plum_lp->google_ad."***".$plum_lp->google_ad_setup."***".$plum_lp->website_url."***".$plum_lp->start_date."***".$plum_lp->expire_date."***".$plum_lp->notes."***".$plum_lp->page_complete."***".$plum_lp->renewing_page."***".$plum_lp->id; ?>
+				<?php echo $plum_lp->client_name."***".$plum_lp->email."***".$plum_lp->city."***".$plum_lp->state."***".$plum_lp->zip_code."***".$plum_lp->google_ad."***".$plum_lp->google_ad_setup."***".$plum_lp->website_url."***".$plum_lp->start_date."***".$plum_lp->expire_date."***".$plum_lp->notes."***".$plum_lp->page_complete."***".$plum_lp->renewing_page."***".$plum_lp->leads."***".$plum_lp->id; ?>
                 
                 "><img alt="Edit" class="allShadow transition1 edit_template_info" height="30" src="../site_images/edit.png"></button></a>
-                <a title="Hide"><img alt="Hide" class="allShadow transition1 hide_template_info" height="30" src="../site_images/hide.png"></a>
+                
+                <a href="user.php?p_lp_id=<?php echo $plum_lp->id ; ?>&current_user_id=<?php echo $current_user->id; ?>" title="Hide"><img alt="Hide" class="allShadow transition1 hide_template_info" height="30" src="../site_images/hide.png"></a>
             	<a title="Attachment"><img alt="Attachment" class="allShadow transition1 download_attachment_img" height="30" src="../site_images/download.png"></a>
         </div>
         
@@ -288,6 +310,9 @@ if(isset($_POST['p_lp_submit'])){
 		<div class="md-content1"></br>
       		<h2>Edit Info</h2>
 				<form id="p_lp_form" action="user.php" method="post">
+                	<div class="leadsField">
+                    <p><label>#Leads</label><input id="p_lp_leads" name="p_lp_leads" type="text" /></p>
+                    </div>
                   <div class="firstHalfForm">
                   <p><label>Client Name</label><input id="p_lp_client_name" name="p_lp_client_name" type="text" /></p>
                   <p><label>Email</label><input id="p_lp_email" name="p_lp_email" type="text" /></p>
@@ -451,8 +476,11 @@ function p_lp(button) {
 			if(button_values[12]==0){ return false;} else{ return true; }	
 		});
 		
-		$("#p_lp_id")
+		$("#p_lp_leads")
 		.attr("value",button_values[13]);
+		
+		$("#p_lp_id")
+		.attr("value",button_values[14]);
 		
 }
 

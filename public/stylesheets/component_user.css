@@ -325,6 +325,20 @@ perspective effects (not including the modals and the overlay).
 }
 
 /* md-content1 breaking Form Styles */
+.leadsField{
+	float:right;
+	position:absolute;
+	top:-50px;
+	right:60px;
+	width:40px;
+}
+
+.md-content1 .leadsField input[type="text"]{
+	padding: 4px;
+	font-size: 14px;
+	text-align:center;
+}
+
 body .md-content1 .firstHalfForm{
 	width:350px;
 	float:left;

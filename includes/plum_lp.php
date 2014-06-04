@@ -70,6 +70,7 @@ class PlumLP extends DatabaseObject{
 		$google_ad_setup = $database->escape_value($this->google_ad_setup);
 		$page_complete = $database->escape_value($this->page_complete);
 		$renewing_page = $database->escape_value($this->renewing_page);
+		$leads = $database->escape_value($this->leads);
 		$id = $database->escape_value($this->id);
 		$salesrep_id = $database->escape_value($this->salesrep_id);
 		 
@@ -79,7 +80,18 @@ class PlumLP extends DatabaseObject{
 		$sql .= "city='{$city}', state='{$state}', ";
 		$sql .= "start_date='{$start_date}', expire_date='{$expire_date}', ";
 		$sql .= "zip_code='{$zip_code}', google_ad='{$google_ad}', ";
-		$sql .= "google_ad_setup='{$google_ad_setup}', page_complete='{$page_complete}', renewing_page='{$renewing_page}' WHERE id={$id} && salesrep_id={$salesrep_id}";
+		$sql .= "google_ad_setup='{$google_ad_setup}', page_complete='{$page_complete}', renewing_page='{$renewing_page}', leads='{$leads}' ";
+		$sql .= "WHERE id={$id} && salesrep_id={$salesrep_id}";
+		
+		$database->query($sql);
+		return ($database->affected_rows() == 1) ? true : false;
+	}
+	
+	
+	public static function hide_p_lp_template_info($p_lp_id="",$current_user_id=""){
+		global $database;
+		
+		$sql  = "UPDATE plumlp SET hidden=1 WHERE id={$p_lp_id} && salesrep_id={$current_user_id}";
 		
 		$database->query($sql);
 		return ($database->affected_rows() == 1) ? true : false;
@@ -92,6 +104,14 @@ class PlumLP extends DatabaseObject{
 		$sql = "SELECT * from plumlp WHERE salesrep_id='{$id}' && hidden=0 ";
 		
 		return static::find_by_sql($sql);	
+	}
+	
+	public static function search_p_lp(){
+		global $database;
+		
+		$sql = " SELECT * FROM  plumlp WHERE (client_name LIKE '%$search_term%') OR (email LIKE '%$search_term%') ";
+		
+		return static::find_by_sql($sql);
 	}
 	
 }
