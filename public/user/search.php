@@ -3,12 +3,47 @@
 require_once("../../includes/initialize.php"); 
 
 
+$current_user = SalesRep::find_by_id(1);
+
 $search_in = trim($_POST['search_input']);
 $plum_lps = PlumLP::search_p_lp($current_user->id,$search_in);
 
 ?>
 
-<div id="test">
+
+<script type="text/javascript">
+function p_e(button) {
+		var button_value = button.value;
+		
+		$("#p_e_website_url")
+		.attr("value",button_value);
+}
+
+$(".content").mCustomScrollbar({
+    theme:"dark"
+});
+
+$(".horizontal_scroll").mCustomScrollbar({
+    axis:"x",
+	theme:"dark",
+	autoExpandScrollbar:true,
+	advanced:{autoExpandHorizontalScroll:true},
+	scrollButtons:{enable:true}
+});
+
+//Form Reset Funcationality
+$( "#p_lp_overlay" ).click(function() {
+  
+  	document.getElementById("p_lp_form").reset();
+  
+});
+
+</script>
+
+<script src="../javascripts/modalEffects.js"></script>
+
+
+<div id="search_results">
 <?php 
 	foreach($plum_lps as $plum_lp):?>
 		<div class=" allShadow1 each_user_p_lp">

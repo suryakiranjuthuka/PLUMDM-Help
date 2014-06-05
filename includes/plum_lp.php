@@ -101,7 +101,7 @@ class PlumLP extends DatabaseObject{
 	public static function find_all_user_p_lp($id=""){
 		global $database;
 		
-		$sql = "SELECT * from plumlp WHERE salesrep_id='{$id}' && hidden=0 ";
+		$sql = "SELECT * from plumlp WHERE salesrep_id='{$id}' && hidden=0 ORDER BY id DESC ";
 		
 		return static::find_by_sql($sql);	
 	}

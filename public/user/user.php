@@ -9,9 +9,9 @@ $plum_emails = PlumEmail::find_all_user_p_e($current_user->id);
 
 $client_emails = ClientEmail::find_all_user_c_e($current_user->id);
 
-//$plum_lps = PlumLP::find_all_user_p_lp($current_user->id);
-$search_in = trim($_POST['search_input']);
-$plum_lps = PlumLP::search_p_lp($current_user->id,$search_in);
+$plum_lps = PlumLP::find_all_user_p_lp($current_user->id);
+//$search_in = trim($_POST['search_input']);
+//$plum_lps = PlumLP::search_p_lp($current_user->id,$search_in);
 
 $client_lps = ClientLP::find_all_user_c_lp($current_user->id);
 
@@ -125,8 +125,14 @@ if(isset($_GET['p_lp_id'])){
 <link rel="stylesheet" href="../stylesheets/jquery.mCustomScrollbar.css" />
 <!--<link href="../stylesheets/plum_help.css" rel="stylesheet" type="text/css" media="screen,projection">
 <link rel="stylesheet" type="text/css" href="../stylesheets/component.css" />-->
+<script> 
+	//function popup(){ 
+	//document.getElementById('p_lp_modal_popup').className = 'md-content1';
+	//}
+</script>
 </head>
 
+<!--<body onLoad="search_p_lp();">-->
 <body>
 <div id="container"><!-- ***** START CONTAINER***** -->
 
@@ -306,6 +312,7 @@ if(isset($_GET['p_lp_id'])){
         
 	</div>
 	<?php endforeach; ?>
+
 </div>
 
 
@@ -317,7 +324,7 @@ if(isset($_GET['p_lp_id'])){
     																<!--Start PLUM LP EDIT MODAL CONTENT -->  
       
       <div class="md-modal md-effect-1" id="p_lp_modal">
-		<div class="md-content1"></br>
+		<div id="p_lp_modal_popup" class="md-content1"></br>
       		<h2>Edit Info</h2>
 				<form id="p_lp_form" action="user.php" method="post">
                 	<div class="leadsField">
@@ -518,9 +525,9 @@ function c_lp(button) {
 
 
 function search_p_lp(){
-	$.post('user.php', { search_input: document.getElementById("search_input").value },
+	$.post('search.php', { search_input: document.getElementById("search_input").value },
 		function(output) {
-			$('body').html(output).show("#search_results");
+			$('#search_results').html(output).show();
 		});
 }
 
@@ -533,6 +540,5 @@ function search_p_lp(){
 
 <script type="text/javascript" src="../javascripts/plumdm_help_user.js"></script>
 <script src="../javascripts/classie.js"></script>
-<script src="../javascripts/modalEffects.js"></script>
 </body>
 </html>
