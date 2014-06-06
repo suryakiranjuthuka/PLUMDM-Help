@@ -16,6 +16,25 @@ $plum_lps = PlumLP::find_all_user_p_lp($current_user->id);
 $client_lps = ClientLP::find_all_user_c_lp($current_user->id);
 
 
+if(isset($_GET['attachment_url'])){
+ $file = $_GET['attachment_url'];
+			
+			if (file_exists($file)) {
+				header('Content-Description: File Transfer');
+				header('Content-Type: application/octet-stream');
+				header('Content-Disposition: attachment; filename='.$file);
+				header('Content-Transfer-Encoding: binary');
+				header('Expires: 0');
+				header('Cache-Control: must-revalidate');
+				header('Pragma: public');
+				header('Content-Length: ' . filesize($file));
+				ob_clean();
+				flush();
+				readfile($file);
+				exit;
+			}
+}
+
 
 //**************Plum Landing Page Form Submittion***************
 if(isset($_POST['p_lp_submit'])){
@@ -82,10 +101,10 @@ if(isset($_POST['p_lp_submit'])){
 	
 	//Verifying if information is updated
 	if($sucess_p_lp){
-		$session->message("Successfully UPDATED information to Plum Landing Pages Template.");
+		$session->message("<span class='bold'>Successfully UPDATED</span> <span class='boldCreamColor'> information to Plum Landing Pages Template.</span>");
 		redirect_to("user.php");
 	} else{
-		$session->message("Failed to UPDATE information to Plum Landing Pages Template.");
+		$session->message("<span class='bold'>Failed</span> <span class='boldCreamColor'> to</span> <span class='bold'> UPDATE</span> <span class='boldCreamColor'> information to Plum Landing Pages Template.</span>");
 		redirect_to("user.php");
 	}
 }
@@ -101,10 +120,10 @@ if(isset($_GET['p_lp_id'])){
 	
 	//Verifying if information is hidden
 	if($hidden){
-		$session->message("Plum Landing Pages Template Info SUCCESSFULLY HIDDEN.");
+		$session->message("<span class='boldCreamColor'>Plum Landing Pages Template Info</span> <span class='bold'> Successfully HIDDEN.</span>");
 		redirect_to("user.php");
 	} else{
-		$session->message("Failed to HIDE Plum Landing Pages Template Info.");
+		$session->message("<span class='bold'>Failed</span> <span class='boldCreamColor'> to</span> <span class='bold'> HIDE</span> <span class='boldCreamColor'> Plum Landing Pages Template Info.</span>");
 		redirect_to("user.php");
 	}
 }
@@ -125,6 +144,8 @@ if(isset($_GET['p_lp_id'])){
 <link rel="stylesheet" href="../stylesheets/jquery.mCustomScrollbar.css" />
 <!--<link href="../stylesheets/plum_help.css" rel="stylesheet" type="text/css" media="screen,projection">
 <link rel="stylesheet" type="text/css" href="../stylesheets/component.css" />-->
+<script type="text/javascript" src="../javascripts/jquery-2.0.2.min.js"></script>
+<script type="text/javascript" src="../javascripts/jquery.mCustomScrollbar.concat.min.js"></script>
 <script> 
 	//function popup(){ 
 	//document.getElementById('p_lp_modal_popup').className = 'md-content1';
@@ -153,6 +174,14 @@ if(isset($_GET['p_lp_id'])){
 <div id="plumLPLink">Plum Landing Page's</div>
 <div id="clientLPLink">Client Landing Page's</div>
 </nav>
+
+
+
+
+
+
+
+
 
 
 <div class="bottomShadow" id="userNameContainer">
@@ -193,15 +222,13 @@ if(isset($_GET['p_lp_id'])){
 
 
 
-
-		<!--****** Error Message after submitting form *******-->
-<?php if($session->message): ?>
-	<div id="error_check"><span><?php echo $session->message; ?></span></div>
-<?php endif; ?>
+<div id="p_lp_search_container">
+<input type="search" name="search_input" id="search_input" placeholder="">
+</div>
 
 
-<input type="text" name="search_input" id="search_input">
-<input type="button" value="search" onClick="search_p_lp()">
+
+
 
 <div id="search_results">
 <?php 
@@ -294,7 +321,10 @@ if(isset($_GET['p_lp_id'])){
                 "><img alt="Edit" class="allShadow transition1 edit_template_info" height="30" src="../site_images/edit.png"></button></a>
                 
                 <a href="user.php?p_lp_id=<?php echo $plum_lp->id ; ?>&current_user_id=<?php echo $current_user->id; ?>" title="Hide"><img alt="Hide" class="allShadow transition1 hide_template_info" height="30" src="../site_images/hide.png"></a>
-            	<a title="Attachment"><img alt="Attachment" class="allShadow transition1 download_attachment_img" height="30" src="../site_images/download.png"></a>
+                
+				<?php if(!empty($plum_lp->attachment_url)): ?>
+         <a href="user.php?attachment_url=<?php echo $plum_lp->attachment_url; ?>" title="Attachment"><img alt="Attachment" class="allShadow transition1 download_attachment_img" height="30" src="../site_images/download.png"></a>
+         <?php endif ?>
         </div>
         
         
@@ -314,7 +344,6 @@ if(isset($_GET['p_lp_id'])){
 	<?php endforeach; ?>
 
 </div>
-
 
 
 
@@ -375,15 +404,22 @@ if(isset($_GET['p_lp_id'])){
 
 
 
-
-
-
-
 </div><!-- ***** END OF CONTAINER***** -->
 
-<script type="text/javascript" src="../javascripts/jquery-2.0.2.min.js"></script>
-<script type="text/javascript" src="../javascripts/jquery.mCustomScrollbar.concat.min.js"></script>
-<script type="text/javascript" src="../javascripts/d3.min.js"></script>
+<!--***************************************** Error Message after submitting form *******************************************-->
+<?php if($session->message): ?>
+<div class="md-trigger" data-modal="error_message_modal" id="error_message_div_id"></div>
+<?php endif; ?>
+
+<div class="md-modal md-effect-1" id="error_message_modal">
+		<div id="error_message_modal_content" class="md-content"></br>
+        <div id="error_check_message"><?php echo $session->message; ?></div>
+        <div id="error_message_modal_close" class="md-close"><a title="close"><img class="transition1" src="../site_images/close.png" height="30"></a></div>
+        </div>
+</div>
+
+<div class="md-overlay"></div><!-- the overlay element -->
+
 
 <script type="text/javascript">
 $(function(){
@@ -415,6 +451,12 @@ $(".horizontal_scroll").mCustomScrollbar({
 	scrollButtons:{enable:true}
 });
 
+//Error Message Modal Popup Function
+$(document).ready(function() {
+        // trigger the click event
+        $('#error_message_div_id').click();
+});
+
 //Form Reset Funcationality
 $( "#p_lp_overlay" ).click(function() {
   
@@ -422,6 +464,22 @@ $( "#p_lp_overlay" ).click(function() {
   
 });
 
+//Enter on Search
+$(document).ready(function() {
+    $('#search_input').keydown(function(event) {
+        if (event.keyCode == 13) {
+			 search_p_lp();
+         }
+    });
+});
+
+//Search Function
+function search_p_lp(){
+	$.post('search.php', { search_input: document.getElementById("search_input").value },
+		function(output) {
+			$('#search_results').html(output).show();
+		});
+}
 
 
 
@@ -524,21 +582,15 @@ function c_lp(button) {
 }
 
 
-function search_p_lp(){
-	$.post('search.php', { search_input: document.getElementById("search_input").value },
-		function(output) {
-			$('#search_results').html(output).show();
-		});
-}
-
 </script>
 
 
 
 
 
-
+<script type="text/javascript" src="../javascripts/d3.min.js"></script>
 <script type="text/javascript" src="../javascripts/plumdm_help_user.js"></script>
 <script src="../javascripts/classie.js"></script>
+<script src="../javascripts/modalEffects.js"></script>
 </body>
 </html>

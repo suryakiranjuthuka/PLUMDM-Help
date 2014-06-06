@@ -203,7 +203,7 @@ perspective effects (not including the modals and the overlay).
 	position: relative;
 	text-align: left;
 	width:950px;
-	left:-120px;
+	left:-150px;
 }
 
 .md-content1 h2 {
@@ -213,7 +213,7 @@ perspective effects (not including the modals and the overlay).
 	font-weight:300;
 	font-family:'Lato',Arial;
 	margin-top:15px;
-	margin-bottom:15px;
+	margin-bottom:20px;
 }
 
 .md-content1 form {

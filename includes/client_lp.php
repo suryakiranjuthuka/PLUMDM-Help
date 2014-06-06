@@ -41,9 +41,10 @@ class ClientLp extends DatabaseObject{
 		$state = $database->escape_value($this->state);
 		$zip_code = $database->escape_value($this->zip_code);
 		$google_ad = $database->escape_value($this->google_ad);
+		$attachment_url = $database->escape_value($this->attachment_url);
 		
 		
-		$sql="INSERT INTO clientlp (client_name, salesrep_id, website_url, url_path, start_date, expire_date, email, notes, city, state, zip_code, google_ad) VALUES ('{$client_name}', '{$salesrep_id}', '{$website_url}', '{$url_path}', '{$start_date}', '{$expire_date}', '{$email}', '{$notes}', '{$city}', '{$state}', '{$zip_code}', '{$google_ad}')";
+		$sql="INSERT INTO clientlp (client_name, salesrep_id, website_url, url_path, start_date, expire_date, email, notes, city, state, zip_code, google_ad, attachment_url) VALUES ('{$client_name}', '{$salesrep_id}', '{$website_url}', '{$url_path}', '{$start_date}', '{$expire_date}', '{$email}', '{$notes}', '{$city}', '{$state}', '{$zip_code}', '{$google_ad}', '{$attachment_url}')";
 		
 		if($database->query($sql)){
 			return true;	

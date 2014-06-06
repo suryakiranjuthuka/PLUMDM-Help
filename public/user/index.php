@@ -11,6 +11,21 @@ $templates_c_lp = Template::get_all_templates_c_lp();
 $sales_reps = SalesRep::get_all_salesrep();
 
 
+
+$upload_errors = array(
+	UPLOAD_ERR_OK 				=> "No errors.",
+	UPLOAD_ERR_INI_SIZE  	=> "Larger than upload_max_filesize.",
+  UPLOAD_ERR_FORM_SIZE 	=> "Larger than form MAX_FILE_SIZE.",
+  UPLOAD_ERR_PARTIAL 		=> "Partial upload.",
+  UPLOAD_ERR_NO_FILE 		=> "No file.",
+  UPLOAD_ERR_NO_TMP_DIR => "No temporary directory.",
+  UPLOAD_ERR_CANT_WRITE => "Can't write to disk.",
+  UPLOAD_ERR_EXTENSION 	=> "File upload stopped by extension."
+);
+
+
+
+
 //**************Plum Email Form Submittion***************
 if(isset($_POST['p_e_submit'])){
 	
@@ -37,6 +52,16 @@ if(isset($_POST['p_e_submit'])){
 	if($_POST['p_e_url_path']){	
 		$plum_email->url_path = trim($_POST['p_e_url_path']);}
 	
+	if(!empty($_FILES['p_e_attachment_url']['tmp_name'])){
+	  $tmp_file = $_FILES['p_e_attachment_url']['tmp_name'];
+	  $original_file = basename($_FILES['p_e_attachment_url']['name']);
+	  $replaced_space = str_replace(' ','_',$original_file);
+	  $target_file = $_POST['p_e_sales_rep']. "_" .$replaced_space;
+	  $upload_dir = "attachments";
+	  
+	  move_uploaded_file($tmp_file, "../".$upload_dir."/".$target_file);
+	  $plum_email->attachment_url = "../".$upload_dir."/".$target_file;
+	}
 	
 	$sucess_p_e = $plum_email->create_p_e_template_info();
 	
@@ -77,6 +102,16 @@ if(isset($_POST['c_e_submit'])){
 	if($_POST['c_e_url_path']){	
 		$client_email->url_path = trim($_POST['c_e_url_path']);}
 	
+	if(!empty($_FILES['c_e_attachment_url']['tmp_name'])){
+	  $tmp_file = $_FILES['c_e_attachment_url']['tmp_name'];
+	  $original_file = basename($_FILES['c_e_attachment_url']['name']);
+	  $replaced_space = str_replace(' ','_',$original_file);
+	  $target_file = $_POST['c_e_sales_rep']. "_" .$replaced_space;
+	  $upload_dir = "attachments";
+	  
+	  move_uploaded_file($tmp_file, "../".$upload_dir."/".$target_file);
+	  $client_email->attachment_url = "../".$upload_dir."/".$target_file;
+	}
 	
 	$sucess_c_e = $client_email->create_c_e_template_info();
 	
@@ -133,9 +168,17 @@ if(isset($_POST['p_lp_submit'])){
 		
 	if($_POST['p_lp_url_path']){	
 		$plum_landing_page->url_path = trim($_POST['p_lp_url_path']);}
-	
-	
-	
+
+	if(!empty($_FILES['p_lp_attachment_url']['tmp_name'])){
+	  $tmp_file = $_FILES['p_lp_attachment_url']['tmp_name'];
+	  $original_file = basename($_FILES['p_lp_attachment_url']['name']);
+	  $replaced_space = str_replace(' ','_',$original_file);
+	  $target_file = $_POST['p_lp_sales_rep']. "_" .$replaced_space;
+	  $upload_dir = "attachments";
+	  
+	  move_uploaded_file($tmp_file, "../".$upload_dir."/".$target_file);
+	  $plum_landing_page->attachment_url = "../".$upload_dir."/".$target_file;
+	}
 	
 	$sucess_p_lp = $plum_landing_page->create_p_lp_template_info();
 	
@@ -193,7 +236,16 @@ if(isset($_POST['c_lp_submit'])){
 	if($_POST['c_lp_url_path']){	
 		$client_landing_page->url_path = trim($_POST['c_lp_url_path']);}
 	
-	
+	if(!empty($_FILES['c_lp_attachment_url']['tmp_name'])){
+	  $tmp_file = $_FILES['c_lp_attachment_url']['tmp_name'];
+	  $original_file = basename($_FILES['c_lp_attachment_url']['name']);
+	  $replaced_space = str_replace(' ','_',$original_file);
+	  $target_file = $_POST['c_lp_sales_rep']. "_" .$replaced_space;
+	  $upload_dir = "attachments";
+	  
+	  move_uploaded_file($tmp_file, "../".$upload_dir."/".$target_file);
+	  $client_landing_page->attachment_url = "../".$upload_dir."/".$target_file;
+	}
 	
 	$sucess_c_lp = $client_landing_page->create_c_lp_template_info();
 	
@@ -299,7 +351,7 @@ if(isset($_POST['c_lp_submit'])){
       <div class="md-modal md-effect-1" id="p_e_modal">
 		<div class="md-content"></br>
       		<h2>Template</h2>
-				<form action="index.php" method="post">
+				<form action="index.php" enctype="multipart/form-data" method="post">
                   <p><label>Client Name</label><input name="p_e_client_name" type="text" /></p>
                   <p><label>Sales Rep</label><select name="p_e_sales_rep">
                   <?php foreach($sales_reps as $sales_rep): ?>
@@ -309,6 +361,8 @@ if(isset($_POST['c_lp_submit'])){
                   <p><label>Send Date</label><input name="p_e_send_date" type="text" /></p>
                   <p><label>Email List</label><input name="p_e_email_list" type="text" /></p>
                   <p><label>Notes</label><textarea name="p_e_notes"  cols="40" rows="4" ></textarea></p>
+                  <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+                  <p><label>Attachment</label><input type="file" name="p_e_attachment_url" /><p>
                   <input type="hidden" id="p_e_website_url" type="text" name="p_e_website_url" value="" />
                   <input type="hidden" id="p_e_url_path" type="text" name="p_e_url_path" value="" />
                   <button class="md-close" name="p_e_submit" type="submit">Submit</button></br>
@@ -354,7 +408,7 @@ if(isset($_POST['c_lp_submit'])){
       <div class="md-modal md-effect-1" id="c_e_modal">
 		<div class="md-content"></br>
       		<h2>Template</h2>
-				<form action="index.php" method="post">
+				<form action="index.php" enctype="multipart/form-data" method="post">
                   <p><label>Client Name</label><input name="c_e_client_name" type="text" /></p>
                   <p><label>Sales Rep</label><select name="c_e_sales_rep">
                   <?php foreach($sales_reps as $sales_rep): ?>
@@ -364,6 +418,8 @@ if(isset($_POST['c_lp_submit'])){
                   <p><label>Send Date</label><input name="c_e_send_date" type="text" /></p>
                   <p><label>Email List</label><input name="c_e_email_list" type="text" /></p>
                   <p><label>Notes</label><textarea name="c_e_notes"  cols="40" rows="4" ></textarea></p>
+                  <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+                  <p><label>Attachment</label><input type="file" name="c_e_attachment_url" /><p>
                   <input type="hidden" id="c_e_website_url" type="text" name="c_e_website_url" value="" />
                   <input type="hidden" id="c_e_url_path" type="text" name="c_e_url_path" value="" />
                   <button class="md-close" name="c_e_submit" type="submit">Submit</button></br>
@@ -419,14 +475,14 @@ if(isset($_POST['c_lp_submit'])){
       <div class="md-modal md-effect-1" id="p_lp_modal">
 		<div class="md-content1"></br>
       		<h2>Template</h2>
-				<form action="index.php" method="post">
+				<form action="index.php" enctype="multipart/form-data" method="post">
                   <div class="firstHalfForm">
                   <p><label>Client Name</label><input name="p_lp_client_name" type="text" /></p>
                   <p><label>Email</label><input name="p_lp_email" type="text" /></p>
                   <p><label>City</label><input name="p_lp_city" type="text" /></p>
                   <p><label>State</label><input name="p_lp_state" type="text" /></p>
                   <p><label>Zip Code</label><input name="p_lp_zip_code" type="text" /></p>
-                  <p><label>Google AdWords</label><input name="p_lp_google_ad" style="position:relative; right:-120px; top:-15px;" type="checkbox" /></p>
+                  <p><label>Google AdWords</label><input name="p_lp_google_ad" style="position:relative; right:-140px; top:-18px;" type="checkbox" /></p>
                   </div>
                   
                   <div class="formDividerLine"></div>
@@ -441,6 +497,8 @@ if(isset($_POST['c_lp_submit'])){
                   <p><label>Start Date</label><input name="p_lp_start_date" type="text" /></p>
                   <p><label>Expire Date</label><input name="p_lp_expire_date" type="text" /></p>
                   <p><label>Notes</label><textarea name="p_lp_notes"  cols="40" rows="4" ></textarea></p>
+                  <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+                  <p><label>Attachment</label><input type="file" name="p_lp_attachment_url" /><p>
                   <input type="hidden" id="p_lp_website_url" type="text" name="p_lp_website_url" value="" />
                   <input type="hidden" id="p_lp_url_path" type="text" name="p_lp_url_path" value="" />
                   </div>
@@ -487,14 +545,14 @@ if(isset($_POST['c_lp_submit'])){
       <div class="md-modal md-effect-1" id="c_lp_modal">
 		<div class="md-content1"></br>
       		<h2>Template</h2>
-				<form action="index.php" method="post">
+				<form action="index.php" enctype="multipart/form-data" method="post">
                   <div class="firstHalfForm">
                   <p><label>Client Name</label><input name="c_lp_client_name" type="text" /></p>
                   <p><label>Email</label><input name="c_lp_email" type="text" /></p>
                   <p><label>City</label><input name="c_lp_city" type="text" /></p>
                   <p><label>State</label><input name="c_lp_state" type="text" /></p>
                   <p><label>Zip Code</label><input name="c_lp_zip_code" type="text" /></p>
-                  <p><label>Google AdWords</label><input name="c_lp_google_ad" style="position:relative; right:-120px; top:-15px;" type="checkbox" /></p>
+                  <p><label>Google AdWords</label><input name="c_lp_google_ad" style="position:relative; right:-140px; top:-18px;" type="checkbox" /></p>
                   </div>
                   
                   <div class="formDividerLine"></div>
@@ -509,6 +567,8 @@ if(isset($_POST['c_lp_submit'])){
                   <p><label>Start Date</label><input name="c_lp_start_date" type="text" /></p>
                   <p><label>Expire Date</label><input name="c_lp_expire_date" type="text" /></p>
                   <p><label>Notes</label><textarea name="c_lp_notes"  cols="40" rows="4" ></textarea></p>
+                  <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+                  <p><label>Attachment</label><input type="file" name="c_lp_attachment_url" /><p>
                   <input type="hidden" id="c_lp_website_url" type="text" name="c_lp_website_url" value="" />
                   <input type="hidden" id="c_lp_url_path" type="text" name="c_lp_url_path" value="" />
                   </div>

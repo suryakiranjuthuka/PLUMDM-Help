@@ -29,9 +29,10 @@ class PlumEmail extends DatabaseObject{
 		$send_date = $database->escape_value($this->send_date);
 		$email_list = $database->escape_value($this->email_list);
 		$notes = $database->escape_value($this->notes);
+		$attachment_url = $database->escape_value($this->attachment_url);
 		
 		
-		$sql="INSERT INTO plumemail (client_name, salesrep_id, website_url, url_path, send_date, email_list, notes) VALUES ('{$client_name}', '{$salesrep_id}', '{$website_url}', '{$url_path}', '{$send_date}', '{$email_list}', '{$notes}')";
+		$sql="INSERT INTO plumemail (client_name, salesrep_id, website_url, url_path, send_date, email_list, notes, attachment_url) VALUES ('{$client_name}', '{$salesrep_id}', '{$website_url}', '{$url_path}', '{$send_date}', '{$email_list}', '{$notes}', '{$attachment_url}')";
 		
 		if($database->query($sql)){
 			return true;	
