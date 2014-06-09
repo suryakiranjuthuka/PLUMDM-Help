@@ -5,19 +5,13 @@ require_once("../../includes/initialize.php");
 
 $current_user = SalesRep::find_by_id(1);
 
-$search_in = trim($_POST['search_input']);
+$search_in = trim($_POST['search_input_p_lp']);
 $plum_lps = PlumLP::search_p_lp($current_user->id,$search_in);
 
 ?>
 
 
 <script type="text/javascript">
-function p_e(button) {
-		var button_value = button.value;
-		
-		$("#p_e_website_url")
-		.attr("value",button_value);
-}
 
 $(".content").mCustomScrollbar({
     theme:"dark"
@@ -43,10 +37,9 @@ $( "#p_lp_overlay" ).click(function() {
 <script src="../javascripts/modalEffects.js"></script>
 
 
-<div id="search_results">
-<?php 
-	foreach($plum_lps as $plum_lp):?>
-		<div class=" allShadow1 each_user_p_lp">
+<div id="search_results_p_lp">
+<?php foreach($plum_lps as $plum_lp):?>
+	<div class=" allShadow1 each_user_p_lp">
         
         
         <div class="p_lp_top_container">
@@ -134,7 +127,10 @@ $( "#p_lp_overlay" ).click(function() {
                 "><img alt="Edit" class="allShadow transition1 edit_template_info" height="30" src="../site_images/edit.png"></button></a>
                 
                 <a href="user.php?p_lp_id=<?php echo $plum_lp->id ; ?>&current_user_id=<?php echo $current_user->id; ?>" title="Hide"><img alt="Hide" class="allShadow transition1 hide_template_info" height="30" src="../site_images/hide.png"></a>
-            	<a title="Attachment"><img alt="Attachment" class="allShadow transition1 download_attachment_img" height="30" src="../site_images/download.png"></a>
+                
+				<?php if(!empty($plum_lp->attachment_url)): ?>
+         <a href="user.php?attachment_url=<?php echo $plum_lp->attachment_url; ?>" title="Attachment"><img alt="Attachment" class="allShadow transition1 download_attachment_img" height="30" src="../site_images/download.png"></a>
+         <?php endif ?>
         </div>
         
         
@@ -151,6 +147,6 @@ $( "#p_lp_overlay" ).click(function() {
         
         
 	</div>
-	<?php endforeach; ?>
+<?php endforeach; ?>
 	
-    </div>
+</div>

@@ -223,17 +223,16 @@ if(isset($_GET['p_lp_id'])){
 
 
 <div id="p_lp_search_container">
-<input type="search" name="search_input" id="search_input" placeholder="">
+<input type="search" name="search_input_p_lp" id="search_input_p_lp" placeholder="">
 </div>
 
 
 
 
 
-<div id="search_results">
-<?php 
-	foreach($plum_lps as $plum_lp):?>
-		<div class=" allShadow1 each_user_p_lp">
+<div id="search_results_p_lp">
+<?php foreach($plum_lps as $plum_lp):?>
+	<div class=" allShadow1 each_user_p_lp">
         
         
         <div class="p_lp_top_container">
@@ -431,14 +430,6 @@ $(function(){
     });
 });
 
-
-function p_e(button) {
-		var button_value = button.value;
-		
-		$("#p_e_website_url")
-		.attr("value",button_value);
-}
-
 $(".content").mCustomScrollbar({
     theme:"dark"
 });
@@ -466,7 +457,7 @@ $( "#p_lp_overlay" ).click(function() {
 
 //Enter on Search
 $(document).ready(function() {
-    $('#search_input').keydown(function(event) {
+    $('#search_input_p_lp').keydown(function(event) {
         if (event.keyCode == 13) {
 			 search_p_lp();
          }
@@ -475,9 +466,9 @@ $(document).ready(function() {
 
 //Search Function
 function search_p_lp(){
-	$.post('search.php', { search_input: document.getElementById("search_input").value },
+	$.post('search_p_lp.php', { search_input_p_lp: document.getElementById("search_input_p_lp").value },
 		function(output) {
-			$('#search_results').html(output).show();
+			$('#search_results_p_lp').html(output).show();
 		});
 }
 
