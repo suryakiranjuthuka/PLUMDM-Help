@@ -1,0 +1,15 @@
+					p_lp_client_name
+                                        p_lp_email
+                                        p_lp_city
+                                        p_lp_state
+                                        p_lp_zip_code
+                                        p_lp_google_ad
+                                        p_lp_google_ad_setup
+                                        p_lp_url
+                                        p_lp_start_date
+                                        p_lp_expire_date
+                                        p_lp_notes
+                                        p_lp_page_complete
+                                        p_lp_renewing_page
+                                        p_lp_website_url
+                                        p_lp_url_path

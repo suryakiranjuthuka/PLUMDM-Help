@@ -244,7 +244,28 @@ html, body{
 
 
 /* ------------ All Search Container Styles ------------- */
+#p_e_search_container{
+	position:fixed;
+	top:50%;
+	left:2%;
+	z-index:1000;
+}
+
+#c_e_search_container{
+	position:fixed;
+	top:50%;
+	left:2%;
+	z-index:1000;
+}
+
 #p_lp_search_container{
+	position:fixed;
+	top:50%;
+	left:2%;
+	z-index:1000;
+}
+
+#c_lp_search_container{
 	position:fixed;
 	top:50%;
 	left:2%;
@@ -310,6 +331,9 @@ input::-webkit-input-placeholder {
 #error_check_message{
 	text-align:center; 
 	padding:40px 30px 50px 30px;
+	word-spacing:1px;
+	letter-spacing:1px;
+	
 }
 
 #error_message_modal_close img{
@@ -662,4 +686,23 @@ h4.p_lp_notes{
 	border-radius: 150%;
 }
 
+/* Default Display "none" container */
+#user_p_e{
+	position:relative;
+	display:none;
+}
 
+#user_c_e{
+	position:relative;
+	display:none;
+}
+
+#user_p_lp{
+	position:relative;
+	display:none;
+}
+
+#user_c_lp{
+	position:relative;
+	display:none;
+}

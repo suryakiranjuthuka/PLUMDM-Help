@@ -5,8 +5,11 @@ require_once("../../includes/initialize.php");
 
 $current_user = SalesRep::find_by_id(1);
 
-$search_in = trim($_POST['search_input_p_lp']);
-$plum_lps = PlumLP::search_p_lp($current_user->id,$search_in);
+
+if(isset($_POST['search_input_p_lp'])){
+	$search_in = trim($_POST['search_input_p_lp']);
+	$plum_lps = PlumLP::search_p_lp($current_user->id,$search_in);
+}
 
 ?>
 
@@ -150,3 +153,4 @@ $( "#p_lp_overlay" ).click(function() {
 <?php endforeach; ?>
 	
 </div>
+

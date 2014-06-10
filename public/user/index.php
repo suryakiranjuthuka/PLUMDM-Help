@@ -650,7 +650,7 @@ function c_lp(button) {
 		$("#c_lp_website_url")
 		.attr("value",button_values[0]);
 		
-		$("#c_e_url_path")
+		$("#c_lp_url_path")
 		.attr("value",button_values[1]);
 }
 
