@@ -414,29 +414,23 @@ if(isset($_GET['c_lp_id'])){
 </nav>
 
 
-<nav class="rightShadow" id="secondNav">
-<div id="userImage"><img height="100" src="../site_images/default_user.png"></div>
-<h1 class="textShadow">Plum Direct Marketing</h1>
-<div id="secondNavIcons">
-    <a title="Edit Templates"><img class="transition1" height="30" src="../site_images/settings.png"></a>
-    <a title="Upload Template"><img class="transition1" height="30" src="../site_images/upload.png"></a>
-    <a title="Logout"><img class="transition1" height="30" src="../site_images/logout.png"></a>
-</div>
+<nav id="secondNav">
+<h1>Plum Direct Marketing</h1>
+<a title="Upload Template">Upload Template</a>
+<a title="Logout">Logout</a>
 
 
-<div id="secondNavLinks">
-    <div class="transition" id="plumEmailLink">Plum Emails</div>
-    <div class="transition" id="clientEmailLink">Client Emails</div>
-    <div class="transition" id="plumLPLink">Plum Landing Pages</div>
-    <div class="transition" id="clientLPLink">Client Landing Pages</div>
-</div>
+
+<div id="plumEmailLink">Plum Email's</div>
+<div id="clientEmailLink">Client Email's</div>
+<div id="plumLPLink">Plum Landing Page's</div>
+<div id="clientLPLink">Client Landing Page's</div>
 </nav>
 
 
 
 
 <div class="bottomShadow" id="userNameContainer">
-<img height="30" src="../site_images/user.png">
 <h1><?php echo $current_user->first_name; ?></h1>
 </div>
 
@@ -448,96 +442,10 @@ if(isset($_GET['c_lp_id'])){
 <section id="user_p_e">
 
 <div id="p_e_search_container">
-<input type="search" name="search_input_p_e" id="search_input_p_e" placeholder="search...">
+<input type="search" name="search_input_p_e" id="search_input_p_e" placeholder="">
 </div>
 
 <div id="search_results_p_e">
-<?php foreach($plum_emails as $plum_email):?>			<!--Start PLUM EMAIL CONTENT --> 
-	<div class=" allShadow1 each_user_p_lp">
-        
-        
-        <div class="p_lp_top_container">
-        	<!--<img alt="Client" class=" allShadow userImage" height="30" src="../site_images/user.png">-->
-        	<h1 class="p_lp_client_name"><?php echo $plum_email->client_name;?></h1>
-
-            
-            <div class="p_lp_leads_container">
-            	<span class="pound">
-                #
-                </span>
-                <div class="leadsCircle">
-				<span class="inside_leads_circle_text">
-					<?php echo $plum_email->leads;?>
-                </span>
-                </div>
-                <div class="leadsPlaceHolder">
-                LEADS
-                </div>
-            </div>
-        </div>
-        
-        <div class="p_lp_middle_container">
-          <div class="p_lp_middle_first_container">
-        	<div class="p_lp_url_container">
-            	<img alt="url" class=" allShadow m_c_i" height="30" src="../site_images/link.png">
-                <span class="url_span">URL :</span>
-        		<h4 class="horizontal_scroll p_lp_url"><a href="<?php echo $plum_email->website_url; ?>" target="_blank"><?php echo $plum_email->website_url."&nbsp; &nbsp;"; ?></a></h4>
-            </div>
-            <div class="p_lp_email_container">
-            	<img alt="email" class=" allShadow m_c_i" height="30" src="../site_images/email.png">
-                <span>EMAIL :</span>
-				<h4 class="horizontal_scroll p_lp_email"><?php echo $plum_email->email_list; ?></h4>
-            </div>
-            <div class="p_lp_notes_container">
-            	<img alt="notes" class="allShadow m_c_i" height="30" src="../site_images/notes.png">
-            	<span>NOTES :</span>
-				<h4 class="content light mCustomScrollbar p_lp_notes"><?php echo $plum_email->notes; ?></h4>
-            </div>
-          </div>
-          
-          <div class="p_lp_middle_second_container">
-                <div class="page_complete_container" style="margin-top:80px;">
-                	<h5 style="">PAGE COMPLETE :</h5>
-                	<h4 style="margin-right:10px;" class="<?php if($plum_email->page_complete == 0){ echo "red"; } else{ echo "green"; } ?>">
-						<?php if($plum_email->page_complete == 0){ echo "NO"; } else{ echo "YES"; } ?></h4>
-                </div>
-          </div>
-        </div>
-        
-        
-        <div class="p_lp_bottom_container">
-        		<div class="start_date_container">
-                	<h4>Send Date :</h4>
-          			<h5><?php echo $plum_email->send_date; ?></h5>
-                </div>
-                <a title="Edit" class="md-trigger" data-modal="p_e_modal"><button class="editButton transition1" language="javascript"  onclick="return p_e(this);" style="border-style:none; outline:0; border:0; background:none;" value="
-				
-				<?php echo $plum_email->client_name."***".$plum_email->leads."***".$plum_email->website_url."***".$plum_email->email_list."***".$plum_email->notes."***".$plum_email->page_complete."***".$plum_email->send_date."***".$plum_email->id; ?>
-                
-                "><img alt="Edit" class="allShadow transition1 edit_template_info" height="30" src="../site_images/edit.png"></button></a>
-                
-                <a href="user.php?p_e_id=<?php echo $plum_email->id ; ?>&current_user_id=<?php echo $current_user->id; ?>" title="Hide"><img alt="Hide" class="allShadow transition1 hide_template_info" height="30" src="../site_images/hide.png"></a>
-                
-				<?php if(!empty($plum_email->attachment_url)): ?>
-         <a href="user.php?attachment_url=<?php echo $plum_email->attachment_url; ?>" title="Attachment"><img alt="Attachment" class="allShadow transition1 download_attachment_img" height="30" src="../site_images/download.png"></a>
-         <?php endif ?>
-        </div>
-        
-        
-        <div style="float:right; position:absolute; top:115px; right:-280px; border: 5px solid #f7f7f7;" class="full_template_container">
-          <div class="browser_bar">		<!-- BROWSER BAR-->
-              <div class="dot1"></div>
-              <div class="dot1"></div>
-              <div class="dot1"></div>
-          </div> 
-          <div  class="templateAllShadow show_template template_info_image"><a href="<?php echo $plum_email->website_url; ?>" target="_blank">		<!-- Template Image -->
-          <img style="margin:0 auto;" class="templateImage" src="<?php echo $plum_email->url_path; ?>" height="150"></a>
-          </div>
-       </div>
-        
-        
-	</div>
-	<?php endforeach; ?>
 
 </div>
 
@@ -577,7 +485,7 @@ if(isset($_GET['c_lp_id'])){
 <section id="user_c_e">
 
 <div id="c_e_search_container">
-<input type="search" name="search_input_c_e" id="search_input_c_e" placeholder="search...">
+<input type="search" name="search_input_c_e" id="search_input_c_e" placeholder="">
 </div>
 
 <div id="search_results_c_e">
@@ -705,7 +613,7 @@ if(isset($_GET['c_lp_id'])){
 <section id="user_p_lp">
 
 <div id="p_lp_search_container">
-<input type="search" name="search_input_p_lp" id="search_input_p_lp" placeholder="search...">
+<input type="search" name="search_input_p_lp" id="search_input_p_lp" placeholder="">
 </div>
 
 <div id="search_results_p_lp">
@@ -875,7 +783,7 @@ if(isset($_GET['c_lp_id'])){
 
 
 <div id="c_lp_search_container">
-<input type="search" name="search_input_c_lp" id="search_input_c_lp" placeholder="search...">
+<input type="search" name="search_input_c_lp" id="search_input_c_lp" placeholder="">
 </div>
 
 <div id="search_results_c_lp">
@@ -1121,6 +1029,10 @@ $(document).ready(function() {
     });
 });
 
+$( "#plumEmailLink" ).click(function() {
+  	search_test_p_e();
+});
+
 $(document).ready(function() {
     $('#search_input_c_e').keydown(function(event) {
         if (event.keyCode == 13) {
@@ -1148,6 +1060,13 @@ $(document).ready(function() {
 //Search Function
 function search_p_e(){
 	$.post('search_p_e.php', { search_input_p_e: document.getElementById("search_input_p_e").value },
+		function(output) {
+			$('#search_results_p_e').html(output).show();
+		});
+}
+
+function search_test_p_e(){
+	$.post('search_p_e.php', { search_input_p_e: "" },
 		function(output) {
 			$('#search_results_p_e').html(output).show();
 		});

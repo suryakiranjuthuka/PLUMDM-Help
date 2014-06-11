@@ -1,7 +1,47 @@
 // JavaScript Document
+/*d3.select("#secondNavLinks")
+.selectAll("div")
+.on("mouseover", function(){
+	d3.select(this)
+	.style("margin-left",10+"px")
+	.style("border-right","7px solid #3FB4C6")
+});
+
+d3.select("#secondNavLinks")
+.selectAll("div")
+.on("mouseout", function(){
+	d3.select(this)
+	.style("margin-left",0+"px")
+	.style("border-right","0px solid #3FB4C6")
+});*/
+
+
+d3.select("#firstNav")
+.on("mouseover", function(){
+	d3.select(this)
+	.transition()
+	.duration(350)
+	.style("width",277+"px")
+	
+});
+
+d3.select("#firstNav")
+.on("mouseout", function(){
+	d3.select(this)
+	.transition()
+	.duration(350)
+	.style("width",20+"px")
+	
+});
+
+
 d3.select("body")
 .select("#plumEmailLink")
 .on("click", function(){
+	
+	d3.select("#p_e_search_container")
+	.style("display","block")
+	
 	d3.select("#user_c_lp")
 	.style("display","none")
 	
@@ -12,16 +52,34 @@ d3.select("body")
 	.style("display","none")
 	
 	d3.select("#user_p_e")
+	.style("display","block")
+	
+	d3.select("#search_results_p_e")
 	.transition()
 	.duration(500)
 	.each("start",function(){
 		d3.select(this)
-		.style("opacity",.0)	
+		.style("opacity",.0)
 	})
-	.style("display","block")
 	.style("opacity",1)
 	
+	d3.select("#secondNavLinks")
+	.selectAll("div")
+	.style("color","#6d7393")
+	.style("border-right","0px solid #3FB4C6")
+	
+	d3.select(this)
+	.style("color","#349faf")
+	//.style("margin-left",0+"px")
+	.style("border-right","7px solid #3FB4C6")
+	
 });
+
+
+
+
+
+
 
 d3.select("body")
 .select("#clientEmailLink")
@@ -36,14 +94,26 @@ d3.select("body")
 	.style("display","none")
 	
 	d3.select("#user_c_e")
+	.style("display","block")
+	
+	d3.select("#search_results_c_e")
 	.transition()
 	.duration(500)
 	.each("start",function(){
 		d3.select(this)
-		.style("opacity",.0)	
+		.style("opacity",.0)
 	})
-	.style("display","block")
 	.style("opacity",1)
+	
+	d3.select("#secondNavLinks")
+	.selectAll("div")
+	.style("color","#6d7393")
+	.style("border-right","0px solid #3FB4C6")
+	
+	d3.select(this)
+	.style("color","#349faf")
+	//.style("margin-left",0+"px")
+	.style("border-right","7px solid #3FB4C6")
 	
 });
 
@@ -61,14 +131,26 @@ d3.select("body")
 	.style("display","none")
 	
 	d3.select("#user_p_lp")
+	.style("display","block")
+	
+	d3.select("#search_results_p_lp")
 	.transition()
 	.duration(500)
 	.each("start",function(){
 		d3.select(this)
-		.style("opacity",.0)	
+		.style("opacity",.0)
 	})
-	.style("display","block")
 	.style("opacity",1)
+	
+	d3.select("#secondNavLinks")
+	.selectAll("div")
+	.style("color","#6d7393")
+	.style("border-right","0px solid #3FB4C6")
+	
+	d3.select(this)
+	.style("color","#349faf")
+	//.style("margin-left",0+"px")
+	.style("border-right","7px solid #3FB4C6")
 	
 });
 
@@ -85,21 +167,28 @@ d3.select("body")
 	.style("display","none")
 	
 	d3.select("#user_c_lp")
+	.style("display","block")
+	
+	d3.select("#search_results_c_lp")
 	.transition()
 	.duration(500)
 	.each("start",function(){
 		d3.select(this)
-		.style("opacity",.0)	
+		.style("opacity",.0)
 	})
-	.style("display","block")
 	.style("opacity",1)
 	
+	d3.select("#secondNavLinks")
+	.selectAll("div")
+	.style("color","#6d7393")
+	.style("border-right","0px solid #3FB4C6")
+	
+	d3.select(this)
+	.style("color","#349faf")
+	//.style("margin-left",0+"px")
+	.style("border-right","7px solid #3FB4C6")
+	
 });
-
-
-
-
-
 
 
 

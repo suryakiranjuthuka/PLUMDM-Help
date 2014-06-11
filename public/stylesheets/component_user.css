@@ -226,8 +226,10 @@ perspective effects (not including the modals and the overlay).
 }
 
 .md-content #p_e_leads, .md-content #c_e_leads{
-	height:8px;
 	text-align:center;
+	padding-top:3px;
+	padding-bottom:3px;
+	font-size:13px;
 }
 
 .md-content button {
