@@ -21,7 +21,17 @@ d3.select("#firstNav")
 	d3.select(this)
 	.transition()
 	.duration(350)
-	.style("width",277+"px")
+	.style("left",-2+"px")
+		
+	d3.select("#firstNavTriangle")
+	.transition()
+	.duration(350)
+	.style("left",265+"px")
+	.style("opacity",0)
+	
+	d3.select("#secondNavLinks")
+	.selectAll("div")
+	.style("border-right-style","none")
 	
 });
 
@@ -29,8 +39,18 @@ d3.select("#firstNav")
 .on("mouseout", function(){
 	d3.select(this)
 	.transition()
-	.duration(350)
-	.style("width",20+"px")
+	.duration(400)
+	.style("left",-247+"px")
+	
+	d3.select("#firstNavTriangle")
+	.transition()
+	.duration(400)
+	.style("left",20+"px")
+	.style("opacity",1)
+	
+	d3.select("#secondNavLinks")
+	.selectAll("div")
+	.style("border-right-style","solid")
 	
 });
 

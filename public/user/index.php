@@ -355,7 +355,8 @@ if(isset($_POST['c_lp_submit'])){
                   <p><label>Client Name</label><input name="p_e_client_name" type="text" /></p>
                   <p><label>Sales Rep</label><select name="p_e_sales_rep">
                   <?php foreach($sales_reps as $sales_rep): ?>
-                  <option value="<?php echo $sales_rep->id; ?>"><?php echo $sales_rep->first_name; ?></option>
+                  <?php if($sales_rep->id == 1){ continue; } ?>
+                  <option value="<?php echo $sales_rep->id; ?>"><?php echo $sales_rep->first_name." ".$sales_rep->last_name; ?></option>
                   <?php endforeach; ?>
                   </select></p>
                   <p><label>Send Date</label><input name="p_e_send_date" type="text" /></p>
@@ -412,7 +413,8 @@ if(isset($_POST['c_lp_submit'])){
                   <p><label>Client Name</label><input name="c_e_client_name" type="text" /></p>
                   <p><label>Sales Rep</label><select name="c_e_sales_rep">
                   <?php foreach($sales_reps as $sales_rep): ?>
-                  <option value="<?php echo $sales_rep->id; ?>"><?php echo $sales_rep->first_name; ?></option>
+                  <?php if($sales_rep->id == 1){ continue; } ?>
+                  <option value="<?php echo $sales_rep->id; ?>"><?php echo $sales_rep->first_name." ".$sales_rep->last_name; ?></option>
                   <?php endforeach; ?>
                   </select></p>
                   <p><label>Send Date</label><input name="c_e_send_date" type="text" /></p>
@@ -491,7 +493,8 @@ if(isset($_POST['c_lp_submit'])){
                   <p><label>Sales Rep</label>
                   <select name="p_lp_sales_rep">
                       <?php foreach($sales_reps as $sales_rep): ?>
-                      <option value="<?php echo $sales_rep->id; ?>"><?php echo $sales_rep->first_name; ?></option>
+                      <?php if($sales_rep->id == 1){ continue; } ?>
+                      <option value="<?php echo $sales_rep->id; ?>"><?php echo $sales_rep->first_name." ".$sales_rep->last_name; ?></option>
                       <?php endforeach; ?>
                   </select></p>
                   <p><label>Start Date</label><input name="p_lp_start_date" type="text" /></p>
@@ -561,7 +564,8 @@ if(isset($_POST['c_lp_submit'])){
                   <p><label>Sales Rep</label>
                   <select name="c_lp_sales_rep">
                       <?php foreach($sales_reps as $sales_rep): ?>
-                      <option value="<?php echo $sales_rep->id; ?>"><?php echo $sales_rep->first_name; ?></option>
+                      <?php if($sales_rep->id == 1){ continue; } ?>
+                      <option value="<?php echo $sales_rep->id; ?>"><?php echo $sales_rep->first_name." ".$sales_rep->last_name; ?></option>
                       <?php endforeach; ?>
                   </select></p>
                   <p><label>Start Date</label><input name="c_lp_start_date" type="text" /></p>

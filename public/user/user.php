@@ -411,6 +411,14 @@ if(isset($_GET['c_lp_id'])){
 
 
 <nav id="firstNav">
+	<div id="firstNavTriangle"></div>
+    <h1>Admin Settings</h1>
+    <div id="firstNavLinks">
+        <div class="transition" id="allPlumEmailLink">All Plum Emails</div>
+        <div class="transition" id="allClientEmailLink">All Client Emails</div>
+        <div class="transition" id="allPlumLPLink">All Plum Landing Pages</div>
+        <div class="transition" id="allClientLPLink">All Client Landing Pages</div>
+    </div>
 </nav>
 
 
@@ -425,10 +433,10 @@ if(isset($_GET['c_lp_id'])){
 
 
 <div id="secondNavLinks">
-    <div class="transition" id="plumEmailLink">Plum Emails</div>
-    <div class="transition" id="clientEmailLink">Client Emails</div>
-    <div class="transition" id="plumLPLink">Plum Landing Pages</div>
-    <div class="transition" id="clientLPLink">Client Landing Pages</div>
+    <a href="#allUserInfoTemplatesContainer" class="scroller-link"><div class="transition" id="plumEmailLink">Plum Emails</div></a>
+    <a href="#allUserInfoTemplatesContainer" class="scroller-link"><div class="transition" id="clientEmailLink">Client Emails</div></a>
+    <a href="#allUserInfoTemplatesContainer" class="scroller-link"><div class="transition" id="plumLPLink">Plum Landing Pages</div></a>
+    <a href="#allUserInfoTemplatesContainer" class="scroller-link"><div class="transition" id="clientLPLink">Client Landing Pages</div></a>
 </div>
 </nav>
 
@@ -437,7 +445,7 @@ if(isset($_GET['c_lp_id'])){
 
 <div class="bottomShadow" id="userNameContainer">
 <img height="30" src="../site_images/user.png">
-<h1><?php echo $current_user->first_name; ?></h1>
+<h1><?php echo $current_user->first_name." ".$current_user->last_name; ?></h1>
 </div>
 
 

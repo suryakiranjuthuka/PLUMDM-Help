@@ -211,17 +211,72 @@ html, body{
 #firstNav{
 	/*background-color:#D57D7C;*/
 	background-color:#E85657;
-	width:20px;
+	width:267px;
 	height:100%;
 	position:fixed;
-	left:0;
+	left:-247px;
 	z-index:1000;
 }
+
+#firstNav h1{
+	font-size: 27px;
+	text-align: center;
+	font-weight: 300;
+	font-family: 'Lato','Open Sans', sans-serif;
+	margin-top: 120px;
+	margin-bottom: 50px;
+	color: #A63D3E;
+	text-transform: uppercase;
+	line-height: 35px;
+	word-spacing: 1px;
+	height: 70px;
+	line-height: 70px;
+	border-top: 1px solid #D04D4E;
+	border-bottom: 1px solid #D04D4E;
+}
+
+#firstNavTriangle{
+	width: 0; 
+	height: 0; 
+	border-top: 20px solid transparent;
+	border-bottom: 20px solid transparent;
+	border-left: 20px solid #E85657;
+	position:fixed;
+	top:85px;
+	left:20px;
+}
+
+#firstNavLinks div{
+	width:100%;
+	padding:20px 0px;
+	text-align:center;
+	border-top:1px solid #D04D4E;
+	color:#FAF1E0;
+	font-weight:bold;
+	font-size:14px;
+	text-transform:uppercase;
+	cursor:pointer;
+}
+
+#firstNavLinks div:hover{
+  /* border-right:7px solid #3FB4C6;
+   margin-left:10px;*/
+   background-color:#D04D4E;
+}
+
+#firstNavLinks:last-child{
+	border-bottom:1px solid #D04D4E;
+}
+
+/*#firstNavLinks #plumEmailLink{
+	border-right:7px solid #3FB4C6;
+	color:#349faf;
+}*/
 
 #secondNav{
 	/*background-color:#262A33;*/
 	background-color:#333645;
-	width:250px;
+	width:245px;
 	height:100%;
 	position:fixed;
 	left:0;
@@ -233,10 +288,18 @@ html, body{
 	border-radius:50%;
 }
 
-#secondNav #userImage img{
-	border: 5px solid #3FB4C6;
+#secondNav #userImage{
 	/*border: 5px solid white;*/
-	margin:50px 0 20px 70px;
+	border: 5px solid #3FB4C6;
+	/*border: 5px solid #FAF1E0;*/
+	border-radius:50%;
+	width:100px;
+	height:100px;
+	margin:50px auto 20px auto;
+}
+
+#secondNav #userImage img{
+	/*opacity:.9;*/
 }
 
 #secondNav h1{
@@ -246,7 +309,6 @@ html, body{
 	font-family: 'Lato','Open Sans', sans-serif;
 	margin-bottom:10px;
 	color: #20232F;
-	/*color:#FEF0E3;*/
 	text-transform:uppercase;
 	line-height:35px;
 	word-spacing:1px;
