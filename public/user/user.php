@@ -407,8 +407,9 @@ if(isset($_GET['c_lp_id'])){
 <script type="text/javascript" src="../javascripts/jquery.mCustomScrollbar.concat.min.js"></script>
 </head>
 <body>
-<div id="container"><!-- ***** START CONTAINER***** -->
+<div id="container"><!-- *********************************** START CONTAINER*********************************** -->
 
+<a id="user_info_templates_TOP"></a><!--Scroll Top User Info Template-->
 
 <nav id="firstNav">
 	<div id="firstNavTriangle"></div>
@@ -434,10 +435,10 @@ if(isset($_GET['c_lp_id'])){
 
 
 <div id="secondNavLinks">
-    <a href="#allUserInfoTemplatesContainer" class="scroller-link"><div class="transition" id="plumEmailLink">Plum Emails</div></a>
-    <a href="#allUserInfoTemplatesContainer" class="scroller-link"><div class="transition" id="clientEmailLink">Client Emails</div></a>
-    <a href="#allUserInfoTemplatesContainer" class="scroller-link"><div class="transition" id="plumLPLink">Plum Landing Pages</div></a>
-    <a href="#allUserInfoTemplatesContainer" class="scroller-link"><div class="transition" id="clientLPLink">Client Landing Pages</div></a>
+    <a href="#user_info_templates_TOP" class="scroller-link"><div class="transition" id="plumEmailLink">Plum Emails</div></a>
+    <a href="#user_info_templates_TOP" class="scroller-link"><div class="transition" id="clientEmailLink">Client Emails</div></a>
+    <a href="#user_info_templates_TOP" class="scroller-link"><div class="transition" id="plumLPLink">Plum Landing Pages</div></a>
+    <a href="#user_info_templates_TOP" class="scroller-link"><div class="transition" id="clientLPLink">Client Landing Pages</div></a>
 </div>
 </nav>
 
@@ -449,15 +450,14 @@ if(isset($_GET['c_lp_id'])){
 <h1><?php echo $current_user->first_name." ".$current_user->last_name; ?></h1>
 </div>
 
-
 <section id="allUserInfoTemplatesContainer">
-
 
 
 <section id="user_p_e">
 
 <div id="p_e_search_container">
-<input type="search" name="search_input_p_e" id="search_input_p_e" placeholder="search...">
+<a href="#user_info_templates_TOP" class="scroller-link"><input type="search" name="search_input_p_e" id="search_input_p_e" placeholder="search..."></a>
+<div class="loader" id="loader_p_e"></div><!--LOADER-->
 </div>
 
 <div id="search_results_p_e">
@@ -586,7 +586,8 @@ if(isset($_GET['c_lp_id'])){
 <section id="user_c_e">
 
 <div id="c_e_search_container">
-<input type="search" name="search_input_c_e" id="search_input_c_e" placeholder="search...">
+<a href="#user_info_templates_TOP" class="scroller-link"><input type="search" name="search_input_c_e" id="search_input_c_e" placeholder="search..."></a>
+<div class="loader" id="loader_c_e"></div><!--LOADER-->
 </div>
 
 <div id="search_results_c_e">
@@ -714,7 +715,8 @@ if(isset($_GET['c_lp_id'])){
 <section id="user_p_lp">
 
 <div id="p_lp_search_container">
-<input type="search" name="search_input_p_lp" id="search_input_p_lp" placeholder="search...">
+<a href="#user_info_templates_TOP" class="scroller-link"><input type="search" name="search_input_p_lp" id="search_input_p_lp" placeholder="search..."></a>
+<div class="loader" id="loader_p_lp"></div><!--LOADER-->
 </div>
 
 <div id="search_results_p_lp">
@@ -884,7 +886,8 @@ if(isset($_GET['c_lp_id'])){
 
 
 <div id="c_lp_search_container">
-<input type="search" name="search_input_c_lp" id="search_input_c_lp" placeholder="search...">
+<a href="#user_info_templates_TOP" class="scroller-link"><input type="search" name="search_input_c_lp" id="search_input_c_lp" placeholder="search..."></a>
+<div class="loader" id="loader_c_lp"></div><!--LOADER-->
 </div>
 
 <div id="search_results_c_lp">
@@ -1079,7 +1082,8 @@ $(function(){
 });
 
 $(".content").mCustomScrollbar({
-    theme:"dark"
+    theme:"dark",
+	scrollbarPosition:"outside"
 });
 
 $(".horizontal_scroll").mCustomScrollbar({
@@ -1156,31 +1160,43 @@ $(document).ready(function() {
 
 //Search Function
 function search_p_e(){
+	$("#loader_p_e").fadeIn(function(){
 	$.post('search_p_e.php', { search_input_p_e: document.getElementById("search_input_p_e").value },
 		function(output) {
 			$('#search_results_p_e').html(output).show();
 		});
+	});
+	$("#loader_p_e").fadeOut(500);
 }
 
 function search_c_e(){
+	$("#loader_c_e").fadeIn(function(){
 	$.post('search_c_e.php', { search_input_c_e: document.getElementById("search_input_c_e").value },
 		function(output) {
 			$('#search_results_c_e').html(output).show();
 		});
+	});
+	$("#loader_c_e").fadeOut(500);
 }
 
 function search_p_lp(){
+	$("#loader_p_lp").fadeIn(function(){
 	$.post('search_p_lp.php', { search_input_p_lp: document.getElementById("search_input_p_lp").value },
 		function(output) {
 			$('#search_results_p_lp').html(output).show();
 		});
+	});
+	$("#loader_p_lp").fadeOut(500);
 }
 
 function search_c_lp(){
+	$("#loader_c_lp").fadeIn(function(){
 	$.post('search_c_lp.php', { search_input_c_lp: document.getElementById("search_input_c_lp").value },
 		function(output) {
 			$('#search_results_c_lp').html(output).show();
 		});
+	});
+	$("#loader_c_lp").fadeOut(500);
 }
 
 
