@@ -91,8 +91,8 @@ a:hover
 }
 
 .transition2{
-	-webkit-transition: .4s;
-	transition: .4s;
+	-webkit-transition: .3s;
+	transition: .3s;
 }
 
 /* Shadows */
@@ -218,23 +218,6 @@ html, body{
 	z-index:1000;
 }
 
-#firstNav h1{
-	font-size: 27px;
-	text-align: center;
-	font-weight: 300;
-	font-family: 'Lato','Open Sans', sans-serif;
-	margin-top: 120px;
-	margin-bottom: 50px;
-	color: #A63D3E;
-	text-transform: uppercase;
-	line-height: 35px;
-	word-spacing: 1px;
-	height: 70px;
-	line-height: 70px;
-	border-top: 1px solid #D04D4E;
-	border-bottom: 1px solid #D04D4E;
-}
-
 #firstNavTriangle{
 	width: 0; 
 	height: 0; 
@@ -244,6 +227,33 @@ html, body{
 	position:fixed;
 	top:85px;
 	left:20px;
+}
+
+#firstNavUserImage{
+	/*border: 5px solid white;*/
+	border: 5px solid #FAF1E0;
+	/*border: 5px solid #FAF1E0;*/
+	border-radius:50%;
+	width:100px;
+	height:100px;
+	margin:50px auto 20px auto;
+}
+
+#firstNav h1{
+	font-size: 27px;
+	text-align: center;
+	font-weight: 300;
+	font-family: 'Lato','Open Sans', sans-serif;
+	margin-top:25px;
+	margin-bottom: 108px;
+	color: #A63D3E;
+	text-transform: uppercase;
+	line-height: 35px;
+	word-spacing: 1px;
+	height: 70px;
+	line-height: 70px;
+	border-top: 1px solid #D04D4E;
+	border-bottom: 1px solid #D04D4E;
 }
 
 #firstNavLinks div{
@@ -284,7 +294,7 @@ html, body{
 	margin-left:20px;
 }
 
-#secondNav img{
+#secondNav img, #firstNav img{
 	border-radius:50%;
 }
 

@@ -412,12 +412,13 @@ if(isset($_GET['c_lp_id'])){
 
 <nav id="firstNav">
 	<div id="firstNavTriangle"></div>
+    <div id="firstNavUserImage"><img height="100" src="../site_images/default_user.png"></div>
     <h1>Admin Settings</h1>
     <div id="firstNavLinks">
-        <div class="transition" id="allPlumEmailLink">All Plum Emails</div>
-        <div class="transition" id="allClientEmailLink">All Client Emails</div>
-        <div class="transition" id="allPlumLPLink">All Plum Landing Pages</div>
-        <div class="transition" id="allClientLPLink">All Client Landing Pages</div>
+        <div class="transition2" id="allPlumEmailLink">All Plum Emails</div>
+        <div class="transition2" id="allClientEmailLink">All Client Emails</div>
+        <div class="transition2" id="allPlumLPLink">All Plum Landing Pages</div>
+        <div class="transition2" id="allClientLPLink">All Client Landing Pages</div>
     </div>
 </nav>
 
