@@ -101,7 +101,7 @@ $( "#p_e_overlay" ).click(function() {
                 </div>
                 <a title="Edit" class="md-trigger" data-modal="p_e_modal"><button class="editButton transition1" language="javascript"  onclick="return p_e(this);" style="border-style:none; outline:0; border:0; background:none;" value="
 				
-				<?php echo $plum_email->client_name."***".$plum_email->leads."***".$plum_email->website_url."***".$plum_email->email_list."***".$plum_email->notes."***".$plum_email->page_complete."***".$plum_email->send_date."***".$plum_email->id; ?>
+				<?php echo $plum_email->client_name."***".$plum_email->leads."***".$plum_email->website_url."***".$plum_email->email_list."***".$plum_email->notes."***".$plum_email->page_complete."***".$plum_email->send_date."***".$plum_email->id."***".$plum_email->salesrep_id; ?>
                 
                 "><img alt="Edit" class="allShadow transition1 edit_template_info" height="30" src="../site_images/edit.png"></button></a>
                 

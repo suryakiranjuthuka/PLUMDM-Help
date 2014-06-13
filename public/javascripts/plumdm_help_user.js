@@ -64,6 +64,11 @@ d3.select("body")
 .on("click", function(){
 	search_all_p_e();
 	
+	window.all_p_e=1;
+	window.all_c_e=0;
+	window.all_p_lp=0;
+	window.all_c_lp=0;
+	
 	d3.select("#allUserInfoTemplatesContainer")
 	.selectAll("section")
 	.style("display","none")
@@ -114,6 +119,11 @@ d3.select("body")
 .select("#allClientEmailLink")
 .on("click", function(){
 	
+	window.all_p_e=0;
+	window.all_c_e=1;
+	window.all_p_lp=0;
+	window.all_c_lp=0;
+	
 	d3.select("#allUserInfoTemplatesContainer")
 	.selectAll("section")
 	.style("display","none")
@@ -138,6 +148,18 @@ d3.select("body")
 		.style("opacity",.0)
 	})
 	.style("opacity",1)*/
+	
+	d3.select("#all_user_c_e")
+	.style("display","block")
+	
+	d3.select("#search_all_results_c_e")
+	.transition()
+	.duration(500)
+	.each("start",function(){
+		d3.select(this)
+		.style("opacity",.0)
+	})
+	.style("opacity",1)
 	
 	d3.select("#secondNavLinks")
 	.selectAll("div")
@@ -163,6 +185,11 @@ d3.select("body")
 .select("#allPlumLPLink")
 .on("click", function(){
 	
+	window.all_p_e=0;
+	window.all_c_e=0;
+	window.all_p_lp=1;
+	window.all_c_lp=0;
+	
 	d3.select("#allUserInfoTemplatesContainer")
 	.selectAll("section")
 	.style("display","none")
@@ -187,6 +214,18 @@ d3.select("body")
 		.style("opacity",.0)
 	})
 	.style("opacity",1)*/
+	
+	d3.select("#all_user_p_lp")
+	.style("display","block")
+	
+	d3.select("#search_all_results_p_lp")
+	.transition()
+	.duration(500)
+	.each("start",function(){
+		d3.select(this)
+		.style("opacity",.0)
+	})
+	.style("opacity",1)
 	
 	d3.select("#secondNavLinks")
 	.selectAll("div")
@@ -212,6 +251,11 @@ d3.select("body")
 .select("#allClientLPLink")
 .on("click", function(){
 	
+	window.all_p_e=0;
+	window.all_c_e=0;
+	window.all_p_lp=0;
+	window.all_c_lp=1;
+	
 	d3.select("#allUserInfoTemplatesContainer")
 	.selectAll("section")
 	.style("display","none")
@@ -236,6 +280,18 @@ d3.select("body")
 		.style("opacity",.0)
 	})
 	.style("opacity",1)*/
+	
+	d3.select("#all_user_c_lp")
+	.style("display","block")
+	
+	d3.select("#search_all_results_c_lp")
+	.transition()
+	.duration(500)
+	.each("start",function(){
+		d3.select(this)
+		.style("opacity",.0)
+	})
+	.style("opacity",1)
 	
 	d3.select("#secondNavLinks")
 	.selectAll("div")

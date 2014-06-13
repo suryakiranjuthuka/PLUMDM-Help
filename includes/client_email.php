@@ -65,9 +65,9 @@ class ClientEmail extends DatabaseObject{
 
 
 	
-	public static function hide_c_e_template_info($c_e_id="",$current_user_id=""){
+	public static function hide_c_e_template_info($c_e_id="",$current_user_id="", $c_e_hide=""){
 		global $database;
-		$sql  = "UPDATE clientemail SET hidden=1 WHERE id={$c_e_id} && salesrep_id={$current_user_id}";
+		$sql  = "UPDATE clientemail SET hidden={$c_e_hide} WHERE id={$c_e_id} && salesrep_id={$current_user_id}";
 		
 		$database->query($sql);
 		return ($database->affected_rows() == 1) ? true : false;

@@ -86,9 +86,9 @@ class PlumLP extends DatabaseObject{
 
 
 	
-	public static function hide_p_lp_template_info($p_lp_id="",$current_user_id=""){
+	public static function hide_p_lp_template_info($p_lp_id="",$current_user_id="", $p_lp_hide=""){
 		global $database;
-		$sql  = "UPDATE plumlp SET hidden=1 WHERE id={$p_lp_id} && salesrep_id={$current_user_id}";
+		$sql  = "UPDATE plumlp SET hidden={$p_lp_hide} WHERE id={$p_lp_id} && salesrep_id={$current_user_id}";
 		
 		$database->query($sql);
 		return ($database->affected_rows() == 1) ? true : false;

@@ -42,9 +42,6 @@ if(isset($_GET['attachment_url'])){
 if(isset($_POST['p_e_submit'])){
 
 	$plum_email = new PlumEmail();
-	
-
-	$plum_email->salesrep_id = $current_user->id;
 
 	
 	if($_POST['p_e_client_name']){	
@@ -72,6 +69,10 @@ if(isset($_POST['p_e_submit'])){
 	if($_POST['p_e_id']){	
 		$plum_email->id = trim($_POST['p_e_id']);}
 	
+	if($_POST['p_e_salesrep_id']){	
+		$plum_email->salesrep_id = trim($_POST['p_e_salesrep_id']);}
+	
+	
 /*if($_POST['p_e_update_developer']){
 
  $to = "suryakiran.kittu@gmail.com";
@@ -97,11 +98,12 @@ if(isset($_POST['p_e_submit'])){
 
 //********** Hide p_e Template Info **************
 if(isset($_GET['p_e_id'])){
-
+	
 	$p_e_id = trim($_GET['p_e_id']);
 	$current_user_id = trim($_GET['current_user_id']);
+	$p_e_hide = trim($_GET['p_e_hide']);
 	
-	$hidden = PlumEmail::hide_p_e_template_info($p_e_id, $current_user_id);
+	$hidden = PlumEmail::hide_p_e_template_info($p_e_id, $current_user_id, $p_e_hide);
 	
 	//Verifying if information is hidden
 	if($hidden){
@@ -119,9 +121,6 @@ if(isset($_GET['p_e_id'])){
 if(isset($_POST['c_e_submit'])){
 
 	$client_email = new ClientEmail();
-	
-
-	$client_email->salesrep_id = $current_user->id;
 
 	
 	if($_POST['c_e_client_name']){	
@@ -148,6 +147,9 @@ if(isset($_POST['c_e_submit'])){
 		
 	if($_POST['c_e_id']){	
 		$client_email->id = trim($_POST['c_e_id']);}
+		
+	if($_POST['c_e_salesrep_id']){	
+		$client_email->salesrep_id = trim($_POST['c_e_salesrep_id']);}
 	
 /*if($_POST['c_e_update_developer']){
 
@@ -177,8 +179,9 @@ if(isset($_GET['c_e_id'])){
 
 	$c_e_id = trim($_GET['c_e_id']);
 	$current_user_id = trim($_GET['current_user_id']);
+	$c_e_hide = trim($_GET['c_e_hide']);
 	
-	$hidden = ClientEmail::hide_c_e_template_info($c_e_id, $current_user_id);
+	$hidden = ClientEmail::hide_c_e_template_info($c_e_id, $current_user_id, $c_e_hide);
 	
 	//Verifying if information is hidden
 	if($hidden){
@@ -195,9 +198,6 @@ if(isset($_GET['c_e_id'])){
 if(isset($_POST['p_lp_submit'])){
 	
 	$plum_landing_page = new PlumLP();
-	
-
-	$plum_landing_page->salesrep_id = $current_user->id;
 
 	
 	if($_POST['p_lp_client_name']){	
@@ -248,6 +248,9 @@ if(isset($_POST['p_lp_submit'])){
 		
 	if($_POST['p_lp_id']){	
 		$plum_landing_page->id = trim($_POST['p_lp_id']);}
+		
+	if($_POST['p_lp_salesrep_id']){	
+		$plum_landing_page->salesrep_id = trim($_POST['p_lp_salesrep_id']);}
 	
 /*if($_POST['p_lp_update_developer']){
 
@@ -277,8 +280,9 @@ if(isset($_GET['p_lp_id'])){
 
 	$p_lp_id = trim($_GET['p_lp_id']);
 	$current_user_id = trim($_GET['current_user_id']);
+	$p_lp_hide = trim($_GET['p_lp_hide']);
 	
-	$hidden = PlumLP::hide_p_lp_template_info($p_lp_id, $current_user_id);
+	$hidden = PlumLP::hide_p_lp_template_info($p_lp_id, $current_user_id, $p_lp_hide);
 	
 	//Verifying if information is hidden
 	if($hidden){
@@ -296,9 +300,6 @@ if(isset($_GET['p_lp_id'])){
 if(isset($_POST['c_lp_submit'])){
 	
 	$client_landing_page = new ClientLp();
-	
-
-	$client_landing_page->salesrep_id = $current_user->id;
 
 	
 	if($_POST['c_lp_client_name']){	
@@ -349,6 +350,9 @@ if(isset($_POST['c_lp_submit'])){
 		
 	if($_POST['c_lp_id']){	
 		$client_landing_page->id = trim($_POST['c_lp_id']);}
+		
+	if($_POST['c_lp_salesrep_id']){	
+		$client_landing_page->salesrep_id = trim($_POST['c_lp_salesrep_id']);}
 	
 	
 /*if($_POST['c_lp_update_developer']){
@@ -380,8 +384,9 @@ if(isset($_GET['c_lp_id'])){
 
 	$c_lp_id = trim($_GET['c_lp_id']);
 	$current_user_id = trim($_GET['current_user_id']);
+	$c_lp_hide = trim($_GET['c_lp_hide']);
 	
-	$hidden = ClientLp::hide_c_lp_template_info($c_lp_id, $current_user_id);
+	$hidden = ClientLp::hide_c_lp_template_info($c_lp_id, $current_user_id, $c_lp_hide);
 	
 	//Verifying if information is hidden
 	if($hidden){
@@ -456,44 +461,35 @@ if(isset($_GET['c_lp_id'])){
 
 
 
+<div id="startGlobalPEContainer"><!--Start of All PE & USER PE CONTAINER -->
 
-
-<section id="all_user_p_e">
+<section id="all_user_p_e"><!--***** Admin View Plum Emails ******--> 
 
 <div id="all_p_e_search_container">
-	<select id="search_input_all_p_e_user_id" name="search_input_all_p_e_user_id">
+	<div id="all_p_e_select">
+	<select id="search_input_all_p_e_user_id" name="search_input_all_p_e_user_id" >
 		<?php foreach($sales_reps as $sales_rep): ?>
     	<?php if($sales_rep->id == 1){ continue; } ?>
     	<option value="<?php echo $sales_rep->id; ?>"><?php echo $sales_rep->first_name." ".$sales_rep->last_name; ?></option>
     	<?php endforeach; ?>
     </select>
-    <div class="slideTwo">	
-		<input type="checkbox" value="None" id="slideTwo" name="search_input_all_p_e" />
+    </div>
+    <!--<input id="search_input_all_p_e_user_hidden" name="search_input_all_p_e_user_hidden" type="checkbox" />-->
+    <div id="all_p_e_search">
+    <a href="#user_info_templates_TOP" class="scroller-link"><input type="search" name="search_input_all_p_e" id="search_input_all_p_e" placeholder="search..."></a>
+    </div>
+	<div class="loader" id="loader_all_p_e"></div><!--LOADER-->
+	<div id="all_p_e_check" class="slideTwo">	
+    	<p class="all_p_e_check_text">Hidden</p>
+		<input type="checkbox" value="None" id="slideTwo" name="search_input_all_p_e_user_hidden" onChange="search_all_p_e();" />
 		<label for="slideTwo"></label>
 	</div>
-    <!--<input id="search_input_all_p_e_user_hidden" name="search_input_all_p_e_user_hidden" type="checkbox" />-->
-    <a href="#user_info_templates_TOP" class="scroller-link"><input type="search" name="search_input_all_p_e" id="search_input_all_p_e" placeholder="search..."></a>
-<div class="loader" id="loader_all_p_e"></div><!--LOADER-->
 </div>
 
 <div id="search_all_results_p_e">
 </div>
 
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -564,12 +560,10 @@ if(isset($_GET['c_lp_id'])){
           			<h5><?php echo $plum_email->send_date; ?></h5>
                 </div>
                 <a title="Edit" class="md-trigger" data-modal="p_e_modal"><button class="editButton transition1" language="javascript"  onclick="return p_e(this);" style="border-style:none; outline:0; border:0; background:none;" value="
-				
-				<?php echo $plum_email->client_name."***".$plum_email->leads."***".$plum_email->website_url."***".$plum_email->email_list."***".$plum_email->notes."***".$plum_email->page_complete."***".$plum_email->send_date."***".$plum_email->id; ?>
-                
+				<?php echo $plum_email->client_name."***".$plum_email->leads."***".$plum_email->website_url."***".$plum_email->email_list."***".$plum_email->notes."***".$plum_email->page_complete."***".$plum_email->send_date."***".$plum_email->id."***".$plum_email->salesrep_id; ?>
                 "><img alt="Edit" class="allShadow transition1 edit_template_info" height="30" src="../site_images/edit.png"></button></a>
                 
-                <a href="user.php?p_e_id=<?php echo $plum_email->id ; ?>&current_user_id=<?php echo $current_user->id; ?>" title="Hide"><img alt="Hide" class="allShadow transition1 hide_template_info" height="30" src="../site_images/hide.png"></a>
+               <a href="user.php?p_e_id=<?php echo $plum_email->id ; ?>&current_user_id=<?php echo $plum_email->salesrep_id; ?>&p_e_hide=<?php if($plum_email->hidden == 1){echo 0;}else if($plum_email->hidden == 0){echo 1;} ?>" title="Hide"><img alt="Hide" class="allShadow transition1 hide_template_info" height="30" src="../site_images/hide.png"></a> 
                 
 				<?php if(!empty($plum_email->attachment_url)): ?>
          <a href="user.php?attachment_url=<?php echo $plum_email->attachment_url; ?>" title="Attachment"><img alt="Attachment" class="allShadow transition1 download_attachment_img" height="30" src="../site_images/download.png"></a>
@@ -595,6 +589,10 @@ if(isset($_GET['c_lp_id'])){
 </div>
 
 
+
+</section>
+
+
     																<!--Start PLUM EMAIL EDIT MODAL CONTENT -->  
       
       <div class="md-modal md-effect-1" id="p_e_modal">
@@ -612,6 +610,7 @@ if(isset($_GET['c_lp_id'])){
                   <p><label style="float:left;">Page Complete</label><input id="p_e_page_complete" name="p_e_page_complete" style="float:left; margin-top:10px; margin-left:6px;" type="checkbox" /></p>
                   <p style=" position:relative;"><input name="p_e_update_developer" style="float:right; margin-top:10px; margin-left:5px;" type="checkbox" /><label style="float:right; color:#EB7572;">Update Developer</label></p>
                   <input type="hidden" id="p_e_id" type="text" name="p_e_id" value="" />
+                  <input type="hidden" id="p_e_salesrep_id" type="text" name="p_e_salesrep_id" value="" />
                   
                   <button class="md-close" name="p_e_submit" type="submit">Submit</button></br>  
                 </form>
@@ -619,14 +618,15 @@ if(isset($_GET['c_lp_id'])){
       </div><!--END PLUM LP EDIT MODAL CONTENT --> 
 
 <div id="p_e_overlay" class="md-overlay4"></div><!-- the overlay element -->
-
-</section>
-
+</div><!--End of All PE & USER PE CONTAINER -->
 
 
 
 
 
+
+
+<div id="globalCEContainer"><!--Start of All CE & USER CE CONTAINER -->
 <section id="user_c_e">
 
 <div id="c_e_search_container">
@@ -694,12 +694,10 @@ if(isset($_GET['c_lp_id'])){
           			<h5><?php echo $client_email->send_date; ?></h5>
                 </div>
                 <a title="Edit" class="md-trigger" data-modal="c_e_modal"><button class="editButton transition1" language="javascript"  onclick="return c_e(this);" style="border-style:none; outline:0; border:0; background:none;" value="
-				
 				<?php echo $client_email->client_name."***".$client_email->leads."***".$client_email->website_url."***".$client_email->email_list."***".$client_email->notes."***".$client_email->page_complete."***".$client_email->send_date."***".$client_email->id; ?>
-                
                 "><img alt="Edit" class="allShadow transition1 edit_template_info" height="30" src="../site_images/edit.png"></button></a>
                 
-                <a href="user.php?c_e_id=<?php echo $client_email->id ; ?>&current_user_id=<?php echo $current_user->id; ?>" title="Hide"><img alt="Hide" class="allShadow transition1 hide_template_info" height="30" src="../site_images/hide.png"></a>
+                <a href="user.php?c_e_id=<?php echo $client_email->id ; ?>&current_user_id=<?php echo $client_email->salesrep_id; ?>&c_e_hide=<?php if($client_email->hidden == 1){echo 0;}else if($client_email->hidden == 0){echo 1;} ?>" title="Hide"><img alt="Hide" class="allShadow transition1 hide_template_info" height="30" src="../site_images/hide.png"></a>
                 
 				<?php if(!empty($client_email->attachment_url)): ?>
          <a href="user.php?attachment_url=<?php echo $client_email->attachment_url; ?>" title="Attachment"><img alt="Attachment" class="allShadow transition1 download_attachment_img" height="30" src="../site_images/download.png"></a>
@@ -723,6 +721,7 @@ if(isset($_GET['c_lp_id'])){
 	<?php endforeach; ?>
 
 </div>
+</section>
 
 
     																<!--Start CLIENT EMAIL EDIT MODAL CONTENT -->  
@@ -742,6 +741,7 @@ if(isset($_GET['c_lp_id'])){
                   <p><label style="float:left;">Page Complete</label><input id="c_e_page_complete" name="c_e_page_complete" style="float:left; margin-top:10px; margin-left:6px;" type="checkbox" /></p>
                   <p style=" position:relative;"><input name="c_e_update_developer" style="float:right; margin-top:10px; margin-left:5px;" type="checkbox" /><label style="float:right; color:#EB7572;">Update Developer</label></p>
                   <input type="hidden" id="c_e_id" type="text" name="c_e_id" value="" />
+                  <input type="hidden" id="c_e_salesrep_id" type="text" name="c_e_salesrep_id" value="" />
                   
                   <button class="md-close" name="c_e_submit" type="submit">Submit</button></br>  
                 </form>
@@ -749,13 +749,13 @@ if(isset($_GET['c_lp_id'])){
       </div><!--END PLUM LP EDIT MODAL CONTENT --> 
 
 <div id="c_e_overlay" class="md-overlay3"></div><!-- the overlay element -->
-</section>
+</div><!--End of All CE & USER CE CONTAINER -->
 
 
 
 
 
-
+<div id="globalPLPContainer"><!--End of All PLP & USER PLP CONTAINER -->
 <section id="user_p_lp">
 
 <div id="p_lp_search_container">
@@ -847,12 +847,10 @@ if(isset($_GET['c_lp_id'])){
           			<h5><?php echo $plum_lp->expire_date; ?></h5>
                 </div>
                 <a title="Edit" class="md-trigger" data-modal="p_lp_modal"><button class="editButton transition1" language="javascript"  onclick="return p_lp(this);" style="border-style:none; outline:0; border:0; background:none;" value="
-				
 				<?php echo $plum_lp->client_name."***".$plum_lp->email."***".$plum_lp->city."***".$plum_lp->state."***".$plum_lp->zip_code."***".$plum_lp->google_ad."***".$plum_lp->google_ad_setup."***".$plum_lp->website_url."***".$plum_lp->start_date."***".$plum_lp->expire_date."***".$plum_lp->notes."***".$plum_lp->page_complete."***".$plum_lp->renewing_page."***".$plum_lp->leads."***".$plum_lp->id; ?>
-                
                 "><img alt="Edit" class="allShadow transition1 edit_template_info" height="30" src="../site_images/edit.png"></button></a>
                 
-                <a href="user.php?p_lp_id=<?php echo $plum_lp->id ; ?>&current_user_id=<?php echo $current_user->id; ?>" title="Hide"><img alt="Hide" class="allShadow transition1 hide_template_info" height="30" src="../site_images/hide.png"></a>
+                <a href="user.php?p_lp_id=<?php echo $plum_lp->id ; ?>&current_user_id=<?php echo $plum_lp->salesrep_id; ?>&p_lp_hide=<?php if($plum_lp->hidden == 1){echo 0;}else if($plum_lp->hidden == 0){echo 1;} ?>" title="Hide"><img alt="Hide" class="allShadow transition1 hide_template_info" height="30" src="../site_images/hide.png"></a>
                 
 				<?php if(!empty($plum_lp->attachment_url)): ?>
          <a href="user.php?attachment_url=<?php echo $plum_lp->attachment_url; ?>" title="Attachment"><img alt="Attachment" class="allShadow transition1 download_attachment_img" height="30" src="../site_images/download.png"></a>
@@ -876,6 +874,8 @@ if(isset($_GET['c_lp_id'])){
 	<?php endforeach; ?>
 
 </div>
+	
+</section><!--END "user_p_lp" SECTION --> 
 
 
     																<!--Start PLUM LP EDIT MODAL CONTENT -->  
@@ -907,6 +907,7 @@ if(isset($_GET['c_lp_id'])){
                   <p><label style="float:left;">Page Complete</label><input id="p_lp_page_complete" name="p_lp_page_complete" style="float:left; margin-top:10px; margin-left:6px;" type="checkbox" /></p>
                   <p><label style="float:left; margin-left:45px;">Renewing Page</label><input id="p_lp_renewing_page" name="p_lp_renewing_page" style="float:left; margin-top:10px; margin-left:6px;" type="checkbox" /></p>
                   <input type="hidden" id="p_lp_id" type="text" name="p_lp_id" />
+                  <input type="hidden" id="p_lp_salesrep_id" type="text" name="p_lp_salesrep_id" value="" />
                   </div>
                   <p style=" position:relative; right:70px; top:60px;"><label style="float:right; color:#EB7572;">Update Developer</label><input name="p_lp_update_developer" style="float:right; margin-top:10px; margin-left:6px;" type="checkbox" /></p>
                   
@@ -916,15 +917,14 @@ if(isset($_GET['c_lp_id'])){
       </div><!--END PLUM LP EDIT MODAL CONTENT --> 
 
 <div id="p_lp_overlay" class="md-overlay2"></div><!-- the overlay element -->
-	
-</section><!--END "user_p_lp" SECTION --> 
+</div><!--End of All PLP & USER PLP CONTAINER -->
 
 
 
 
 
 
-
+<div id="startGlobalCLPContainer"><!--Start of All CLP & USER CLP CONTAINER -->
 
 <section id="user_c_lp">
 
@@ -1018,12 +1018,10 @@ if(isset($_GET['c_lp_id'])){
           			<h5><?php echo $client_lp->expire_date; ?></h5>
                 </div>
                 <a title="Edit" class="md-trigger" data-modal="c_lp_modal"><button class="editButton transition1" language="javascript"  onclick="return c_lp(this);" style="border-style:none; outline:0; border:0; background:none;" value="
-				
 				<?php echo $client_lp->client_name."***".$client_lp->email."***".$client_lp->city."***".$client_lp->state."***".$client_lp->zip_code."***".$client_lp->google_ad."***".$client_lp->google_ad_setup."***".$client_lp->website_url."***".$client_lp->start_date."***".$client_lp->expire_date."***".$client_lp->notes."***".$client_lp->page_complete."***".$client_lp->renewing_page."***".$client_lp->leads."***".$client_lp->id; ?>
-                
                 "><img alt="Edit" class="allShadow transition1 edit_template_info" height="30" src="../site_images/edit.png"></button></a>
                 
-                <a href="user.php?c_lp_id=<?php echo $client_lp->id ; ?>&current_user_id=<?php echo $current_user->id; ?>" title="Hide"><img alt="Hide" class="allShadow transition1 hide_template_info" height="30" src="../site_images/hide.png"></a>
+                <a href="user.php?c_lp_id=<?php echo $client_lp->id ; ?>&current_user_id=<?php echo $client_lp->salesrep_id; ?>&c_lp_hide=<?php if($client_lp->hidden == 1){echo 0;}else if($client_lp->hidden == 0){echo 1;} ?>" title="Hide"><img alt="Hide" class="allShadow transition1 hide_template_info" height="30" src="../site_images/hide.png"></a>
                 
 				<?php if(!empty($client_lp->attachment_url)): ?>
          <a href="user.php?attachment_url=<?php echo $client_lp->attachment_url; ?>" title="Attachment"><img alt="Attachment" class="allShadow transition1 download_attachment_img" height="30" src="../site_images/download.png"></a>
@@ -1047,6 +1045,7 @@ if(isset($_GET['c_lp_id'])){
 	<?php endforeach; ?>
 
 </div>
+</section><!--END "user_c_lp" SECTION --> 
 
 
     																<!--Start CLIENT LP EDIT MODAL CONTENT -->  
@@ -1078,6 +1077,7 @@ if(isset($_GET['c_lp_id'])){
                   <p><label style="float:left;">Page Complete</label><input id="c_lp_page_complete" name="c_lp_page_complete" style="float:left; margin-top:10px; margin-left:6px;" type="checkbox" /></p>
                   <p><label style="float:left; margin-left:45px;">Renewing Page</label><input id="c_lp_renewing_page" name="c_lp_renewing_page" style="float:left; margin-top:10px; margin-left:6px;" type="checkbox" /></p>
                   <input type="hidden" id="c_lp_id" type="text" name="c_lp_id" value="" />
+                  <input type="hidden" id="c_lp_salesrep_id" type="text" name="c_lp_salesrep_id" value="" />
                   </div>
                   <p style=" position:relative; right:70px; top:60px;"><label style="float:right; color:#EB7572;">Update Developer</label><input name="c_lp_update_developer" style="float:right; margin-top:10px; margin-left:6px;" type="checkbox" /></p>
                   
@@ -1087,9 +1087,7 @@ if(isset($_GET['c_lp_id'])){
       </div><!--END CLIENT LP EDIT MODAL CONTENT --> 
 
 <div id="c_lp_overlay" class="md-overlay1"></div><!-- the overlay element -->
-
-</section><!--END "user_c_lp" SECTION --> 
-
+</div><!--End of All CLP & USER CLP CONTAINER -->
 
 
 </section> <!--********************************************** END of User Info Templates Container ***************************************-->
@@ -1117,7 +1115,7 @@ if(isset($_GET['c_lp_id'])){
 
 <script type="text/javascript">
 $(function(){
-    /*-- Scroll to link --*/
+    //*********************************************************************Scroll to link 
     $('.scroller-link').click(function(e){
         e.preventDefault(); //Don't automatically jump to the link
         id = $(this).attr('href').replace('#', ''); //Extract the id of the element to jump to
@@ -1138,13 +1136,13 @@ $(".horizontal_scroll").mCustomScrollbar({
 	scrollButtons:{enable:true}
 });
 
-//Error Message Modal Popup Function
+//**************************************************************Error Message Modal Popup Function
 $(document).ready(function() {
         // trigger the click event
         $('#error_message_div_id').click();
 });
 
-//Form Reset Funcationality
+//**************************************************************Form Reset Funcationality
 $( "#p_e_overlay" ).click(function() {
   
   	document.getElementById("p_e_form").reset();
@@ -1169,7 +1167,8 @@ $( "#c_lp_overlay" ).click(function() {
   
 });
 
-//Enter on Search
+//***************************************************************Enter on Search
+//All Enter on Search
 $(document).ready(function() {
     $('#search_input_all_p_e').keydown(function(event) {
         if (event.keyCode == 13) {
@@ -1178,6 +1177,33 @@ $(document).ready(function() {
     });
 });
 
+$(document).ready(function() {
+    $('#search_input_all_c_e').keydown(function(event) {
+        if (event.keyCode == 13) {
+			 search_all_p_e();
+         }
+    });
+});
+
+$(document).ready(function() {
+    $('#search_input_all_p_lp').keydown(function(event) {
+        if (event.keyCode == 13) {
+			 search_all_p_e();
+         }
+    });
+});
+
+$(document).ready(function() {
+    $('#search_input_all_c_lp').keydown(function(event) {
+        if (event.keyCode == 13) {
+			 search_all_p_e();
+         }
+    });
+});
+
+
+
+//Enter on Search
 $(document).ready(function() {
     $('#search_input_p_e').keydown(function(event) {
         if (event.keyCode == 13) {
@@ -1210,9 +1236,9 @@ $(document).ready(function() {
     });
 });
 
-//Search Function
 
-
+//*********************************************************Search Function
+//All Search Function
 function search_all_p_e(){
 	$("#loader_all_p_e").fadeIn(function(){
 	$.post('search_all_p_e.php', { search_input_all_p_e: document.getElementById("search_input_all_p_e").value,
@@ -1227,10 +1253,52 @@ function search_all_p_e(){
 	$("#loader_all_p_e").fadeOut(500);
 }
 
-//$('#allPlumEmailLink').click(function(){
-//    search_all_p_e();
-//});
+function search_all_c_e(){
+	$("#loader_all_c_e").fadeIn(function(){
+	$.post('search_all_c_e.php', { search_input_all_c_e: document.getElementById("search_input_all_c_e").value,
+									search_input_all_c_e_user_id: document.getElementById("search_input_all_c_e_user_id").value,
+									search_input_all_c_e_user_hidden: function(){
+										if(document.getElementById("slideTwo").checked == true){return 1;}else{ return 0; }
+									}},
+		function(output) {
+			$('#search_all_results_c_e').html(output).show();
+		});
+	});
+	$("#loader_all_c_e").fadeOut(500);
+}
 
+function search_all_p_lp(){
+	$("#loader_all_p_lp").fadeIn(function(){
+	$.post('search_all_p_lp.php', { search_input_all_p_lp: document.getElementById("search_input_all_p_lp").value,
+									search_input_all_p_lp_user_id: document.getElementById("search_input_all_p_lp_user_id").value,
+									search_input_all_p_lp_user_hidden: function(){
+										if(document.getElementById("slideTwo").checked == true){return 1;}else{ return 0; }
+									}},
+		function(output) {
+			$('#search_all_results_p_lp').html(output).show();
+		});
+	});
+	$("#loader_all_p_lp").fadeOut(500);
+}
+
+function search_all_c_lp(){
+	$("#loader_all_c_lp").fadeIn(function(){
+	$.post('search_all_c_lp.php', { search_input_all_c_lp: document.getElementById("search_input_all_c_lp").value,
+									search_input_all_c_lp_user_id: document.getElementById("search_input_all_c_lp_user_id").value,
+									search_input_all_c_lp_user_hidden: function(){
+										if(document.getElementById("slideTwo").checked == true){return 1;}else{ return 0; }
+									}},
+		function(output) {
+			$('#search_all_results_c_lp').html(output).show();
+		});
+	});
+	$("#loader_all_c_lp").fadeOut(500);
+}
+
+
+
+
+//Search Function
 function search_p_e(){
 	$("#loader_p_e").fadeIn(function(){
 	$.post('search_p_e.php', { search_input_p_e: document.getElementById("search_input_p_e").value },
@@ -1305,6 +1373,9 @@ function p_e(button) {
 		
 		$("#p_e_id")
 		.attr("value",button_values[7]);
+		
+		$("#p_e_salesrep_id")
+		.attr("value",button_values[8]);
 }
 
 function c_e(button) {
@@ -1339,6 +1410,9 @@ function c_e(button) {
 		
 		$("#c_e_id")
 		.attr("value",button_values[7]);
+		
+		$("#c_e_salesrep_id")
+		.attr("value",button_values[8]);
 }
 
 function p_lp(button) {
@@ -1401,6 +1475,9 @@ function p_lp(button) {
 		$("#p_lp_id")
 		.attr("value",button_values[14]);
 		
+		$("#p_lp_salesrep_id")
+		.attr("value",button_values[15]);
+		
 }
 
 function c_lp(button) {
@@ -1462,6 +1539,9 @@ function c_lp(button) {
 		
 		$("#c_lp_id")
 		.attr("value",button_values[14]);
+		
+		$("#c_lp_salesrep_id")
+		.attr("value",button_values[15]);
 }
 
 
@@ -1502,6 +1582,18 @@ $('select').each(function(){
         $this.val($(this).attr('rel'));
         $list.hide();
         //console.log($this.val());
+		if(window.all_p_e == 1){
+		search_all_p_e();
+		}
+		if(window.all_c_e == 1){
+		search_all_c_e();
+		}
+		if(window.all_p_lp == 1){
+		search_all_p_lp();
+		}
+		if(window.all_c_lp == 1){
+		search_all_c_lp();
+		}
     });
   
     $(document).click(function() {

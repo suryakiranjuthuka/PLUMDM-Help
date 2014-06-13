@@ -65,9 +65,9 @@ class PlumEmail extends DatabaseObject{
 
 
 	
-	public static function hide_p_e_template_info($p_e_id="",$current_user_id=""){
+	public static function hide_p_e_template_info($p_e_id="",$current_user_id="", $p_e_hide=""){
 		global $database;
-		$sql  = "UPDATE plumemail SET hidden=1 WHERE id={$p_e_id} && salesrep_id={$current_user_id}";
+		$sql  = "UPDATE plumemail SET hidden={$p_e_hide} WHERE id={$p_e_id} && salesrep_id={$current_user_id}";
 		
 		$database->query($sql);
 		return ($database->affected_rows() == 1) ? true : false;

@@ -182,13 +182,13 @@ box-shadow: inset 0px 0px 13px 1px #B1B1B1;
 
 
 /*-----------------------Check Box Styles------------------------*/
-input[type=checkbox] {
+.slideTwo input[type=checkbox] {
 	visibility: hidden;
 }
 
 .slideTwo {
-	width: 80px;
-	height: 30px;
+	width: 50px;
+	height: 10px;
 	background: #333;
 	margin: 20px auto;
 
@@ -202,28 +202,10 @@ input[type=checkbox] {
 	box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,0.2);
 }
 
-.slideTwo:after {
-	content: '';
-	position: absolute;
-	top: 14px;
-	left: 14px;
-	height: 2px;
-	width: 52px;
-
-	-webkit-border-radius: 50px;
-	-moz-border-radius: 50px;
-	border-radius: 50px;
-	background: #111;
-
-	-webkit-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,0.2);
-	-moz-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,0.2);
-	box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,0.2);
-}
-
 .slideTwo label {
 	display: block;
-	width: 22px;
-	height: 22px;
+	width: 18px;
+	height: 18px;
 
 	-webkit-border-radius: 50px;
 	-moz-border-radius: 50px;
@@ -236,9 +218,8 @@ input[type=checkbox] {
 	transition: all .4s ease;
 	cursor: pointer;
 	position: absolute;
-	top: 4px;
-	z-index: 1;
-	left: 4px;
+	top: -4px;
+	left: -3px;
 
 	-webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.3);
 	-moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.3);
@@ -256,8 +237,8 @@ input[type=checkbox] {
 .slideTwo label:after {
 	content: '';
 	position: absolute;
-	width: 10px;
-	height: 10px;
+	width: 6px;
+	height: 6px;
 
 	-webkit-border-radius: 50px;
 	-moz-border-radius: 50px;
@@ -272,11 +253,24 @@ input[type=checkbox] {
 }
 
 .slideTwo input[type=checkbox]:checked + label {
-	left: 54px;
+	left: 37px;
 }
 
 .slideTwo input[type=checkbox]:checked + label:after {
 	background: #00bf00;
+}
+
+#all_p_e_check{
+	margin-top:-17px;
+	margin-left:510px;
+}
+
+.all_p_e_check_text{
+	position:relative;
+	top:-5px;
+	margin-left:-60px;
+	font-family: 'Lato','Open Sans', sans-serif;
+	color: #e2f6fa;
 }
 
 
@@ -293,9 +287,11 @@ input[type=checkbox] {
   display: inline-block;
   position: relative;
   font-size: 16px;
-  color: white;
-  width: 220px;
+  color: #e2f6fa;
+  width: 190px;
   height: 40px;
+  font-family: 'Lato','Open Sans', sans-serif;
+  
 }
 
 .select-styled {
@@ -304,8 +300,8 @@ input[type=checkbox] {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: #c0392b;
-  padding: 8px 15px;
+  background-color: #45C8DC;
+  padding: 10px 15px;
   -moz-transition: all 0.2s ease-in;
   -o-transition: all 0.2s ease-in;
   -webkit-transition: all 0.2s ease-in;
@@ -322,10 +318,11 @@ input[type=checkbox] {
   right: 10px;
 }
 .select-styled:hover {
-  background-color: #b83729;
+  background-color: #28c0d7;
 }
 .select-styled:active, .select-styled.active {
-  background-color: #ab3326;
+  background-color: #333645;
+  /*background-color: #20232F;*/
 }
 .select-styled:active:after, .select-styled.active:after {
   top: 9px;
@@ -342,29 +339,43 @@ input[type=checkbox] {
   margin: 0;
   padding: 0;
   list-style: none;
-  background-color: #ab3326;
+  background-color: #45C8DC;
+  overflow:hidden;
 }
 .select-options li {
   margin: 0;
   padding: 12px 0;
   text-indent: 15px;
-  border-top: 1px solid #962d22;
+  border-top: 1px solid #218D9E;
   -moz-transition: all 0.15s ease-in;
   -o-transition: all 0.15s ease-in;
   -webkit-transition: all 0.15s ease-in;
   transition: all 0.15s ease-in;
+  color:#e2f6fa;
+  overflow:hidden;
 }
 .select-options li:hover {
-  color: #c0392b;
+  color: #218D9E;
   background: white;
 }
 .select-options li[rel="hide"] {
   display: none;
 }
 
+#all_p_e_select{
+}
+
 
 
 /* --------------------- PRE LOADER STYLES ---------------------- */
+#loader_all_p_e, #loader_all_c_e, #loader_all_p_lp, #loader_all_c_lp {
+	margin-top:-30px;
+	margin-right:-55px;
+	position:absolute;
+	margin-left:393px;
+	display:none;
+}
+
 #loader_p_e, #loader_c_e, #loader_p_lp, #loader_c_lp{
 	margin-top:-30px;
 	margin-right:-55px;
@@ -413,7 +424,7 @@ input[type=checkbox] {
 /* ------------ All Search Container Styles ------------- */
 #all_p_e_search_container, #all_c_e_search_container, #all_p_lp_search_container, #all_c_lp_search_container{
 	position:fixed;
-	left:35%;
+	left:25%;
 	top:1.3%;
 	z-index:1000;
 }
@@ -423,6 +434,11 @@ input[type=checkbox] {
 	left:35%;
 	top:1.3%;
 	z-index:1000;
+}
+
+#all_p_e_search, #all_c_e_search, #all_p_lp_search, #all_c_lp_search{
+	margin-top:-42px;
+	margin-left:190px;
 }
 
 

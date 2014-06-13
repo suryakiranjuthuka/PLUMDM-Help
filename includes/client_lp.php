@@ -86,9 +86,9 @@ class ClientLp extends DatabaseObject{
 	
 	
 	
-	public static function hide_c_lp_template_info($c_lp_id="",$current_user_id=""){
+	public static function hide_c_lp_template_info($c_lp_id="",$current_user_id="", $c_lp_hide=""){
 		global $database;
-		$sql  = "UPDATE clientlp SET hidden=1 WHERE id={$c_lp_id} && salesrep_id={$current_user_id}";
+		$sql  = "UPDATE clientlp SET hidden={$c_lp_hide} WHERE id={$c_lp_id} && salesrep_id={$current_user_id}";
 		
 		$database->query($sql);
 		return ($database->affected_rows() == 1) ? true : false;
