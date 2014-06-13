@@ -2,14 +2,20 @@
 
 require_once("../../includes/initialize.php"); 
 
-
-$current_user = SalesRep::find_by_id(1);
-
-
-if(isset($_POST['search_input_p_e'])){
-	$search_in = trim($_POST['search_input_p_e']);
-	$plum_emails = PlumEmail::search_p_e($search_in, $current_user->id);
+if(isset($_POST['search_input_all_p_e'])){
+	$search_in = trim($_POST['search_input_all_p_e']);
+	$search_in_user_id = trim($_POST['search_input_all_p_e_user_id']);
+	$hidden = $_POST['search_input_all_p_e_user_hidden'];
+	$plum_emails = PlumEmail::search_p_e($search_in, $search_in_user_id, $hidden);
 }
+
+/*$current_user = SalesRep::find_by_id(1);
+
+
+if(isset($_POST['search_input_all_p_e'])){
+	$search_in = trim($_POST['search_input_all_p_e']);
+	$plum_emails = PlumEmail::search_p_e($search_in, $current_user->id);
+}*/
 
 ?>
 
@@ -40,7 +46,7 @@ $( "#p_e_overlay" ).click(function() {
 <script src="../javascripts/modalEffects.js"></script>
 
 
-<div id="search_results_p_e">
+<div id="search_all_results_p_e">
 <?php foreach($plum_emails as $plum_email):?>			<!--Start PLUM EMAIL CONTENT --> 
 	<div class=" allShadow1 each_user_p_lp">
         

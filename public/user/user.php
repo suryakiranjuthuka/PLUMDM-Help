@@ -5,6 +5,8 @@ require_once("../../includes/initialize.php");
 
 $current_user = SalesRep::find_by_id(1);
 
+$sales_reps = SalesRep::get_all_salesrep();
+
 $plum_emails = PlumEmail::find_all_user_p_e($current_user->id);
 
 $client_emails = ClientEmail::find_all_user_c_e($current_user->id);
@@ -416,10 +418,10 @@ if(isset($_GET['c_lp_id'])){
     <div id="firstNavUserImage"><img height="100" src="../site_images/default_user.png"></div>
     <h1>Admin Settings</h1>
     <div id="firstNavLinks">
-        <div class="transition2" id="allPlumEmailLink">All Plum Emails</div>
-        <div class="transition2" id="allClientEmailLink">All Client Emails</div>
-        <div class="transition2" id="allPlumLPLink">All Plum Landing Pages</div>
-        <div class="transition2" id="allClientLPLink">All Client Landing Pages</div>
+        <a href="#user_info_templates_TOP" class="scroller-link"><div class="transition" id="allPlumEmailLink">All Plum Emails</div></a>
+        <a href="#user_info_templates_TOP" class="scroller-link"><div class="transition" id="allClientEmailLink">All Client Emails</div></a>
+        <a href="#user_info_templates_TOP" class="scroller-link"><div class="transition" id="allPlumLPLink">All Plum Landing Pages</div></a>
+        <a href="#user_info_templates_TOP" class="scroller-link"><div class="transition" id="allClientLPLink">All Client Landing Pages</div></a>
     </div>
 </nav>
 
@@ -450,7 +452,49 @@ if(isset($_GET['c_lp_id'])){
 <h1><?php echo $current_user->first_name." ".$current_user->last_name; ?></h1>
 </div>
 
-<section id="allUserInfoTemplatesContainer">
+<section id="allUserInfoTemplatesContainer"><!--********************** Main Templates Info Container ***********************************--> 
+
+
+
+
+
+<section id="all_user_p_e">
+
+<div id="all_p_e_search_container">
+	<select id="search_input_all_p_e_user_id" name="search_input_all_p_e_user_id">
+		<?php foreach($sales_reps as $sales_rep): ?>
+    	<?php if($sales_rep->id == 1){ continue; } ?>
+    	<option value="<?php echo $sales_rep->id; ?>"><?php echo $sales_rep->first_name." ".$sales_rep->last_name; ?></option>
+    	<?php endforeach; ?>
+    </select>
+    <div class="slideTwo">	
+		<input type="checkbox" value="None" id="slideTwo" name="search_input_all_p_e" />
+		<label for="slideTwo"></label>
+	</div>
+    <!--<input id="search_input_all_p_e_user_hidden" name="search_input_all_p_e_user_hidden" type="checkbox" />-->
+    <a href="#user_info_templates_TOP" class="scroller-link"><input type="search" name="search_input_all_p_e" id="search_input_all_p_e" placeholder="search..."></a>
+<div class="loader" id="loader_all_p_e"></div><!--LOADER-->
+</div>
+
+<div id="search_all_results_p_e">
+</div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <section id="user_p_e">
@@ -1127,6 +1171,14 @@ $( "#c_lp_overlay" ).click(function() {
 
 //Enter on Search
 $(document).ready(function() {
+    $('#search_input_all_p_e').keydown(function(event) {
+        if (event.keyCode == 13) {
+			 search_all_p_e();
+         }
+    });
+});
+
+$(document).ready(function() {
     $('#search_input_p_e').keydown(function(event) {
         if (event.keyCode == 13) {
 			 search_p_e();
@@ -1159,6 +1211,26 @@ $(document).ready(function() {
 });
 
 //Search Function
+
+
+function search_all_p_e(){
+	$("#loader_all_p_e").fadeIn(function(){
+	$.post('search_all_p_e.php', { search_input_all_p_e: document.getElementById("search_input_all_p_e").value,
+									search_input_all_p_e_user_id: document.getElementById("search_input_all_p_e_user_id").value,
+									search_input_all_p_e_user_hidden: function(){
+										if(document.getElementById("slideTwo").checked == true){return 1;}else{ return 0; }
+									}},
+		function(output) {
+			$('#search_all_results_p_e').html(output).show();
+		});
+	});
+	$("#loader_all_p_e").fadeOut(500);
+}
+
+//$('#allPlumEmailLink').click(function(){
+//    search_all_p_e();
+//});
+
 function search_p_e(){
 	$("#loader_p_e").fadeIn(function(){
 	$.post('search_p_e.php', { search_input_p_e: document.getElementById("search_input_p_e").value },
@@ -1393,6 +1465,51 @@ function c_lp(button) {
 }
 
 
+$('select').each(function(){
+    var $this = $(this), numberOfOptions = $(this).children('option').length;
+  
+    $this.addClass('select-hidden'); 
+    $this.wrap('<div class="select"></div>');
+    $this.after('<div class="select-styled"></div>');
+
+    var $styledSelect = $this.next('div.select-styled');
+    $styledSelect.text($this.children('option').eq(0).text());
+  
+    var $list = $('<ul />', {
+        'class': 'select-options'
+    }).insertAfter($styledSelect);
+  
+    for (var i = 0; i < numberOfOptions; i++) {
+        $('<li />', {
+            text: $this.children('option').eq(i).text(),
+            rel: $this.children('option').eq(i).val()
+        }).appendTo($list);
+    }
+  
+    var $listItems = $list.children('li');
+  
+    $styledSelect.click(function(e) {
+        e.stopPropagation();
+        $('div.select-styled.active').each(function(){
+            $(this).removeClass('active').next('ul.select-options').hide();
+        });
+        $(this).toggleClass('active').next('ul.select-options').toggle();
+    });
+  
+    $listItems.click(function(e) {
+        e.stopPropagation();
+        $styledSelect.text($(this).text()).removeClass('active');
+        $this.val($(this).attr('rel'));
+        $list.hide();
+        //console.log($this.val());
+    });
+  
+    $(document).click(function() {
+        $styledSelect.removeClass('active');
+        $list.hide();
+    });
+
+});
 </script>
 
 
