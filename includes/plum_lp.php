@@ -105,10 +105,10 @@ class PlumLP extends DatabaseObject{
 	
 	
 	
-	public static function search_p_lp($id="",$search_term=""){
+	public static function search_p_lp($search_term="", $id="", $hidden=0){
 		global $database;
 		$sql = "SELECT * FROM  plumlp WHERE ((client_name LIKE '%$search_term%') OR (start_date LIKE '%$search_term%') OR (expire_date LIKE '%$search_term%') OR (email LIKE '%$search_term%') OR (website_url LIKE '%$search_term%') OR (city LIKE '%$search_term%') OR (state LIKE '%$search_term%') OR (zip_code LIKE '%$search_term%'))";
-		$sql .= " AND ((salesrep_id={$id}) AND (hidden=0)) ORDER BY id DESC";
+		$sql .= " AND ((salesrep_id={$id}) AND (hidden={$hidden})) ORDER BY id DESC";
 		
 		return static::find_by_sql($sql);
 	}

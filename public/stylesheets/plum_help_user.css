@@ -182,11 +182,11 @@ box-shadow: inset 0px 0px 13px 1px #B1B1B1;
 
 
 /*-----------------------Check Box Styles------------------------*/
-.slideTwo input[type=checkbox] {
+.slideCheckBox input[type=checkbox] {
 	visibility: hidden;
 }
 
-.slideTwo {
+.slideCheckBox {
 	width: 50px;
 	height: 10px;
 	background: #333;
@@ -202,7 +202,7 @@ box-shadow: inset 0px 0px 13px 1px #B1B1B1;
 	box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,0.2);
 }
 
-.slideTwo label {
+.slideCheckBox label {
 	display: block;
 	width: 18px;
 	height: 18px;
@@ -234,7 +234,7 @@ box-shadow: inset 0px 0px 13px 1px #B1B1B1;
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
 }
 
-.slideTwo label:after {
+.slideCheckBox label:after {
 	content: '';
 	position: absolute;
 	width: 6px;
@@ -252,11 +252,11 @@ box-shadow: inset 0px 0px 13px 1px #B1B1B1;
 	box-shadow: inset 0px 1px 1px rgba(0,0,0,1), 0px 1px 0px rgba(255,255,255,0.9);
 }
 
-.slideTwo input[type=checkbox]:checked + label {
+.slideCheckBox input[type=checkbox]:checked + label {
 	left: 37px;
 }
 
-.slideTwo input[type=checkbox]:checked + label:after {
+.slideCheckBox input[type=checkbox]:checked + label:after {
 	background: #00bf00;
 }
 
@@ -379,6 +379,8 @@ box-shadow: inset 0px 0px 13px 1px #B1B1B1;
 #loader_p_e, #loader_c_e, #loader_p_lp, #loader_c_lp{
 	margin-top:-30px;
 	margin-right:-55px;
+	position:absolute;
+	margin-left:203px;
 	display:none;
 }
 
@@ -650,10 +652,13 @@ html, body{
 	width:100px;
 	height:100px;
 	margin:50px auto 20px auto;
+	-webkit-transform:scale(1);
+    transform:scale(1);
 }
 
-#secondNav #userImage img{
-	/*opacity:.9;*/
+#secondNav #userImage:hover{
+	-webkit-transform:scale(1.1);
+    transform:scale(1.1);
 }
 
 #secondNav h1{
@@ -711,6 +716,34 @@ html, body{
 	border-right:7px solid #3FB4C6;
 	color:#349faf;
 }
+
+#secondNav #love{
+	position:absolute;
+	bottom:4%;
+	width:100%;
+	text-align:center;
+	font-family: 'Lato','Open Sans', sans-serif;
+	font-size:16px;
+}
+
+#secondNav #love #loveIcon{
+	border-radius:50%;
+	position:absolute;
+}
+
+#secondNav #love h4{
+	color:#6d7393;
+}
+
+#secondNav #love h3{
+	margin-top:8px;
+	color:#E85657;
+	opacity:.8;
+/*	text-align:left;
+	margin-left:30px;*/
+}
+
+
 
 /* ------------ Top Header Container ------------- */
 #userNameContainer{

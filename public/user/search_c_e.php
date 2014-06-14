@@ -8,7 +8,7 @@ $current_user = SalesRep::find_by_id(1);
 
 if(isset($_POST['search_input_c_e'])){
 	$search_in = trim($_POST['search_input_c_e']);
-	$client_emails = ClientEmail::search_c_e($current_user->id,$search_in);
+	$client_emails = ClientEmail::search_c_e($search_in, $current_user->id);
 }
 
 ?>
@@ -100,12 +100,10 @@ $( "#c_e_overlay" ).click(function() {
           			<h5><?php echo $client_email->send_date; ?></h5>
                 </div>
                 <a title="Edit" class="md-trigger" data-modal="c_e_modal"><button class="editButton transition1" language="javascript"  onclick="return c_e(this);" style="border-style:none; outline:0; border:0; background:none;" value="
-				
-				<?php echo $client_email->client_name."***".$client_email->leads."***".$client_email->website_url."***".$client_email->email_list."***".$client_email->notes."***".$client_email->page_complete."***".$client_email->send_date."***".$client_email->id; ?>
-                
+				<?php echo $client_email->client_name."***".$client_email->leads."***".$client_email->website_url."***".$client_email->email_list."***".$client_email->notes."***".$client_email->page_complete."***".$client_email->send_date."***".$client_email->id."***".$client_email->salesrep_id; ?>
                 "><img alt="Edit" class="allShadow transition1 edit_template_info" height="30" src="../site_images/edit.png"></button></a>
                 
-                <a href="user.php?c_e_id=<?php echo $client_email->id ; ?>&current_user_id=<?php echo $current_user->id; ?>" title="Hide"><img alt="Hide" class="allShadow transition1 hide_template_info" height="30" src="../site_images/hide.png"></a>
+                <a href="user.php?c_e_id=<?php echo $client_email->id ; ?>&current_user_id=<?php echo $client_email->salesrep_id; ?>&c_e_hide=<?php if($client_email->hidden == 1){echo 0;}else if($client_email->hidden == 0){echo 1;} ?>" title="Hide" id="c_e_hide"><img alt="Hide" class="allShadow transition1 hide_template_info" height="30" src="../site_images/hide.png"></a>
                 
 				<?php if(!empty($client_email->attachment_url)): ?>
          <a href="user.php?attachment_url=<?php echo $client_email->attachment_url; ?>" title="Attachment"><img alt="Attachment" class="allShadow transition1 download_attachment_img" height="30" src="../site_images/download.png"></a>
@@ -127,5 +125,4 @@ $( "#c_e_overlay" ).click(function() {
         
 	</div>
 	<?php endforeach; ?>
-
 </div>

@@ -73,16 +73,6 @@ d3.select("body")
 	.selectAll("section")
 	.style("display","none")
 	
-	
-/*	d3.select("#user_c_lp")
-	.style("display","none")
-	
-	d3.select("#user_c_e")
-	.style("display","none")
-	
-	d3.select("#user_p_lp")
-	.style("display","none")*/
-	
 	d3.select("#all_user_p_e")
 	.style("display","block")
 	
@@ -118,6 +108,7 @@ d3.select("body")
 d3.select("body")
 .select("#allClientEmailLink")
 .on("click", function(){
+	search_all_c_e();
 	
 	window.all_p_e=0;
 	window.all_c_e=1;
@@ -127,27 +118,6 @@ d3.select("body")
 	d3.select("#allUserInfoTemplatesContainer")
 	.selectAll("section")
 	.style("display","none")
-	
-/*	d3.select("#user_c_lp")
-	.style("display","none")
-	
-	d3.select("#user_c_e")
-	.style("display","none")
-	
-	d3.select("#user_p_lp")
-	.style("display","none")
-	
-	d3.select("#user_p_e")
-	.style("display","block")
-	
-	d3.select("#search_results_p_e")
-	.transition()
-	.duration(500)
-	.each("start",function(){
-		d3.select(this)
-		.style("opacity",.0)
-	})
-	.style("opacity",1)*/
 	
 	d3.select("#all_user_c_e")
 	.style("display","block")
@@ -184,6 +154,7 @@ d3.select("body")
 d3.select("body")
 .select("#allPlumLPLink")
 .on("click", function(){
+	search_all_p_lp();
 	
 	window.all_p_e=0;
 	window.all_c_e=0;
@@ -193,27 +164,6 @@ d3.select("body")
 	d3.select("#allUserInfoTemplatesContainer")
 	.selectAll("section")
 	.style("display","none")
-	
-/*	d3.select("#user_c_lp")
-	.style("display","none")
-	
-	d3.select("#user_c_e")
-	.style("display","none")
-	
-	d3.select("#user_p_lp")
-	.style("display","none")
-	
-	d3.select("#user_p_e")
-	.style("display","block")
-	
-	d3.select("#search_results_p_e")
-	.transition()
-	.duration(500)
-	.each("start",function(){
-		d3.select(this)
-		.style("opacity",.0)
-	})
-	.style("opacity",1)*/
 	
 	d3.select("#all_user_p_lp")
 	.style("display","block")
@@ -250,6 +200,7 @@ d3.select("body")
 d3.select("body")
 .select("#allClientLPLink")
 .on("click", function(){
+	search_all_c_lp();
 	
 	window.all_p_e=0;
 	window.all_c_e=0;
@@ -259,27 +210,6 @@ d3.select("body")
 	d3.select("#allUserInfoTemplatesContainer")
 	.selectAll("section")
 	.style("display","none")
-	
-/*	d3.select("#user_c_lp")
-	.style("display","none")
-	
-	d3.select("#user_c_e")
-	.style("display","none")
-	
-	d3.select("#user_p_lp")
-	.style("display","none")
-	
-	d3.select("#user_p_e")
-	.style("display","block")
-	
-	d3.select("#search_results_p_e")
-	.transition()
-	.duration(500)
-	.each("start",function(){
-		d3.select(this)
-		.style("opacity",.0)
-	})
-	.style("opacity",1)*/
 	
 	d3.select("#all_user_c_lp")
 	.style("display","block")

@@ -8,7 +8,7 @@ $current_user = SalesRep::find_by_id(1);
 
 if(isset($_POST['search_input_c_lp'])){
 	$search_in = trim($_POST['search_input_c_lp']);
-	$client_lps = ClientLP::search_c_lp($current_user->id,$search_in);
+	$client_lps = ClientLP::search_c_lp($search_in, $current_user->id);
 }
 
 ?>
@@ -124,12 +124,10 @@ $( "#c_lp_overlay" ).click(function() {
           			<h5><?php echo $client_lp->expire_date; ?></h5>
                 </div>
                 <a title="Edit" class="md-trigger" data-modal="c_lp_modal"><button class="editButton transition1" language="javascript"  onclick="return c_lp(this);" style="border-style:none; outline:0; border:0; background:none;" value="
-				
-				<?php echo $client_lp->client_name."***".$client_lp->email."***".$client_lp->city."***".$client_lp->state."***".$client_lp->zip_code."***".$client_lp->google_ad."***".$client_lp->google_ad_setup."***".$client_lp->website_url."***".$client_lp->start_date."***".$client_lp->expire_date."***".$client_lp->notes."***".$client_lp->page_complete."***".$client_lp->renewing_page."***".$client_lp->leads."***".$client_lp->id; ?>
-                
+				<?php echo $client_lp->client_name."***".$client_lp->email."***".$client_lp->city."***".$client_lp->state."***".$client_lp->zip_code."***".$client_lp->google_ad."***".$client_lp->google_ad_setup."***".$client_lp->website_url."***".$client_lp->start_date."***".$client_lp->expire_date."***".$client_lp->notes."***".$client_lp->page_complete."***".$client_lp->renewing_page."***".$client_lp->leads."***".$client_lp->id."***".$client_lp->salesrep_id; ?>
                 "><img alt="Edit" class="allShadow transition1 edit_template_info" height="30" src="../site_images/edit.png"></button></a>
                 
-                <a href="user.php?c_lp_id=<?php echo $client_lp->id ; ?>&current_user_id=<?php echo $current_user->id; ?>" title="Hide"><img alt="Hide" class="allShadow transition1 hide_template_info" height="30" src="../site_images/hide.png"></a>
+                <a href="user.php?c_lp_id=<?php echo $client_lp->id ; ?>&current_user_id=<?php echo $client_lp->salesrep_id; ?>&c_lp_hide=<?php if($client_lp->hidden == 1){echo 0;}else if($client_lp->hidden == 0){echo 1;} ?>" title="Hide"  id="c_lp_hide"><img alt="Hide" class="allShadow transition1 hide_template_info" height="30" src="../site_images/hide.png"></a>
                 
 				<?php if(!empty($client_lp->attachment_url)): ?>
          <a href="user.php?attachment_url=<?php echo $client_lp->attachment_url; ?>" title="Attachment"><img alt="Attachment" class="allShadow transition1 download_attachment_img" height="30" src="../site_images/download.png"></a>
@@ -151,5 +149,4 @@ $( "#c_lp_overlay" ).click(function() {
         
 	</div>
 	<?php endforeach; ?>
-
 </div>

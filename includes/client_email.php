@@ -83,10 +83,10 @@ class ClientEmail extends DatabaseObject{
 	}
 
 
-	public static function search_c_e($id="",$search_term=""){
+	public static function search_c_e($search_term="", $id="", $hidden=0){
 		global $database;
 		$sql = "SELECT * FROM  clientemail WHERE ((client_name LIKE '%$search_term%') OR (send_date LIKE '%$search_term%') OR (email_list LIKE '%$search_term%') OR (website_url LIKE '%$search_term%'))";
-		$sql .= " AND ((salesrep_id={$id}) AND (hidden=0)) ORDER BY id DESC";
+		$sql .= " AND ((salesrep_id={$id}) AND (hidden={$hidden})) ORDER BY id DESC";
 		
 		return static::find_by_sql($sql);
 	}
