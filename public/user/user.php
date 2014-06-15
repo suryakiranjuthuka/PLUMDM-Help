@@ -655,7 +655,7 @@ if(isset($_GET['c_lp_id'])){
           			<h5><?php echo $plum_lp->expire_date; ?></h5>
                 </div>
                 <a title="Edit" class="md-trigger" data-modal="p_lp_modal"><button class="editButton transition1" language="javascript"  onclick="return p_lp(this);" style="border-style:none; outline:0; border:0; background:none;" value="
-				<?php echo $plum_lp->client_name."***".$plum_lp->email."***".$plum_lp->city."***".$plum_lp->state."***".$plum_lp->zip_code."***".$plum_lp->google_ad."***".$plum_lp->google_ad_setup."***".$plum_lp->website_url."***".$plum_lp->start_date."***".$plum_lp->expire_date."***".$plum_lp->notes."***".$plum_lp->page_complete."***".$plum_lp->renewing_page."***".$plum_lp->leads."***".$plum_lp->id."***".$plum_lp->salesrepid; ?>
+				<?php echo $plum_lp->client_name."***".$plum_lp->email."***".$plum_lp->city."***".$plum_lp->state."***".$plum_lp->zip_code."***".$plum_lp->google_ad."***".$plum_lp->google_ad_setup."***".$plum_lp->website_url."***".$plum_lp->start_date."***".$plum_lp->expire_date."***".$plum_lp->notes."***".$plum_lp->page_complete."***".$plum_lp->renewing_page."***".$plum_lp->leads."***".$plum_lp->id."***".$plum_lp->salesrep_id; ?>
                 "><img alt="Edit" class="allShadow transition1 edit_template_info" height="30" src="../site_images/edit.png"></button></a>
                 
                 <a href="user.php?p_lp_id=<?php echo $plum_lp->id ; ?>&current_user_id=<?php echo $plum_lp->salesrep_id; ?>&p_lp_hide=<?php if($plum_lp->hidden == 1){echo 0;}else if($plum_lp->hidden == 0){echo 1;} ?>" title="Hide" id="p_lp_hide"><img alt="Hide" class="allShadow transition1 hide_template_info" height="30" src="../site_images/hide.png"></a>
@@ -854,7 +854,7 @@ if(isset($_GET['c_lp_id'])){
           			<h5><?php echo $client_lp->expire_date; ?></h5>
                 </div>
                 <a title="Edit" class="md-trigger" data-modal="c_lp_modal"><button class="editButton transition1" language="javascript"  onclick="return c_lp(this);" style="border-style:none; outline:0; border:0; background:none;" value="
-				<?php echo $client_lp->client_name."***".$client_lp->email."***".$client_lp->city."***".$client_lp->state."***".$client_lp->zip_code."***".$client_lp->google_ad."***".$client_lp->google_ad_setup."***".$client_lp->website_url."***".$client_lp->start_date."***".$client_lp->expire_date."***".$client_lp->notes."***".$client_lp->page_complete."***".$client_lp->renewing_page."***".$client_lp->leads."***".$client_lp->id."***".$client_lp->salesrepid; ?>              "><img alt="Edit" class="allShadow transition1 edit_template_info" height="30" src="../site_images/edit.png"></button></a>
+				<?php echo $client_lp->client_name."***".$client_lp->email."***".$client_lp->city."***".$client_lp->state."***".$client_lp->zip_code."***".$client_lp->google_ad."***".$client_lp->google_ad_setup."***".$client_lp->website_url."***".$client_lp->start_date."***".$client_lp->expire_date."***".$client_lp->notes."***".$client_lp->page_complete."***".$client_lp->renewing_page."***".$client_lp->leads."***".$client_lp->id."***".$client_lp->salesrep_id; ?>              "><img alt="Edit" class="allShadow transition1 edit_template_info" height="30" src="../site_images/edit.png"></button></a>
                 
                 <a href="user.php?c_lp_id=<?php echo $client_lp->id ; ?>&current_user_id=<?php echo $client_lp->salesrep_id; ?>&c_lp_hide=<?php if($client_lp->hidden == 1){echo 0;}else if($client_lp->hidden == 0){echo 1;} ?>" title="Hide" id="c_lp_hide"><img alt="Hide" class="allShadow transition1 hide_template_info" height="30" src="../site_images/hide.png"></a>
                 
@@ -1205,8 +1205,8 @@ $('#p_lp_form').submit(function(event) {
 	
 	$.post('reload.php', {p_lp_client_name:p_lp_client_name, p_lp_email:p_lp_email, p_lp_city:p_lp_city, p_lp_state:p_lp_state, p_lp_zip_code:p_lp_zip_code, p_lp_website_url:p_lp_website_url, p_lp_start_date:p_lp_start_date, p_lp_expire_date:p_lp_expire_date, p_lp_notes:p_lp_notes, p_lp_leads:p_lp_leads, p_lp_google_ad:p_lp_google_ad, p_lp_google_ad_setup:p_lp_google_ad_setup, p_lp_page_complete:p_lp_page_complete, p_lp_renewing_page:p_lp_renewing_page, p_lp_id:p_lp_id, p_lp_salesrep_id:p_lp_salesrep_id, p_lp_submit:p_lp_submit, p_lp_update_developer:p_lp_update_developer});
 
-//	search_all_p_lp();
-//	search_p_lp();
+	search_all_p_lp();
+	search_p_lp();
 	
 	$(document).ready(function() {
 		$( "#p_lp_overlay" ).click();
