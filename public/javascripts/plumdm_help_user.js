@@ -1,20 +1,12 @@
 // JavaScript Document
-/*d3.select("#secondNavLinks")
+d3.select("#firstNavLinks")
 .selectAll("div")
-.on("mouseover", function(){
-	d3.select(this)
-	.style("margin-left",10+"px")
-	.style("border-right","7px solid #3FB4C6")
+.on("click", function(){
+	document.getElementById('search_input_all_p_e').value='' ; 
+	document.getElementById('search_input_all_c_e').value='' ; 
+	document.getElementById('search_input_all_p_lp').value='' ; 
+	document.getElementById('search_input_all_c_lp').value='' ;
 });
-
-d3.select("#secondNavLinks")
-.selectAll("div")
-.on("mouseout", function(){
-	d3.select(this)
-	.style("margin-left",0+"px")
-	.style("border-right","0px solid #3FB4C6")
-});*/
-
 
 d3.select("#firstNav")
 .on("mouseover", function(){
@@ -62,6 +54,7 @@ d3.select("#firstNav")
 d3.select("body")
 .select("#allPlumEmailLink")
 .on("click", function(){
+	document.getElementById('search_input_all_p_e').value='' ; 
 	search_all_p_e();
 	
 	window.all_p_e=1;
@@ -108,6 +101,7 @@ d3.select("body")
 d3.select("body")
 .select("#allClientEmailLink")
 .on("click", function(){
+	document.getElementById('search_input_all_c_e').value='' ; 
 	search_all_c_e();
 	
 	window.all_p_e=0;
@@ -154,6 +148,7 @@ d3.select("body")
 d3.select("body")
 .select("#allPlumLPLink")
 .on("click", function(){
+	document.getElementById('search_input_all_p_lp').value='' ; 
 	search_all_p_lp();
 	
 	window.all_p_e=0;
@@ -200,6 +195,7 @@ d3.select("body")
 d3.select("body")
 .select("#allClientLPLink")
 .on("click", function(){
+	document.getElementById('search_input_all_c_lp').value='' ; 
 	search_all_c_lp();
 	
 	window.all_p_e=0;
@@ -258,16 +254,6 @@ d3.select("body")
 	.selectAll("section")
 	.style("display","none")
 	
-	
-/*	d3.select("#user_c_lp")
-	.style("display","none")
-	
-	d3.select("#user_c_e")
-	.style("display","none")
-	
-	d3.select("#user_p_lp")
-	.style("display","none")*/
-	
 	d3.select("#user_p_e")
 	.style("display","block")
 	
@@ -310,15 +296,6 @@ d3.select("body")
 	.selectAll("section")
 	.style("display","none")
 	
-/*	d3.select("#user_p_e")
-	.style("display","none")
-	
-	d3.select("#user_c_lp")
-	.style("display","none")
-	
-	d3.select("#user_p_lp")
-	.style("display","none")*/
-	
 	d3.select("#user_c_e")
 	.style("display","block")
 	
@@ -359,15 +336,6 @@ d3.select("body")
 	.selectAll("section")
 	.style("display","none")
 	
-/*	d3.select("#user_p_e")
-	.style("display","none")
-	
-	d3.select("#user_c_e")
-	.style("display","none")
-	
-	d3.select("#user_c_lp")
-	.style("display","none")*/
-	
 	d3.select("#user_p_lp")
 	.style("display","block")
 	
@@ -406,15 +374,6 @@ d3.select("body")
 	d3.select("#allUserInfoTemplatesContainer")
 	.selectAll("section")
 	.style("display","none")
-	
-/*	d3.select("#user_p_e")
-	.style("display","none")
-	
-	d3.select("#user_c_e")
-	.style("display","none")
-	
-	d3.select("#user_p_lp")
-	.style("display","none")*/
 	
 	d3.select("#user_c_lp")
 	.style("display","block")

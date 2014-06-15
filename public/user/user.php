@@ -21,8 +21,6 @@ $plum_emails = PlumEmail::find_all_user_p_e($current_user->id);
 $client_emails = ClientEmail::find_all_user_c_e($current_user->id);
 
 $plum_lps = PlumLP::find_all_user_p_lp($current_user->id);
-//$search_in = trim($_POST['search_input']);
-//$plum_lps = PlumLP::search_p_lp($current_user->id,$search_in);
 
 $client_lps = ClientLP::find_all_user_c_lp($current_user->id);
 
@@ -47,62 +45,7 @@ if(isset($_GET['attachment_url'])){
 }
 
 
-//**************Plum Email Form Submittion***************
-if(isset($_POST['p_e_submit'])){
 
-	$plum_email = new PlumEmail();
-
-	
-	if($_POST['p_e_client_name']){	
-		$plum_email->client_name = trim($_POST['p_e_client_name']);}
-		
-	if($_POST['p_e_email_list']){	
-		$plum_email->email_list = trim($_POST['p_e_email_list']);}
-		
-	if($_POST['p_e_website_url']){	
-		$plum_email->website_url = trim($_POST['p_e_website_url']);}
-		
-	if($_POST['p_e_send_date']){	
-		$plum_email->send_date = trim($_POST['p_e_send_date']);}
-		
-	if($_POST['p_e_notes']){	
-		$plum_email->notes = trim($_POST['p_e_notes']);}
-		
-	if($_POST['p_e_page_complete']){	
-		$plum_email->page_complete = 1; }
-		else{ $plum_email->page_complete = 0; }
-		
-	if($_POST['p_e_leads']){	
-		$plum_email->leads = trim($_POST['p_e_leads']);}
-		
-	if($_POST['p_e_id']){	
-		$plum_email->id = trim($_POST['p_e_id']);}
-	
-	if($_POST['p_e_salesrep_id']){	
-		$plum_email->salesrep_id = trim($_POST['p_e_salesrep_id']);}
-	
-	
-/*if($_POST['p_e_update_developer']){
-
- $to = "suryakiran.kittu@gmail.com";
- $subject = "Modification from {$current_user->first_name}!";
- $body = "{$plum_email->client_name}";
- //$mailheader = "Surya Test <landings@plumdm.com>";
- mail($to, $subject, $body);
-}*/
-	
-	
-	$sucess_p_e = $plum_email->update_p_e_template_info();
-	
-	//Verifying if information is updated
-	if($sucess_p_e){
-		$session->message("<span class='bold'>Successfully UPDATED</span> <span class='boldCreamColor'> information to Plum Emails.</span>");
-		redirect_to("user.php");
-	} else{
-		$session->message("<span class='bold'>Failed</span> <span class='boldCreamColor'> to</span> <span class='bold'> UPDATE</span> <span class='boldCreamColor'> information to Plum Emails Template.</span>");
-		redirect_to("user.php");
-	}
-}
 
 
 //********** Hide p_e Template Info **************
@@ -126,61 +69,7 @@ if(isset($_GET['p_e_id'])){
 
 
 
-//**************Client Email Form Submittion***************
-if(isset($_POST['c_e_submit'])){
 
-	$client_email = new ClientEmail();
-
-	
-	if($_POST['c_e_client_name']){	
-		$client_email->client_name = trim($_POST['c_e_client_name']);}
-		
-	if($_POST['c_e_email_list']){	
-		$client_email->email_list = trim($_POST['c_e_email_list']);}
-		
-	if($_POST['c_e_website_url']){	
-		$client_email->website_url = trim($_POST['c_e_website_url']);}
-		
-	if($_POST['c_e_send_date']){	
-		$client_email->send_date = trim($_POST['c_e_send_date']);}
-		
-	if($_POST['c_e_notes']){	
-		$client_email->notes = trim($_POST['c_e_notes']);}
-		
-	if($_POST['c_e_page_complete']){	
-		$client_email->page_complete = 1; }
-		else{ $client_email->page_complete = 0; }
-		
-	if($_POST['c_e_leads']){	
-		$client_email->leads = trim($_POST['c_e_leads']);}
-		
-	if($_POST['c_e_id']){	
-		$client_email->id = trim($_POST['c_e_id']);}
-		
-	if($_POST['c_e_salesrep_id']){	
-		$client_email->salesrep_id = trim($_POST['c_e_salesrep_id']);}
-	
-/*if($_POST['c_e_update_developer']){
-
- $to = "suryakiran.kittu@gmail.com";
- $subject = "Modification from {$current_user->first_name}!";
- $body = "{$client_email->client_name}";
- //$mailheader = "Surya Test <landings@plumdm.com>";
- mail($to, $subject, $body);
-}*/
-	
-	
-	$sucess_c_e = $client_email->update_c_e_template_info();
-	
-	//Verifying if information is updated
-	if($sucess_c_e){
-		$session->message("<span class='bold'>Successfully UPDATED</span> <span class='boldCreamColor'> information to Client Emails.</span>");
-		redirect_to("user.php");
-	} else{
-		$session->message("<span class='bold'>Failed</span> <span class='boldCreamColor'> to</span> <span class='bold'> UPDATE</span> <span class='boldCreamColor'> information to Client Emails Template.</span>");
-		redirect_to("user.php");
-	}
-}
 
 
 //********** Hide c_e Template Info **************
@@ -203,85 +92,7 @@ if(isset($_GET['c_e_id'])){
 }
 
 
-//**************Plum Landing Page Form Submittion***************
-if(isset($_POST['p_lp_submit'])){
-	
-	$plum_landing_page = new PlumLP();
 
-	
-	if($_POST['p_lp_client_name']){	
-		$plum_landing_page->client_name = trim($_POST['p_lp_client_name']);}
-		
-	if($_POST['p_lp_email']){	
-		$plum_landing_page->email = trim($_POST['p_lp_email']);}
-		
-	if($_POST['p_lp_city']){	
-		$plum_landing_page->city = trim($_POST['p_lp_city']);}
-		
-	if($_POST['p_lp_state']){	
-		$plum_landing_page->state = trim($_POST['p_lp_state']);}
-		
-	if($_POST['p_lp_zip_code']){	
-		$plum_landing_page->zip_code = trim($_POST['p_lp_zip_code']);}
-		
-	if($_POST['p_lp_google_ad']){	
-		$plum_landing_page->google_ad = 1; }
-		else{ $plum_landing_page->google_ad = 0; }
-		
-	if($_POST['p_lp_google_ad_setup']){	
-		$plum_landing_page->google_ad_setup = 1; }
-		else{ $plum_landing_page->google_ad_setup = 0; }
-		
-	if($_POST['p_lp_website_url']){	
-		$plum_landing_page->website_url = trim($_POST['p_lp_website_url']);}
-		
-	if($_POST['p_lp_start_date']){	
-		$plum_landing_page->start_date = trim($_POST['p_lp_start_date']);}
-		
-	if($_POST['p_lp_expire_date']){	
-		$plum_landing_page->expire_date = trim($_POST['p_lp_expire_date']);}
-		
-	if($_POST['p_lp_notes']){	
-		$plum_landing_page->notes = trim($_POST['p_lp_notes']);}
-		
-	if($_POST['p_lp_page_complete']){	
-		$plum_landing_page->page_complete = 1; }
-		else{ $plum_landing_page->page_complete = 0; }
-		
-	if($_POST['p_lp_renewing_page']){	
-		$plum_landing_page->renewing_page = 1; }
-		else{ $plum_landing_page->renewing_page = 0; }
-		
-	if($_POST['p_lp_leads']){	
-		$plum_landing_page->leads = trim($_POST['p_lp_leads']);}
-		
-	if($_POST['p_lp_id']){	
-		$plum_landing_page->id = trim($_POST['p_lp_id']);}
-		
-	if($_POST['p_lp_salesrep_id']){	
-		$plum_landing_page->salesrep_id = trim($_POST['p_lp_salesrep_id']);}
-	
-/*if($_POST['p_lp_update_developer']){
-
- $to = "suryakiran.kittu@gmail.com";
- $subject = "Modification from {$current_user->first_name}!";
- $body = "{$plum_landing_page->client_name}";
- //$mailheader = "Surya Test <landings@plumdm.com>";
- mail($to, $subject, $body);
-}*/
-	
-	
-	$sucess_p_lp = $plum_landing_page->update_p_lp_template_info();
-	
-	//Verifying if information is updated
-	if($sucess_p_lp){
-		$session->message("<span class='bold'>Successfully UPDATED</span> <span class='boldCreamColor'> information to Plum Landing Pages.</span>");
-		redirect_to("user.php");
-	} else{
-		$session->message("<span class='bold'>Failed</span> <span class='boldCreamColor'> to</span> <span class='bold'> UPDATE</span> <span class='boldCreamColor'> information to Plum Landing Pages Template.</span>");
-		redirect_to("user.php");
-	}
-}
 
 
 //********** Hide p_lp Template Info **************
@@ -305,87 +116,6 @@ if(isset($_GET['p_lp_id'])){
 
 
 
-//**************Client Landing Page Form Submittion***************
-if(isset($_POST['c_lp_submit'])){
-	
-	$client_landing_page = new ClientLp();
-
-	
-	if($_POST['c_lp_client_name']){	
-		$client_landing_page->client_name = trim($_POST['c_lp_client_name']);}
-		
-	if($_POST['c_lp_email']){	
-		$client_landing_page->email = trim($_POST['c_lp_email']);}
-		
-	if($_POST['c_lp_city']){	
-		$client_landing_page->city = trim($_POST['c_lp_city']);}
-		
-	if($_POST['c_lp_state']){	
-		$client_landing_page->state = trim($_POST['c_lp_state']);}
-		
-	if($_POST['c_lp_zip_code']){	
-		$client_landing_page->zip_code = trim($_POST['c_lp_zip_code']);}
-		
-	if($_POST['c_lp_google_ad']){	
-		$client_landing_page->google_ad = 1; }
-		else{ $client_landing_page->google_ad = 0; }
-		
-	if($_POST['c_lp_google_ad_setup']){	
-		$client_landing_page->google_ad_setup = 1; }
-		else{ $client_landing_page->google_ad_setup = 0; }
-		
-	if($_POST['c_lp_website_url']){	
-		$client_landing_page->website_url = trim($_POST['c_lp_website_url']);}
-		
-	if($_POST['c_lp_start_date']){	
-		$client_landing_page->start_date = trim($_POST['c_lp_start_date']);}
-		
-	if($_POST['c_lp_expire_date']){	
-		$client_landing_page->expire_date = trim($_POST['c_lp_expire_date']);}
-		
-	if($_POST['c_lp_notes']){	
-		$client_landing_page->notes = trim($_POST['c_lp_notes']);}
-		
-	if($_POST['c_lp_page_complete']){	
-		$client_landing_page->page_complete = 1; }
-		else{ $client_landing_page->page_complete = 0; }
-		
-	if($_POST['c_lp_renewing_page']){	
-		$client_landing_page->renewing_page = 1; }
-		else{ $client_landing_page->renewing_page = 0; }
-		
-	if($_POST['c_lp_leads']){	
-		$client_landing_page->leads = trim($_POST['c_lp_leads']);}
-		
-	if($_POST['c_lp_id']){	
-		$client_landing_page->id = trim($_POST['c_lp_id']);}
-		
-	if($_POST['c_lp_salesrep_id']){	
-		$client_landing_page->salesrep_id = trim($_POST['c_lp_salesrep_id']);}
-	
-	
-/*if($_POST['c_lp_update_developer']){
-
- $to = "suryakiran.kittu@gmail.com";
- $subject = "Modification from {$current_user->first_name}!";
- $body = "{$client_landing_page->client_name}";
- //$mailheader = "Surya Test <landings@plumdm.com>";
- mail($to, $subject, $body);
-}*/
-	
-	
-	
-	$sucess_c_lp = $client_landing_page->update_c_lp_template_info();
-	
-	//Verifying if information is updated
-	if($sucess_c_lp){
-		$session->message("<span class='bold'>Successfully UPDATED</span> <span class='boldCreamColor'> information to Client Landing Pages.</span>");
-		redirect_to("user.php");
-	} else{
-		$session->message("<span class='bold'>Failed</span> <span class='boldCreamColor'> to</span> <span class='bold'> UPDATE</span> <span class='boldCreamColor'> information to Client Landing Pages Template.</span>");
-		redirect_to("user.php");
-	}
-}
 
 
 //********** Hide c_lp Template Info **************
@@ -611,7 +341,7 @@ if(isset($_GET['c_lp_id'])){
       <div class="md-modal md-effect-1" id="p_e_modal">
 		<div id="p_lp_modal_popup" class="md-content"></br>
       		<h2>Edit Info</h2>
-				<form id="p_e_form" action="user.php" method="post">
+				<form id="p_e_form">
 				  <div class="emailLeadsField">
                     <p><label>#Leads</label><input id="p_e_leads" name="p_e_leads" type="text" /></p>
                   </div>
@@ -621,7 +351,7 @@ if(isset($_GET['c_lp_id'])){
                   <p><label>Send Date</label><input name="p_e_send_date" id="p_e_send_date" type="text" /></p>
                   <p><label>Notes</label><textarea name="p_e_notes" id="p_e_notes"  cols="40" rows="4" ></textarea></p>
                   <p><label style="float:left;">Page Complete</label><input id="p_e_page_complete" name="p_e_page_complete" style="float:left; margin-top:10px; margin-left:6px;" type="checkbox" /></p>
-                  <p style=" position:relative;"><input name="p_e_update_developer" style="float:right; margin-top:10px; margin-left:5px;" type="checkbox" /><label style="float:right; color:#EB7572;">Update Developer</label></p>
+                  <p style=" position:relative;"><input id="p_e_update_developer" name="p_e_update_developer" style="float:right; margin-top:10px; margin-left:5px;" type="checkbox" /><label style="float:right; color:#EB7572;">Update Developer</label></p>
                   <input type="hidden" id="p_e_id" type="text" name="p_e_id" value="" />
                   <input type="hidden" id="p_e_salesrep_id" type="text" name="p_e_salesrep_id" value="" />
                   
@@ -774,7 +504,8 @@ if(isset($_GET['c_lp_id'])){
       <div class="md-modal md-effect-1" id="c_e_modal">
 		<div id="p_lp_modal_popup" class="md-content"></br>
       		<h2>Edit Info</h2>
-				<form id="c_e_form" action="user.php" method="post">
+            
+            <form id="c_e_form">
 				  <div class="emailLeadsField">
                     <p><label>#Leads</label><input id="c_e_leads" name="c_e_leads" type="text" /></p>
                   </div>
@@ -784,12 +515,13 @@ if(isset($_GET['c_lp_id'])){
                   <p><label>Send Date</label><input name="c_e_send_date" id="c_e_send_date" type="text" /></p>
                   <p><label>Notes</label><textarea name="c_e_notes" id="c_e_notes"  cols="40" rows="4" ></textarea></p>
                   <p><label style="float:left;">Page Complete</label><input id="c_e_page_complete" name="c_e_page_complete" style="float:left; margin-top:10px; margin-left:6px;" type="checkbox" /></p>
-                  <p style=" position:relative;"><input name="c_e_update_developer" style="float:right; margin-top:10px; margin-left:5px;" type="checkbox" /><label style="float:right; color:#EB7572;">Update Developer</label></p>
+                  <p style=" position:relative;"><input id="c_e_update_developer" name="c_e_update_developer" style="float:right; margin-top:10px; margin-left:5px;" type="checkbox" /><label style="float:right; color:#EB7572;">Update Developer</label></p>
                   <input type="hidden" id="c_e_id" type="text" name="c_e_id" value="" />
                   <input type="hidden" id="c_e_salesrep_id" type="text" name="c_e_salesrep_id" value="" />
                   
                   <button id="c_e_submit" class="md-close" name="c_e_submit" type="submit">Submit</button></br>  
-                </form>
+                 </form>
+                
       	</div>
       </div><!--END PLUM LP EDIT MODAL CONTENT --> 
 
@@ -958,7 +690,7 @@ if(isset($_GET['c_lp_id'])){
       <div class="md-modal md-effect-1" id="p_lp_modal">
 		<div id="p_lp_modal_popup" class="md-content1"></br>
       		<h2>Edit Info</h2>
-				<form id="p_lp_form" action="user.php" method="post">
+				<form id="p_lp_form">
                 	<div class="leadsField">
                     <p><label>#Leads</label><input id="p_lp_leads" name="p_lp_leads" type="text" /></p>
                     </div>
@@ -984,7 +716,7 @@ if(isset($_GET['c_lp_id'])){
                   <input type="hidden" id="p_lp_id" type="text" name="p_lp_id" />
                   <input type="hidden" id="p_lp_salesrep_id" type="text" name="p_lp_salesrep_id" value="" />
                   </div>
-                  <p style=" position:relative; right:70px; top:60px;"><label style="float:right; color:#EB7572;">Update Developer</label><input name="p_lp_update_developer" style="float:right; margin-top:10px; margin-left:6px;" type="checkbox" /></p>
+                  <p style=" position:relative; right:70px; top:60px;"><label style="float:right; color:#EB7572;">Update Developer</label><input id="p_lp_update_developer" name="p_lp_update_developer" style="float:right; margin-top:10px; margin-left:6px;" type="checkbox" /></p>
                   
                   <button id="p_lp_submit" class="md-close" name="p_lp_submit" type="submit">Submit</button></br>
                 </form>
@@ -1156,7 +888,7 @@ if(isset($_GET['c_lp_id'])){
       <div class="md-modal md-effect-1" id="c_lp_modal">
 		<div id="c_lp_modal_popup" class="md-content1"></br>
       		<h2>Edit Info</h2>
-				<form id="c_lp_form" action="user.php" method="post">
+				<form id="c_lp_form">
                 	<div class="leadsField">
                     <p><label>#Leads</label><input id="c_lp_leads" name="c_lp_leads" type="text" /></p>
                     </div>
@@ -1182,7 +914,7 @@ if(isset($_GET['c_lp_id'])){
                   <input type="hidden" id="c_lp_id" type="text" name="c_lp_id" value="" />
                   <input type="hidden" id="c_lp_salesrep_id" type="text" name="c_lp_salesrep_id" value="" />
                   </div>
-                  <p style=" position:relative; right:70px; top:60px;"><label style="float:right; color:#EB7572;">Update Developer</label><input name="c_lp_update_developer" style="float:right; margin-top:10px; margin-left:6px;" type="checkbox" /></p>
+                  <p style=" position:relative; right:70px; top:60px;"><label style="float:right; color:#EB7572;">Update Developer</label><input id="c_lp_update_developer" name="c_lp_update_developer" style="float:right; margin-top:10px; margin-left:6px;" type="checkbox" /></p>
                   
                   <button id="c_lp_submit" class="md-close" name="c_lp_submit" type="submit">Submit</button></br>
                 </form>
@@ -1201,10 +933,13 @@ if(isset($_GET['c_lp_id'])){
 
 </div><!-- ***** END OF CONTAINER***** -->
 
+
 <!--***************************************** Error Message after submitting form *******************************************-->
-<?php if($session->message): ?>
+
+
+<?php  if($session->message): ?>
 <div class="md-trigger" data-modal="error_message_modal" id="error_message_div_id"></div>
-<?php endif; ?>
+<?php  endif; ?>
 
 <div class="md-modal md-effect-1" id="error_message_modal">
 		<div style="padding:0;" id="error_message_modal_content" class="md-content"></br>
@@ -1212,6 +947,7 @@ if(isset($_GET['c_lp_id'])){
         <div id="error_message_modal_close" class="md-close"><a title="close"><img class="transition1" src="../site_images/close.png" height="30"></a></div>
         </div>
 </div>
+
 
 <div class="md-overlay"></div><!-- the overlay element -->
 
@@ -1375,6 +1111,150 @@ $(document).ready(function() {
          }
     });
 });
+
+
+
+
+//*********************************************************Reload Function
+$('#p_e_form').submit(function(event) {
+    event.preventDefault();
+
+		var p_e_client_name = $("#p_e_client_name").val();
+		var p_e_leads = $("#p_e_leads").val();
+		var p_e_website_url = $("#p_e_website_url").val();
+		var p_e_email_list = $("#p_e_email_list").val();
+		var p_e_notes = $("#p_e_notes").val();
+		var p_e_page_complete = p_e_page_complete();
+		function p_e_page_complete(){if($("#p_e_page_complete").is(':checked')){ return 1;} else{ return 0;}};
+		var p_e_send_date = $("#p_e_send_date").val();
+		var p_e_id = $("#p_e_id").val();
+		var p_e_salesrep_id = $("#p_e_salesrep_id").val();
+		var p_e_submit = 1;
+		var p_e_update_developer = p_e_update_developer();
+		function p_e_update_developer(){if($("#p_e_update_developer").is(':checked')){ return 1;} else{ return 0;}};
+	
+	$.post('reload.php', {p_e_client_name:p_e_client_name ,p_e_leads:p_e_leads ,p_e_website_url:p_e_website_url ,p_e_email_list:p_e_email_list ,p_e_notes:p_e_notes ,p_e_page_complete:p_e_page_complete ,p_e_send_date:p_e_send_date ,p_e_id:p_e_id ,p_e_salesrep_id: p_e_salesrep_id, p_e_submit: p_e_submit, p_e_update_developer: p_e_update_developer});
+
+	search_all_p_e();
+	search_p_e();
+	
+	$(document).ready(function() {
+		$( "#p_e_overlay" ).click();
+        $('#error_message_div_id').click();
+	});
+	
+});
+
+
+$('#c_e_form').submit(function(event) {
+    event.preventDefault();
+
+		var c_e_client_name = $("#c_e_client_name").val();
+		var c_e_leads = $("#c_e_leads").val();
+		var c_e_website_url = $("#c_e_website_url").val();
+		var c_e_email_list = $("#c_e_email_list").val();
+		var c_e_notes = $("#c_e_notes").val();
+		var c_e_page_complete = c_e_page_complete();
+		function c_e_page_complete(){if($("#c_e_page_complete").is(':checked')){ return 1;} else{ return 0;}};
+		var c_e_send_date = $("#c_e_send_date").val();
+		var c_e_id = $("#c_e_id").val();
+		var c_e_salesrep_id = $("#c_e_salesrep_id").val();
+		var c_e_submit = 2;
+		var c_e_update_developer = c_e_update_developer();
+		function c_e_update_developer(){if($("#c_e_update_developer").is(':checked')){ return 1;} else{ return 0;}};
+	
+	$.post('reload.php', {c_e_client_name:c_e_client_name ,c_e_leads:c_e_leads ,c_e_website_url:c_e_website_url ,c_e_email_list:c_e_email_list ,c_e_notes:c_e_notes ,c_e_page_complete:c_e_page_complete ,c_e_send_date:c_e_send_date ,c_e_id:c_e_id ,c_e_salesrep_id: c_e_salesrep_id, c_e_submit: c_e_submit, c_e_update_developer: c_e_update_developer});
+
+	search_all_c_e();
+	search_c_e();
+	
+	$(document).ready(function() {
+		$( "#c_e_overlay" ).click();
+        $('#error_message_div_id').click();
+	});
+	
+});
+
+
+$('#p_lp_form').submit(function(event) {
+    event.preventDefault();
+
+		var p_lp_client_name = $("#p_lp_client_name").val();
+		var p_lp_email = $("#p_lp_email").val();
+		var p_lp_city = $("#p_lp_city").val();
+		var p_lp_state = $("#p_lp_state").val();
+		var p_lp_zip_code = $("#p_lp_zip_code").val();
+		var p_lp_website_url = $("#p_lp_website_url").val();
+		var p_lp_start_date = $("#p_lp_start_date").val();
+		var p_lp_expire_date = $("#p_lp_expire_date").val();
+		var p_lp_notes = $("#p_lp_notes").val();
+		var p_lp_leads = $("#p_lp_leads").val();
+		var p_lp_google_ad = p_lp_google_ad();
+		function p_lp_google_ad(){if($("#p_lp_google_ad").is(':checked')){ return 1;} else{ return 0;}};
+		var p_lp_google_ad_setup = p_lp_google_ad_setup();
+		function p_lp_google_ad_setup(){if($("#p_lp_google_ad_setup").is(':checked')){ return 1;} else{ return 0;}};
+		var p_lp_page_complete = p_lp_page_complete();
+		function p_lp_page_complete(){if($("#p_lp_page_complete").is(':checked')){ return 1;} else{ return 0;}};
+		var p_lp_renewing_page = p_lp_renewing_page();
+		function p_lp_renewing_page(){if($("#p_lp_renewing_page").is(':checked')){ return 1;} else{ return 0;}};
+		var p_lp_id = $("#p_lp_id").val();
+		var p_lp_salesrep_id = $("#p_lp_salesrep_id").val();
+		var p_lp_submit = 3;
+		var p_lp_update_developer = p_lp_update_developer();
+		function p_lp_update_developer(){if($("#p_lp_update_developer").is(':checked')){ return 1;} else{ return 0;}};
+	
+	$.post('reload.php', {p_lp_client_name:p_lp_client_name, p_lp_email:p_lp_email, p_lp_city:p_lp_city, p_lp_state:p_lp_state, p_lp_zip_code:p_lp_zip_code, p_lp_website_url:p_lp_website_url, p_lp_start_date:p_lp_start_date, p_lp_expire_date:p_lp_expire_date, p_lp_notes:p_lp_notes, p_lp_leads:p_lp_leads, p_lp_google_ad:p_lp_google_ad, p_lp_google_ad_setup:p_lp_google_ad_setup, p_lp_page_complete:p_lp_page_complete, p_lp_renewing_page:p_lp_renewing_page, p_lp_id:p_lp_id, p_lp_salesrep_id:p_lp_salesrep_id, p_lp_submit:p_lp_submit, p_lp_update_developer:p_lp_update_developer});
+
+//	search_all_p_lp();
+//	search_p_lp();
+	
+	$(document).ready(function() {
+		$( "#p_lp_overlay" ).click();
+        $('#error_message_div_id').click();
+	});
+	
+});
+
+
+$('#c_lp_form').submit(function(event) {
+    event.preventDefault();
+
+		var c_lp_client_name = $("#c_lp_client_name").val();
+		var c_lp_email = $("#c_lp_email").val();
+		var c_lp_city = $("#c_lp_city").val();
+		var c_lp_state = $("#c_lp_state").val();
+		var c_lp_zip_code = $("#c_lp_zip_code").val();
+		var c_lp_website_url = $("#c_lp_website_url").val();
+		var c_lp_start_date = $("#c_lp_start_date").val();
+		var c_lp_expire_date = $("#c_lp_expire_date").val();
+		var c_lp_notes = $("#c_lp_notes").val();
+		var c_lp_leads = $("#c_lp_leads").val();
+		var c_lp_google_ad = c_lp_google_ad();
+		function c_lp_google_ad(){if($("#c_lp_google_ad").is(':checked')){ return 1;} else{ return 0;}};
+		var c_lp_google_ad_setup = c_lp_google_ad_setup();
+		function c_lp_google_ad_setup(){if($("#c_lp_google_ad_setup").is(':checked')){ return 1;} else{ return 0;}};
+		var c_lp_page_complete = c_lp_page_complete();
+		function c_lp_page_complete(){if($("#c_lp_page_complete").is(':checked')){ return 1;} else{ return 0;}};
+		var c_lp_renewing_page = c_lp_renewing_page();
+		function c_lp_renewing_page(){if($("#c_lp_renewing_page").is(':checked')){ return 1;} else{ return 0;}};
+		var c_lp_id = $("#c_lp_id").val();
+		var c_lp_salesrep_id = $("#c_lp_salesrep_id").val();
+		var c_lp_submit = 4;
+		var c_lp_update_developer = c_lp_update_developer();
+		function c_lp_update_developer(){if($("#c_lp_update_developer").is(':checked')){ return 1;} else{ return 0;}};
+	
+	$.post('reload.php', {c_lp_client_name:c_lp_client_name, c_lp_email:c_lp_email, c_lp_city:c_lp_city, c_lp_state:c_lp_state, c_lp_zip_code:c_lp_zip_code, c_lp_website_url:c_lp_website_url, c_lp_start_date:c_lp_start_date, c_lp_expire_date:c_lp_expire_date, c_lp_notes:c_lp_notes, c_lp_leads:c_lp_leads, c_lp_google_ad:c_lp_google_ad, c_lp_google_ad_setup:c_lp_google_ad_setup, c_lp_page_complete:c_lp_page_complete, c_lp_renewing_page:c_lp_renewing_page, c_lp_id:c_lp_id, c_lp_salesrep_id:c_lp_salesrep_id, c_lp_submit:c_lp_submit, c_lp_update_developer:c_lp_update_developer});
+
+	search_all_c_lp();
+	search_c_lp();
+	
+	$(document).ready(function() {
+		$( "#c_lp_overlay" ).click();
+        $('#error_message_div_id').click();
+	});
+	
+});
+
 
 
 //*********************************************************Search Function
@@ -1545,7 +1425,7 @@ function c_e(button) {
 		});
 		
 		$("#c_e_send_date")
-		.attr("value",button_values[6]);
+		.attr("value",button_values[6]);		
 		
 		$("#c_e_id")
 		.attr("value",button_values[7]);
@@ -1733,6 +1613,10 @@ $('select').each(function(){
 		if(window.all_c_lp == 1){
 		search_all_c_lp();
 		}
+		document.getElementById('search_input_all_p_e').value='' ; 
+		document.getElementById('search_input_all_c_e').value='' ; 
+		document.getElementById('search_input_all_p_lp').value='' ; 
+		document.getElementById('search_input_all_c_lp').value='' ; 
     });
   
     $(document).click(function() {
