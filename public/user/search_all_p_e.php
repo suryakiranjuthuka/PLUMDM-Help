@@ -2,6 +2,8 @@
 
 require_once("../../includes/initialize.php"); 
 
+if (!$session->is_logged_in()) { redirect_to("login.php"); }
+
 if(isset($_POST['search_input_all_p_e'])){
 	$search_in = trim($_POST['search_input_all_p_e']);
 	$search_in_user_id = trim($_POST['search_input_all_p_e_user_id']);

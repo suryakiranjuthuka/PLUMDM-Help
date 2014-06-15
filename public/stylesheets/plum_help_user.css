@@ -719,11 +719,11 @@ html, body{
 
 #secondNav #love{
 	position:absolute;
-	bottom:4%;
+	bottom:1%;
 	width:100%;
 	text-align:center;
 	font-family: 'Lato','Open Sans', sans-serif;
-	font-size:16px;
+	font-size:15px;
 }
 
 #secondNav #love #loveIcon{
@@ -736,11 +736,11 @@ html, body{
 }
 
 #secondNav #love h3{
-	margin-top:8px;
+	margin-top:4px;
 	color:#E85657;
 	opacity:.8;
-/*	text-align:left;
-	margin-left:30px;*/
+	text-align:center;
+	margin-left:0px;
 }
 
 
@@ -775,7 +775,9 @@ html, body{
 	top: 17px;
 	font-weight:700;
 	color:white;
-	text-shadow:0px 0px 20px white;
+	text-shadow:0px 0px 7px white;
+	font-variant:small-caps;
+	letter-spacing:3px;
 }
 
 

@@ -2,8 +2,17 @@
 
 require_once("../../includes/initialize.php");
 
+if (!$session->is_logged_in()) { redirect_to("login.php"); }
 
-$current_user = SalesRep::find_by_id(1);
+//Logging Out
+if(isset($_GET['logout'])){
+  $session->logout(); 
+  redirect_to("login.php");
+}
+
+
+
+$current_user = SalesRep::find_by_id($session->user_id);
 
 $sales_reps = SalesRep::get_all_salesrep();
 
@@ -432,12 +441,12 @@ if(isset($_GET['c_lp_id'])){
 
 
 <nav class="rightShadow" id="secondNav">
-<div class="transition" id="userImage"><a href="user.php"><img height="100" src="../site_images/default_user.png"></a></div>
+<div class="transition" id="userImage"><a href="user.php"><img height="100" src="<?php if($current_user->user_dp_url !== NULL){echo $current_user->user_dp_url;} else{ echo "../site_images/default_user.png";} ?>"></a></div>
 <h1 class="textShadow"><a href="user.php">Plum Direct Marketing</a></h1>
 <div id="secondNavIcons">
     <a title="Edit Templates"><img class="transition1" height="30" src="../site_images/settings.png"></a>
     <a title="Upload Template"><img class="transition1" height="30" src="../site_images/upload.png"></a>
-    <a title="Logout"><img class="transition1" height="30" src="../site_images/logout.png"></a>
+    <a title="Logout" href="user.php?logout=true"><img class="transition1" height="30" src="../site_images/logout.png"></a>
 </div>
 
 

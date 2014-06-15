@@ -10,6 +10,7 @@ class SalesRep extends DatabaseObject{
 	public $password;
 	public $first_name;
 	public $last_name;
+	public $user_dp_url;
 	
 	
 	public static function get_all_salesrep(){
@@ -19,11 +20,17 @@ class SalesRep extends DatabaseObject{
 		return static::find_by_sql($sql);
 	}
 	
-	public static function get_1st_salesrep(){
+	public static function authenticate($username="", $password=""){
 		global $database;
+		$username = $database->escape_value($username);
+		$password = $database->escape_value($password);
 		
-		$sql = "SELECT * from salesrep where id=1";
-		return static::find_by_sql($sql);
+		$sql  = "SELECT * FROM ". static::$table_name;
+		$sql .= " WHERE username = '{$username}' ";
+		$sql .= "AND password = '{$password}' ";
+		$sql .= "LIMIT 1";
+		$result_array = static::find_by_sql($sql);
+		return !empty($result_array) ? array_shift($result_array) : false;
 	}
 	
 	

@@ -2,141 +2,121 @@
 
 require_once("../../includes/initialize.php");
 
-
-
-
 if($session->is_logged_in()) {
-	$session->found_user_page();
-
-	if($session->admin_page){
-		//$session->verify_admin_page();
-		redirect_to("admin_index.php");	
-	}else if($session->faculty_page){
-		//$session->verify_faculty_page();
-		redirect_to("faculty_index.php");	
-	}else if($session->student_page){
-		//$session->verify_student_page();
-		redirect_to("student_index.php");	
-	}
+  redirect_to("user.php");
 }
 
-$session->session_unsett_verify_register_faculty();
 
-// Remember to give your form's submit tag a name="submit" attribute!
 if (isset($_POST['submit'])) { // Form has been submitted.
 
-	$username = trim($_POST['username']);
-	$password = trim($_POST['password']); 
+  $username = trim($_POST['username']);
+  $password = trim($_POST['password']);
+  
+  // Check database to see if username/password exist.
+	$found_user = SalesRep::authenticate($username, $password);
 	
-	// Check database to see if username/password exist.
-	$found_user = Admin::authenticate($username, $password);
-	if($found_user){
-		$admin = true;
-		$session->login($found_user);
-		$session->verify_admin_page();
-		redirect_to("admin_index.php");
-	}else {
-	$found_user = Faculty::authenticate($username, $password);
-		if($found_user){
-			$faculty = true;
-			$session->login($found_user);
-			$session->verify_faculty_page();
-			redirect_to("faculty_index.php");
-		}
-		else {
-			$found_user = Student::authenticate($username, $password);
-			  if($found_user){
-				  $student = true;
-				  $session->login($found_user);
-				  $session->verify_student_page();
-				  redirect_to("student_index.php");
-			  }
-			  else {
-			  	// username/password combo was not found in the database
-			   $message1 = "Username/password combination incorrect.";
-			  }
-		}
-	}
-} else { // Form has not been submitted.
-	  $username = "";
-	  $password = "";
-	}
-	
-	if (isset($_POST['register'])) {
-		redirect_to("faculty_authenticate.php");
-	}
+  if ($found_user) {
+    $session->login($found_user);
+    redirect_to("user.php");
+  } else {
+    // username/password combo was not found in the database
+	$session->message("<span class='bold'>Username/Password</span> <span class='boldCreamColor'> combination incorrect!</span>");
+	redirect_to("login.php");
+  }
+  
+}
 ?>
 
 
 <html>
-  <head>
-    <title>KG REDDY: Login</title>
-    <link href="../stylesheets/login.css" rel="stylesheet" type="text/css" />
-    <!--SCRIPTS-->
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
-<!--Slider-in icons-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Language" content="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>PLUMDM: Login</title>
+<link href="../stylesheets/login.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="../stylesheets/component_user.css" />
+<script type="text/javascript" src="../javascripts/jquery-2.0.2.min.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function() {
-	$(".username").focus(function() {
-		$(".user-icon").css("left","-48px");
+	$("#userName").focus(function() {
+		$("#userIcon").css("left","-80px").css("border","1px solid white");
+		$(this).css("padding-left",30+"px");
+		
 	});
-	$(".username").blur(function() {
-		$(".user-icon").css("left","0px");
+	$(".userName").blur(function() {
+		$("#userIcon").css("left",25+"px").css("border","0px solid white");
+		$(this).css("padding-left",85+"px");
 	});
 	
 	$(".password").focus(function() {
-		$(".pass-icon").css("left","-48px");
+		$("#passwordIcon").css("left","-80px").css("border","1px solid white");
+		$(this).css("padding-left",30+"px");
 	});
 	$(".password").blur(function() {
-		$(".pass-icon").css("left","0px");
+		$("#passwordIcon").css("left",25+"px").css("border","0px solid white");
+		$(this).css("padding-left",85+"px");
 	});
+});
+
+//**************************************************************Error Message Modal Popup Function
+$(document).ready(function() {
+        // trigger the click event
+        $('#error_message_div_id').click();
 });
 </script>
   </head>
   
   <body>
-   <!--WRAPPER-->
-<div id="wrapper">
 
-	<!--SLIDE-IN ICONS-->
-    <div class="user-icon"></div>
-    <div class="pass-icon"></div>
-    <!--END SLIDE-IN ICONS-->
-     
-        <?php if(isset($message1)){echo output_message($message1);} ?>
-		
+
+	<div id="plumLogo"><img height="163" src="../site_images/login_logo.png"></div>
+
+
+	<div id="loginForm">
 	<!--LOGIN FORM-->
 		<form name="login-form" class="login-form" action="login.php" method="post">
         
-        <!--HEADER-->
-    <div class="header">
-    <!--TITLE--><h1>KGRCET Login</h1><!--END TITLE-->
-    <!--DESCRIPTION--><span>Fill out the form below, please enter your Email Id in the place of Username field.</span><!--END DESCRIPTION-->
-    </div>
-    <!--END HEADER-->
-        
-		  
           <!--CONTENT-->
-    <div class="content">
-	<!--USERNAME--><input name="username" type="text" class="input username" value="Username" onfocus="this.value=''" /><!--END USERNAME-->
-    <!--PASSWORD--><input name="password" type="password" class="input password" value="Password" onfocus="this.value=''" /><!--END PASSWORD-->
+    <div id="userPass">
+    <img id="userIcon" src="../site_images/login_user.png">
+	<!--USERNAME--><input id="userName" name="username" type="text" class="input username" placeholder="EMAIL" required /><!--END USERNAME-->
+    <img id="passwordIcon" src="../site_images/login_password.png">
+    <!--PASSWORD--><input id="password" name="password" type="password" class="input password" placeholder="PASSWORD" required /><!--END PASSWORD-->
     </div>
     <!--END CONTENT-->
-   
-   
+    
    <!--FOOTER-->
-    <div class="footer">
-    <!--LOGIN BUTTON--><input type="submit" name="submit" value="Login" class="button" /><!--END LOGIN BUTTON-->
-    <!--REGISTER BUTTON--><div class="areYouFaculty">Faculty?</div><input type="submit" name="register" value="Register" class="register" /><!--END REGISTER BUTTON-->
+    <div class="logIn">
+    <!--LOGIN BUTTON-->
+    	<input id="login" type="submit" name="submit" value="Login" class="button" />
+    	<label id="forLogin" for="login">LOGIN</label>
+    <!--END LOGIN BUTTON-->
     </div>
     <!--END FOOTER-->
     </form>
     <!--END LOGIN FORM-->
+    </div>
+    
+    
+    <!--***************************************** Error Message after submitting form *******************************************-->
+<?php if($session->message): ?>
+<div class="md-trigger" data-modal="error_message_modal" id="error_message_div_id"></div>
+<?php endif; ?>
 
+<div class="md-modal md-effect-1" id="error_message_modal">
+		<div style="padding:0;" id="error_message_modal_content" class="md-content"></br>
+        <div id="error_check_message"><?php echo $session->message; ?></div>
+        <div id="error_message_modal_close" class="md-close"><a title="close"><img class="transition1" src="../site_images/close.png" height="30"></a></div>
+        </div>
 </div>
-<!--END WRAPPER-->
 
-<!--GRADIENT--><div class="gradient"></div><!--END GRADIENT-->
+<div class="md-overlay"></div><!-- the overlay element -->
 
+
+<script src="../javascripts/classie.js"></script>
+<script src="../javascripts/modalEffects.js"></script>
 </body>
 </html>
