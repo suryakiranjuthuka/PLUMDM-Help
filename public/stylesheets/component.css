@@ -98,6 +98,7 @@ perspective effects (not including the modals and the overlay).
 	position:relative;
 	width:350px;
 	height:520px;
+	left:-10px;
 }
 
 .md-content form p {

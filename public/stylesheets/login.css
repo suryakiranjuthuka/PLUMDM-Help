@@ -233,16 +233,24 @@ body{
 }
 
 
-#plumLogo{
+/*#plumLogo{
 	margin:0px auto 120px;
 	width:210px;
 	position:relative;
 	top:10%;
 	left:-20px;
-}
+}*/
 	
+#plumLogo{
+	margin:95px auto 25px;
+	width:210px;
+	height:163px;
+	position:relative;
+	left:-20px;
+}
+
 #loginForm{
-	margin:100px auto;
+	margin:0px auto;
 	width:450px;
 	position:relative;
 }

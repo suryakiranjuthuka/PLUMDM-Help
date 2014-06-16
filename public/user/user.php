@@ -136,6 +136,36 @@ if(isset($_GET['c_lp_id'])){
 		redirect_to("user.php");
 	}
 }
+
+
+
+
+//**************Plum Email Form Submittion***************
+if(isset($_POST['upload_template_form'])){
+	
+	$template = new Template();
+	
+	if($_POST['template_type']){	
+		$template->type = trim($_POST['template_type']);}
+		
+	if($_POST['website_url']){	
+		$template->website_url = trim($_POST['website_url']);}
+		
+	if($_POST['template_image_path']){	
+		$template->url_path = trim($_POST['template_image_path']);}
+		
+	
+	$sucess_upload = $template->upload_template();
+	
+	//Verifying if information is updated
+	if($sucess_upload){
+		$session->message("<span class='bold'> Successfully UPLOADED </span><span class='boldCreamColor'> template to PLUMDM/HELP.</span>");
+		redirect_to("user.php");
+	} else{
+		$session->message("<span class='bold'>Failed</span> <span class='boldCreamColor'> to</span> <span class='bold'> UPLOAD</span> <span class='boldCreamColor'> template to PLUMDM/HELP</span>");
+		redirect_to("user.php");
+	}
+}
 ?>
 
 <!doctype html>
@@ -174,8 +204,8 @@ if(isset($_GET['c_lp_id'])){
 <div class="transition" id="userImage"><a href="user.php"><img height="100" src="<?php if($current_user->user_dp_url !== NULL){echo $current_user->user_dp_url;} else{ echo "../site_images/default_user.png";} ?>"></a></div>
 <h1 class="textShadow"><a href="user.php">Plum Direct Marketing</a></h1>
 <div id="secondNavIcons">
-    <a title="Edit Templates"><img class="transition1" height="30" src="../site_images/settings.png"></a>
-    <a title="Upload Template"><img class="transition1" height="30" src="../site_images/upload.png"></a>
+    <a href="edit_templates.php" target="_blank" title="Edit Templates"><img class="transition1" height="30" src="../site_images/settings.png"></a>
+    <a class="md-trigger" data-modal="upload_template_modal" title="Upload Template"><img class="transition1" height="30"src="../site_images/upload.png"></a>
     <a title="Logout" href="user.php?logout=true"><img class="transition1" height="30" src="../site_images/logout.png"></a>
 </div>
 
@@ -949,6 +979,39 @@ if(isset($_GET['c_lp_id'])){
 </div>
 
 
+
+<div class="md-modal md-effect-1" id="upload_template_modal">
+		<div id="upload_template_modal_content" class="md-content"></br>
+      		<h2>Upload Template</h2>
+            
+            <form id="uploadForm" method="post" action="user.php">
+            
+            	  <p><label>Template Type</label><select name="template_type" id="template_type" required>
+                  <option value="p_e">Plum Email</option>
+                  <option value="c_e">Client Email</option>
+                  <option value="p_lp">Plum Landing Page</option>
+                  <option value="c_lp">Client Landing Page</option>
+                  </select></p>
+                  <p><label>Website URL</label><input id="website_url" value="http://www.sample.com" name="website_url" required type="text" /></p>
+                  <p><label>Template Image Path</label><input value="../template_images/lp_images/client_lp/01.png" id="template_image_path" name="template_image_path" required type="text" /></p>
+                  
+                  <button id="upload_template_form" class="md-close" name="upload_template_form" type="submit">Submit</button></br>  
+                 </form>
+        
+        </div>
+</div>
+
+<!-- OPTIONAL START -->
+<div class="md-trigger" data-modal="error_message_modal1" id="error_message_div_id1"></div>
+
+<div class="md-modal md-effect-1" id="error_message_modal1">
+		<div style="padding:0;" id="error_message_modal_content" class="md-content"></br>
+        <div id="error_check_message"><span class='bold'>Successfully UPDATED</span> <span class='boldCreamColor'> information to Client Emails.</span></div>
+        <div id="error_message_modal_close" class="md-close"><a title="close"><img class="transition1" src="../site_images/close.png" height="30"></a></div>
+        </div>
+</div>
+<!-- OPTIONAL END -->
+
 <div class="md-overlay"></div><!-- the overlay element -->
 
 
@@ -1007,22 +1070,22 @@ $( "#c_lp_overlay" ).click(function() {
 });
 
 //********************************************************On Click Submit Button Loader
-$( "#p_e_submit" ).click(function() {
-	$("#loader_all_p_e").fadeIn();
-	$("#loader_p_e").fadeIn();
-});
-$( "#c_e_submit" ).click(function() {
-	$("#loader_all_p_e").fadeIn();
-	$("#loader_p_e").fadeIn();
-});
-$( "#p_lp_submit" ).click(function() {
-	$("#loader_all_p_e").fadeIn();
-	$("#loader_p_e").fadeIn();
-});
-$( "#c_lp_submit" ).click(function() {
-	$("#loader_all_p_e").fadeIn();
-	$("#loader_p_e").fadeIn();
-});
+//$( "#p_e_submit" ).click(function() {
+//	$("#loader_all_p_e").fadeIn();
+//	$("#loader_p_e").fadeIn();
+//});
+//$( "#c_e_submit" ).click(function() {
+//	$("#loader_all_p_e").fadeIn();
+//	$("#loader_p_e").fadeIn();
+//});
+//$( "#p_lp_submit" ).click(function() {
+//	$("#loader_all_p_e").fadeIn();
+//	$("#loader_p_e").fadeIn();
+//});
+//$( "#c_lp_submit" ).click(function() {
+//	$("#loader_all_p_e").fadeIn();
+//	$("#loader_p_e").fadeIn();
+//});
 
 
 //*********************************************************On Click Hide Button Loader
@@ -1140,7 +1203,7 @@ $('#p_e_form').submit(function(event) {
 	
 	$(document).ready(function() {
 		$( "#p_e_overlay" ).click();
-        $('#error_message_div_id').click();
+        //$('#error_message_div_id1').click();
 	});
 	
 });

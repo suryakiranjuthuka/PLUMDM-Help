@@ -708,11 +708,11 @@ html, body{
    margin-left:10px;
 }
 
-#secondNavLinks:last-child{
+#secondNavLinks #clientLPLink{
 	border-bottom:1px solid #20232F;
 }
 
-#secondNavLinks #plumEmailLink{ /* Default when site loads */
+#secondNavLinks #clientLPLink{ /* Default when site loads */
 	border-right:7px solid #3FB4C6;
 	color:#349faf;
 }
@@ -1129,11 +1129,11 @@ h4.p_lp_notes{
 }
 
 /* Default Display "none" container */
-#user_p_e{
+#user_c_lp{
 	position:relative;
 }
 
-#user_c_e, #user_p_lp, #user_c_lp, #all_user_p_e, #all_user_c_e, #all_user_p_lp, #all_user_c_lp{
+#user_p_e, #user_c_e, #user_p_lp, #all_user_p_e, #all_user_c_e, #all_user_p_lp, #all_user_c_lp{
 	position:relative;
 	display:none;
 }

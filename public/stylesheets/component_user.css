@@ -118,6 +118,11 @@ perspective effects (not including the modals and the overlay).
 	padding-right:0px;
 }
 
+.md-content .select-styled {
+	visibility:hidden;
+	display:none;
+}
+
 .md-content {
 	position: relative;
 	text-align: left;
@@ -143,6 +148,14 @@ perspective effects (not including the modals and the overlay).
 	position:relative;
 	width:350px;
 	height:520px;
+	left:-10px;
+}
+
+.md-content form#uploadForm{
+	margin-top:60px;
+	width:350px;
+	height:300px;
+	left:-10px;
 }
 
 .md-content form p {
@@ -177,13 +190,16 @@ perspective effects (not including the modals and the overlay).
 
 .md-content select{
 	padding: 8px;
-	width: 106%;	
+	width: 370px;	
 	border: 2px solid #ebd3bd;
 	background: transparent;
 	color: #b09a86;
 	font-size:  16px;
 	font-family:inherit;
 	font-weight:inherit;
+	display: block;
+	visibility:visible;
+	margin-bottom:5px;
 }
 
 .md-content textarea{
@@ -211,6 +227,8 @@ perspective effects (not including the modals and the overlay).
 	font-size: 16px;
 	font-family:inherit;
 	font-weight:inherit;
+	display: block;
+	visibility:visible;
 }
 
 .md-content input:focus, .md-content textarea:focus, .md-content select:focus {
@@ -252,6 +270,10 @@ perspective effects (not including the modals and the overlay).
 	top:500px;
 	right:20px;
 	bottom:0px;
+}
+
+#uploadForm button{
+	top:270px;
 }
 
 .md-content button:hover {
