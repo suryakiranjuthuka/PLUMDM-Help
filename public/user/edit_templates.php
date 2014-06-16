@@ -2,260 +2,60 @@
 
 require_once("../../includes/initialize.php");
 
+if (!$session->is_logged_in()) { redirect_to("login.php"); }
 
 $templates_p_e = Template::get_all_templates_p_e();
 $templates_c_e = Template::get_all_templates_c_e();
 $templates_p_lp = Template::get_all_templates_p_lp();
 $templates_c_lp = Template::get_all_templates_c_lp();
 
-$sales_reps = SalesRep::get_all_salesrep();
 
-
-
-$upload_errors = array(
-	UPLOAD_ERR_OK 				=> "No errors.",
-	UPLOAD_ERR_INI_SIZE  	=> "Larger than upload_max_filesize.",
-  UPLOAD_ERR_FORM_SIZE 	=> "Larger than form MAX_FILE_SIZE.",
-  UPLOAD_ERR_PARTIAL 		=> "Partial upload.",
-  UPLOAD_ERR_NO_FILE 		=> "No file.",
-  UPLOAD_ERR_NO_TMP_DIR => "No temporary directory.",
-  UPLOAD_ERR_CANT_WRITE => "Can't write to disk.",
-  UPLOAD_ERR_EXTENSION 	=> "File upload stopped by extension."
-);
-
-
-
-
-//**************Plum Email Form Submittion***************
-if(isset($_POST['p_e_submit'])){
+//********** Hide Template **************
+if(isset($_GET['template_id'])){
 	
-	$plum_email = new PlumEmail();
+	$template = new Template();
 	
-	if($_POST['p_e_client_name']){	
-		$plum_email->client_name = trim($_POST['p_e_client_name']);}
-		
-	if($_POST['p_e_sales_rep']){	
-		$plum_email->salesrep_id = trim($_POST['p_e_sales_rep']);}
-		
-	if($_POST['p_e_send_date']){	
-		$plum_email->send_date = trim($_POST['p_e_send_date']);}
-		
-	if($_POST['p_e_email_list']){	
-		$plum_email->email_list = trim($_POST['p_e_email_list']);}
-		
-	if($_POST['p_e_notes']){	
-		$plum_email->notes = trim($_POST['p_e_notes']);}
+	$template->id = trim($_GET['template_id']);
 	
-	if($_POST['p_e_website_url']){	
-		$plum_email->website_url = trim($_POST['p_e_website_url']);}
-		
-	if($_POST['p_e_url_path']){	
-		$plum_email->url_path = trim($_POST['p_e_url_path']);}
+	$hidden = $template->hide_template();
 	
-	if(!empty($_FILES['p_e_attachment_url']['tmp_name'])){
-	  $tmp_file = $_FILES['p_e_attachment_url']['tmp_name'];
-	  $original_file = basename($_FILES['p_e_attachment_url']['name']);
-	  $replaced_space = str_replace(' ','_',$original_file);
-	  $target_file = $_POST['p_e_sales_rep']. "_" .$replaced_space;
-	  $upload_dir = "attachments";
-	  
-	  move_uploaded_file($tmp_file, "../".$upload_dir."/".$target_file);
-	  $plum_email->attachment_url = "../".$upload_dir."/".$target_file;
-	}
-	
-	$sucess_p_e = $plum_email->create_p_e_template_info();
-	
-	//Verifying if information is updated
-	if($sucess_p_e){
-		$session->message("Successfully saved information to Plum Emails Template.");
-		redirect_to("index.php");
+	//Verifying if information is hidden
+	if($hidden){
+		$session->message("Template Sucessfully HIDDEN.");
+		redirect_to("edit_templates.php");
 	} else{
-		$session->message("Failed to save information to Plum Emails Template.");
-		redirect_to("index.php");
+		$session->message("Failed to HIDE the Template.");
+		redirect_to("edit_templates.php");
 	}
 }
 
 
-//**************Client Email Form Submittion***************
-if(isset($_POST['c_e_submit'])){
+//**************EDIT TEMPLATE***************
+if(isset($_POST['edit_template_form'])){
 	
-	$client_email = new ClientEmail();
+	$template_edit = new Template();
 	
-	if($_POST['c_e_client_name']){	
-		$client_email->client_name = trim($_POST['c_e_client_name']);}
+	if($_POST['template_id']){	
+		$template_edit->id = trim($_POST['template_id']);}
 		
-	if($_POST['c_e_sales_rep']){	
-		$client_email->salesrep_id = trim($_POST['c_e_sales_rep']);}
+	if($_POST['template_type']){	
+		$template_edit->type = trim($_POST['template_type']);}
 		
-	if($_POST['c_e_send_date']){	
-		$client_email->send_date = trim($_POST['c_e_send_date']);}
+	if($_POST['website_url']){	
+		$template_edit->website_url = trim($_POST['website_url']);}
 		
-	if($_POST['c_e_email_list']){	
-		$client_email->email_list = trim($_POST['c_e_email_list']);}
-		
-	if($_POST['c_e_notes']){	
-		$client_email->notes = trim($_POST['c_e_notes']);}
+	if($_POST['template_image_path']){	
+		$template_edit->url_path = trim($_POST['template_image_path']);}
 	
-	if($_POST['c_e_website_url']){	
-		$client_email->website_url = trim($_POST['c_e_website_url']);}
-		
-	if($_POST['c_e_url_path']){	
-		$client_email->url_path = trim($_POST['c_e_url_path']);}
-	
-	if(!empty($_FILES['c_e_attachment_url']['tmp_name'])){
-	  $tmp_file = $_FILES['c_e_attachment_url']['tmp_name'];
-	  $original_file = basename($_FILES['c_e_attachment_url']['name']);
-	  $replaced_space = str_replace(' ','_',$original_file);
-	  $target_file = $_POST['c_e_sales_rep']. "_" .$replaced_space;
-	  $upload_dir = "attachments";
-	  
-	  move_uploaded_file($tmp_file, "../".$upload_dir."/".$target_file);
-	  $client_email->attachment_url = "../".$upload_dir."/".$target_file;
-	}
-	
-	$sucess_c_e = $client_email->create_c_e_template_info();
+	$sucess = $template_edit->edit_template();
 	
 	//Verifying if information is updated
-	if($sucess_c_e){
-		$session->message("Successfully saved information to Client Emails Template.");
-		redirect_to("index.php");
+	if($sucess){
+		$session->message("Successfully UPDATED Template Information.");
+		redirect_to("edit_templates.php");
 	} else{
-		$session->message("Failed to save information to Client Emails Template.");
-		redirect_to("index.php");
-	}
-}
-
-
-
-//**************Plum Landing Page Form Submittion***************
-if(isset($_POST['p_lp_submit'])){
-	
-	$plum_landing_page = new PlumLP();
-	
-	if($_POST['p_lp_client_name']){	
-		$plum_landing_page->client_name = trim($_POST['p_lp_client_name']);}
-		
-	if($_POST['p_lp_sales_rep']){	
-		$plum_landing_page->salesrep_id = trim($_POST['p_lp_sales_rep']);}
-		
-	if($_POST['p_lp_email']){	
-		$plum_landing_page->email = trim($_POST['p_lp_email']);}
-		
-	if($_POST['p_lp_city']){	
-		$plum_landing_page->city = trim($_POST['p_lp_city']);}
-		
-	if($_POST['p_lp_state']){	
-		$plum_landing_page->state = trim($_POST['p_lp_state']);}
-		
-	if($_POST['p_lp_zip_code']){	
-		$plum_landing_page->zip_code = trim($_POST['p_lp_zip_code']);}
-		
-	if($_POST['p_lp_google_ad']){	
-		$plum_landing_page->google_ad = 1; }
-		else{ $plum_landing_page->google_ad = 0; }
-		
-	if($_POST['p_lp_start_date']){	
-		$plum_landing_page->start_date = trim($_POST['p_lp_start_date']);}
-		
-	if($_POST['p_lp_expire_date']){	
-		$plum_landing_page->expire_date = trim($_POST['p_lp_expire_date']);}
-		
-	if($_POST['p_lp_notes']){	
-		$plum_landing_page->notes = trim($_POST['p_lp_notes']);}
-	
-	if($_POST['p_lp_website_url']){	
-		$plum_landing_page->website_url = trim($_POST['p_lp_website_url']);}
-		
-	if($_POST['p_lp_url_path']){	
-		$plum_landing_page->url_path = trim($_POST['p_lp_url_path']);}
-
-	if(!empty($_FILES['p_lp_attachment_url']['tmp_name'])){
-	  $tmp_file = $_FILES['p_lp_attachment_url']['tmp_name'];
-	  $original_file = basename($_FILES['p_lp_attachment_url']['name']);
-	  $replaced_space = str_replace(' ','_',$original_file);
-	  $target_file = $_POST['p_lp_sales_rep']. "_" .$replaced_space;
-	  $upload_dir = "attachments";
-	  
-	  move_uploaded_file($tmp_file, "../".$upload_dir."/".$target_file);
-	  $plum_landing_page->attachment_url = "../".$upload_dir."/".$target_file;
-	}
-	
-	$sucess_p_lp = $plum_landing_page->create_p_lp_template_info();
-	
-	//Verifying if information is updated
-	if($sucess_p_lp){
-		$session->message("Successfully saved information to Plum Landing Pages Template.");
-		redirect_to("index.php");
-	} else{
-		$session->message("Failed to save information to Plum Landing Pages Template.");
-		redirect_to("index.php");
-	}
-}
-
-
-
-//**************Client Landing Page Form Submittion***************
-if(isset($_POST['c_lp_submit'])){
-	
-	$client_landing_page = new ClientLp();
-	
-	if($_POST['c_lp_client_name']){	
-		$client_landing_page->client_name = trim($_POST['c_lp_client_name']);}
-		
-	if($_POST['c_lp_sales_rep']){	
-		$client_landing_page->salesrep_id = trim($_POST['c_lp_sales_rep']);}
-		
-	if($_POST['c_lp_email']){	
-		$client_landing_page->email = trim($_POST['c_lp_email']);}
-		
-	if($_POST['c_lp_city']){	
-		$client_landing_page->city = trim($_POST['c_lp_city']);}
-		
-	if($_POST['c_lp_state']){	
-		$client_landing_page->state = trim($_POST['c_lp_state']);}
-		
-	if($_POST['c_lp_zip_code']){	
-		$client_landing_page->zip_code = trim($_POST['c_lp_zip_code']);}
-		
-	if($_POST['c_lp_google_ad']){	
-		$client_landing_page->google_ad = 1; }
-		else{ $client_landing_page->google_ad = 0; }
-		
-	if($_POST['c_lp_start_date']){	
-		$client_landing_page->start_date = trim($_POST['c_lp_start_date']);}
-		
-	if($_POST['c_lp_expire_date']){	
-		$client_landing_page->expire_date = trim($_POST['c_lp_expire_date']);}
-		
-	if($_POST['c_lp_notes']){	
-		$client_landing_page->notes = trim($_POST['c_lp_notes']);}
-	
-	if($_POST['c_lp_website_url']){	
-		$client_landing_page->website_url = trim($_POST['c_lp_website_url']);}
-		
-	if($_POST['c_lp_url_path']){	
-		$client_landing_page->url_path = trim($_POST['c_lp_url_path']);}
-	
-	if(!empty($_FILES['c_lp_attachment_url']['tmp_name'])){
-	  $tmp_file = $_FILES['c_lp_attachment_url']['tmp_name'];
-	  $original_file = basename($_FILES['c_lp_attachment_url']['name']);
-	  $replaced_space = str_replace(' ','_',$original_file);
-	  $target_file = $_POST['c_lp_sales_rep']. "_" .$replaced_space;
-	  $upload_dir = "attachments";
-	  
-	  move_uploaded_file($tmp_file, "../".$upload_dir."/".$target_file);
-	  $client_landing_page->attachment_url = "../".$upload_dir."/".$target_file;
-	}
-	
-	$sucess_c_lp = $client_landing_page->create_c_lp_template_info();
-	
-	//Verifying if information is updated
-	if($sucess_c_lp){
-		$session->message("Successfully saved information to Client Landing Pages Template.");
-		redirect_to("index.php");
-	} else{
-		$session->message("Failed to save information to Client Landing Pages Template.");
-		redirect_to("index.php");
+		$session->message("Failed to Update Template Information.");
+		redirect_to("edit_templates.php");
 	}
 }
 
@@ -270,10 +70,10 @@ if(isset($_POST['c_lp_submit'])){
 <!--<meta name="google" content="notranslate">-->
 <meta http-equiv="Content-Language" content="en">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>PLUMDM-HELP</title>
+<title>Plumdm Edit Templates</title>
 <link rel="shortcut icon" href="../site_images/plum_logo-favicon.ico" >
 <link href="../stylesheets/plum_help.css" rel="stylesheet" type="text/css" media="screen,projection">
-<link rel="stylesheet" type="text/css" href="../stylesheets/component.css" />
+<link rel="stylesheet" type="text/css" href="../stylesheets/component_user.css" />
 </head>
 
 <body>
@@ -309,8 +109,8 @@ if(isset($_POST['c_lp_submit'])){
 
 <div id="introduction">
 	<div id="introductionContainer">
-	<h1>WELCOME TO PLUMDM-HELP</h1>
-    <h2>Choose <span style="color:#4ad486";>Email</span> Templates (or) <span style=" color:rgb(58,190,192);">Landing Page</span> Templates</h2>
+	<h1>WELCOME TO PLUMDM-HELP EDIT</h1>
+    <h2>Edit <span style="color:#4ad486";>Email</span> Templates / <span style=" color:rgb(58,190,192);">Landing Page</span> Templates</h2>
     </div>
 </div>
 
@@ -338,38 +138,13 @@ if(isset($_POST['c_lp_submit'])){
           <div class="templateAllShadow show_template"><a href="<?php echo $template_p_e->website_url; ?>" target="_blank">		<!-- Template Image -->
           <img class="templateImage" height="220" src="<?php echo $template_p_e->url_path; ?>"></a>
           </div>
-          <div class="templateAllShadow eachTemplateButtonsContainer">	<!-- VIEW & SELECT Buttons-->
-          <a class="md-trigger" data-modal="p_e_modal"><button class="selectButton" language="javascript"  onclick="return p_e(this);" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);" value="<?php echo $template_p_e->website_url."***".$template_p_e->url_path;?>"><div class="insideSelectButton">SELECT</div></button></a>
-          <div class="buttonsBorder"></div>
-          <a href="<?php echo $template_p_e->website_url; ?>" target="_blank"><div class="viewButton">VIEW</div></a>
+          <div class="edit_icons">	<!-- Hide & Edit Icons-->
+          	<a href="edit_templates.php?template_id=<?php echo $template_p_e->id; ?>" title="Hide Template"><img class="allShadow transition1 hide_icon" height="30"src="../site_images/hide.png"></a>
+            <a class="md-trigger edit_icon_button" data-modal="template_modal" title="Edit Template"><button class="editButton transition1" language="javascript"  onclick="return edit_template(this);" style=" cursor:pointer; border-style:none; outline:0; border:0; background:none;" value="<?php echo $template_p_e->id."***".$template_p_e->type."***".$template_p_e->website_url."***".$template_p_e->url_path; ?>"><img class="allShadow transition1 edit_icon" height="30"src="../site_images/edit.png"></button></a>
           </div>
      </div><!-- END of PLUM EMAILS Container-->
 <?php endforeach; ?>
 </div>
-																<!--Start PLUM EMIAL MODAL CONTENT -->  
-      
-      <div class="md-modal md-effect-1" id="p_e_modal">
-		<div class="md-content"></br>
-      		<h2>Template</h2>
-				<form action="index.php" enctype="multipart/form-data" method="post">
-                  <p><label>Client Name</label><input name="p_e_client_name" type="text" /></p>
-                  <p><label>Sales Rep</label><select name="p_e_sales_rep">
-                  <?php foreach($sales_reps as $sales_rep): ?>
-                  <?php if($sales_rep->id == 1){ continue; } ?>
-                  <option value="<?php echo $sales_rep->id; ?>"><?php echo $sales_rep->first_name." ".$sales_rep->last_name; ?></option>
-                  <?php endforeach; ?>
-                  </select></p>
-                  <p><label>Send Date</label><input name="p_e_send_date" type="text" /></p>
-                  <p><label>Email List</label><input name="p_e_email_list" type="text" /></p>
-                  <p><label>Notes</label><textarea name="p_e_notes"  cols="40" rows="4" ></textarea></p>
-                  <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
-                  <p><label>Attachment</label><input type="file" name="p_e_attachment_url" /><p>
-                  <input type="hidden" id="p_e_website_url" type="text" name="p_e_website_url" value="" />
-                  <input type="hidden" id="p_e_url_path" type="text" name="p_e_url_path" value="" />
-                  <button class="md-close" name="p_e_submit" type="submit">Submit</button></br>
-                </form>
-      	</div>
-      </div><!--END PLUM EMIAL MODAL CONTENT --> 
 
 
 
@@ -395,41 +170,14 @@ if(isset($_POST['c_lp_submit'])){
           <div class="templateAllShadow show_template"><a href="<?php echo $template_c_e->website_url; ?>" target="_blank">		<!-- Template Image -->
           <img class="templateImage" height="220" src="<?php echo $template_c_e->url_path; ?>"></a>
           </div>
-          <div class="templateAllShadow eachTemplateButtonsContainer">	<!-- VIEW & SELECT Buttons-->
-              <a class="md-trigger" data-modal="c_e_modal"><button class="selectButton" language="javascript"  onclick="return c_e(this);" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);" value="<?php echo $template_c_e->website_url."***".$template_c_e->url_path;?>"><div class="insideSelectButton">SELECT</div></button></a>
-              <div class="buttonsBorder"></div>
-              <a href="<?php echo $template_c_e->website_url; ?>" target="_blank"><div class="viewButton">VIEW</div></a>
+          <div class="edit_icons">	<!-- Hide & Edit Icons-->
+          	<a href="edit_templates.php?template_id=<?php echo $template_c_e->id; ?>" title="Hide Template"><img class="allShadow transition1 hide_icon" height="30"src="../site_images/hide.png"></a>
+            <a class="md-trigger edit_icon_button" data-modal="template_modal" title="Edit Template"><button class="editButton transition1" language="javascript"  onclick="return edit_template(this);" style=" cursor:pointer; border-style:none; outline:0; border:0; background:none;" value="<?php echo $template_c_e->id."***".$template_c_e->type."***".$template_c_e->website_url."***".$template_c_e->url_path; ?>"><img class="allShadow transition1 edit_icon" height="30"src="../site_images/edit.png"></button></a>
           </div>
      </div><!-- END of CLIENT EMAILS Container-->
 <?php endforeach; ?>
 </div>
-    
-    																<!--Start CLIENT EMAIL MODAL CONTENT -->  
-      
-      <div class="md-modal md-effect-1" id="c_e_modal">
-		<div class="md-content"></br>
-      		<h2>Template</h2>
-				<form action="index.php" enctype="multipart/form-data" method="post">
-                  <p><label>Client Name</label><input name="c_e_client_name" type="text" /></p>
-                  <p><label>Sales Rep</label><select name="c_e_sales_rep">
-                  <?php foreach($sales_reps as $sales_rep): ?>
-                  <?php if($sales_rep->id == 1){ continue; } ?>
-                  <option value="<?php echo $sales_rep->id; ?>"><?php echo $sales_rep->first_name." ".$sales_rep->last_name; ?></option>
-                  <?php endforeach; ?>
-                  </select></p>
-                  <p><label>Send Date</label><input name="c_e_send_date" type="text" /></p>
-                  <p><label>Email List</label><input name="c_e_email_list" type="text" /></p>
-                  <p><label>Notes</label><textarea name="c_e_notes"  cols="40" rows="4" ></textarea></p>
-                  <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
-                  <p><label>Attachment</label><input type="file" name="c_e_attachment_url" /><p>
-                  <input type="hidden" id="c_e_website_url" type="text" name="c_e_website_url" value="" />
-                  <input type="hidden" id="c_e_url_path" type="text" name="c_e_url_path" value="" />
-                  <button class="md-close" name="c_e_submit" type="submit">Submit</button></br>
-                </form>
-      	</div>
-      </div><!--END CLIENT EMAIL MODAL CONTENT --> 
-      
-	<div id="overlayemail" class="md-overlay"></div><!-- the overlay element -->
+
 </section><!--**************************************************** END OF EMAIL TEMPLATES CONTAINER ******************************************************-->
 
 
@@ -462,54 +210,13 @@ if(isset($_POST['c_lp_submit'])){
           <div class="templateAllShadow show_template"><a href="<?php echo $template_p_lp->website_url; ?>" target="_blank">		<!-- Template Image -->
           <img class="templateImage" height="220" src="<?php echo $template_p_lp->url_path; ?>"></a>
           </div>
-          <div class="templateAllShadow eachTemplateButtonsContainer">	<!-- VIEW & SELECT Buttons-->
-              <a class="md-trigger" data-modal="p_lp_modal"><button class="selectButton" language="javascript"  onclick="return p_lp(this);" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);" value="<?php echo $template_p_lp->website_url."***".$template_p_lp->url_path;?>"><div class="insideSelectButton">SELECT</div></button></a>
-              <div class="buttonsBorder"></div>
-              <a href="<?php echo $template_p_lp->website_url; ?>" target="_blank"><div class="viewButton">VIEW</div></a>
+          <div class="edit_icons">	<!-- Hide & Edit Icons-->
+          	<a href="edit_templates.php?template_id=<?php echo $template_p_lp->id; ?>" title="Hide Template"><img class="transition1 hide_icon" height="30"src="../site_images/hide.png"></a>
+            <a class="md-trigger edit_icon_button" data-modal="template_modal" title="Edit Template"><button class="editButton transition1" language="javascript"  onclick="return edit_template(this);" style=" cursor:pointer; border-style:none; outline:0; border:0; background:none;" value="<?php echo $template_p_lp->id."***".$template_p_lp->type."***".$template_p_lp->website_url."***".$template_p_lp->url_path; ?>"><img class="allShadow transition1 edit_icon" height="30"src="../site_images/edit.png"></button></a>
           </div>
      </div><!-- END of PLUM LP Container-->
 <?php endforeach; ?>
 </div>
-
-
-    																<!--Start PLUM LP MODAL CONTENT -->  
-      
-      <div class="md-modal md-effect-1" id="p_lp_modal">
-		<div class="md-content1"></br>
-      		<h2>Template</h2>
-				<form action="index.php" enctype="multipart/form-data" method="post">
-                  <div class="firstHalfForm">
-                  <p><label>Client Name</label><input name="p_lp_client_name" type="text" /></p>
-                  <p><label>Email</label><input name="p_lp_email" type="text" /></p>
-                  <p><label>City</label><input name="p_lp_city" type="text" /></p>
-                  <p><label>State</label><input name="p_lp_state" type="text" /></p>
-                  <p><label>Zip Code</label><input name="p_lp_zip_code" type="text" /></p>
-                  <p><label>Google AdWords</label><input name="p_lp_google_ad" style="position:relative; right:-140px; top:-18px;" type="checkbox" /></p>
-                  </div>
-                  
-                  <div class="formDividerLine"></div>
-                  
-                  <div class="secondHalfForm">
-                  <p><label>Sales Rep</label>
-                  <select name="p_lp_sales_rep">
-                      <?php foreach($sales_reps as $sales_rep): ?>
-                      <?php if($sales_rep->id == 1){ continue; } ?>
-                      <option value="<?php echo $sales_rep->id; ?>"><?php echo $sales_rep->first_name." ".$sales_rep->last_name; ?></option>
-                      <?php endforeach; ?>
-                  </select></p>
-                  <p><label>Start Date</label><input name="p_lp_start_date" type="text" /></p>
-                  <p><label>Expire Date</label><input name="p_lp_expire_date" type="text" /></p>
-                  <p><label>Notes</label><textarea name="p_lp_notes"  cols="40" rows="4" ></textarea></p>
-                  <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
-                  <p><label>Attachment</label><input type="file" name="p_lp_attachment_url" /><p>
-                  <input type="hidden" id="p_lp_website_url" type="text" name="p_lp_website_url" value="" />
-                  <input type="hidden" id="p_lp_url_path" type="text" name="p_lp_url_path" value="" />
-                  </div>
-                  
-                  <button class="md-close" name="p_lp_submit" type="submit">Submit</button></br>
-                </form>
-      	</div>
-      </div><!--END PLUM LP MODAL CONTENT --> 
 
 
 
@@ -532,62 +239,42 @@ if(isset($_POST['c_lp_submit'])){
           <div class="templateAllShadow show_template"><a href="<?php echo $template_c_lp->website_url; ?>" target="_blank">		<!-- Template Image -->
           <img class="templateImage" height="220" src="<?php echo $template_c_lp->url_path; ?>"></a>
           </div>
-          <div class="templateAllShadow eachTemplateButtonsContainer">	<!-- VIEW & SELECT Buttons-->
-              <a class="md-trigger" data-modal="c_lp_modal"><button class="selectButton" language="javascript"  onclick="return c_lp(this);" style="border-style:none; cursor:pointer; background-color:rgba(123,123,123,.0);" value="<?php echo $template_c_lp->website_url."***".$template_c_lp->url_path;?>"><div class="insideSelectButton">SELECT</div></button></a>
-              <div class="buttonsBorder"></div>
-              <a href="<?php echo $template_c_lp->website_url; ?>" target="_blank"><div class="viewButton">VIEW</div></a>
+          <div class="edit_icons">	<!-- Hide & Edit Icons-->
+          	<a href="edit_templates.php?template_id=<?php echo $template_c_lp->id; ?>" title="Hide Template"><img class="transition1 hide_icon" height="30"src="../site_images/hide.png"></a>
+            <a class="md-trigger edit_icon_button" data-modal="template_modal" title="Edit Template"><button class="editButton transition1" language="javascript"  onclick="return edit_template(this);" style=" cursor:pointer; border-style:none; outline:0; border:0; background:none;" value="<?php echo $template_c_lp->id."***".$template_c_lp->type."***".$template_c_lp->website_url."***".$template_c_lp->url_path; ?>"><img class="allShadow transition1 edit_icon" height="30"src="../site_images/edit.png"></button></a>
           </div>
      </div><!-- END of CLIENT LP Container-->
 <?php endforeach; ?>
 </div>
-    
-    
-    
-    																<!--Start CLIENT LP MODAL CONTENT -->  
-      
-      <div class="md-modal md-effect-1" id="c_lp_modal">
-		<div class="md-content1"></br>
-      		<h2>Template</h2>
-				<form action="index.php" enctype="multipart/form-data" method="post">
-                  <div class="firstHalfForm">
-                  <p><label>Client Name</label><input name="c_lp_client_name" type="text" /></p>
-                  <p><label>Email</label><input name="c_lp_email" type="text" /></p>
-                  <p><label>City</label><input name="c_lp_city" type="text" /></p>
-                  <p><label>State</label><input name="c_lp_state" type="text" /></p>
-                  <p><label>Zip Code</label><input name="c_lp_zip_code" type="text" /></p>
-                  <p><label>Google AdWords</label><input name="c_lp_google_ad" style="position:relative; right:-140px; top:-18px;" type="checkbox" /></p>
-                  </div>
-                  
-                  <div class="formDividerLine"></div>
-                  
-                  <div class="secondHalfForm">
-                  <p><label>Sales Rep</label>
-                  <select name="c_lp_sales_rep">
-                      <?php foreach($sales_reps as $sales_rep): ?>
-                      <?php if($sales_rep->id == 1){ continue; } ?>
-                      <option value="<?php echo $sales_rep->id; ?>"><?php echo $sales_rep->first_name." ".$sales_rep->last_name; ?></option>
-                      <?php endforeach; ?>
-                  </select></p>
-                  <p><label>Start Date</label><input name="c_lp_start_date" type="text" /></p>
-                  <p><label>Expire Date</label><input name="c_lp_expire_date" type="text" /></p>
-                  <p><label>Notes</label><textarea name="c_lp_notes"  cols="40" rows="4" ></textarea></p>
-                  <input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
-                  <p><label>Attachment</label><input type="file" name="c_lp_attachment_url" /><p>
-                  <input type="hidden" id="c_lp_website_url" type="text" name="c_lp_website_url" value="" />
-                  <input type="hidden" id="c_lp_url_path" type="text" name="c_lp_url_path" value="" />
-                  </div>
-                  
-                  <button class="md-close" name="c_lp_submit" type="submit">Submit</button></br>
-                </form>
-      	</div>
-      </div><!--END CLIENT LP MODAL CONTENT --> 
-    
-    <div id="overlaylp" class="md-close md-overlay1"></div><!-- the overlay element -->
 </section><!--****************************************** END OF EMAIL TEMPLATES CONTAINER ******************************************************-->
 
 
 
+																<!--Start EDIT TEMPLATE MODAL CONTENT -->  
+      
+      <div class="md-modal md-effect-1" id="template_modal">
+		<div id="upload_template_modal_content" class="md-content"></br>
+      		<h2>Upload Template</h2>
+            
+            <form id="uploadForm" method="post" action="edit_templates.php">
+            
+            	  <p><label>Template Type</label><select name="template_type" id="template_type" required>
+                  <option id="select_p_e" value="p_e">Plum Email</option>
+                  <option id="select_c_e" value="c_e">Client Email</option>
+                  <option id="select_p_lp" value="p_lp">Plum Landing Page</option>
+                  <option id="select_c_lp" value="c_lp">Client Landing Page</option>
+                  </select></p>
+                  <p><label>Website URL</label><input id="website_url" value="" name="website_url" required type="text" /></p>
+                  <p><label>Template Image Path</label><input value="" id="template_image_path" name="template_image_path" required type="text" /></p>
+                  <input type="hidden" id="template_id" name="template_id">
+                  
+                  <button id="edit_template_form" class="md-close" name="edit_template_form" type="submit">Submit</button></br>  
+                 </form>
+        
+        </div>
+      </div><!--END EDIT TEMPLATE MODAL CONTENT --> 
 
+<div id="overlay" class="md-overlay"></div><!-- the overlay element -->
 
 
 
@@ -614,51 +301,41 @@ $(function(){
 });
 
 
-function p_e(button) {
+//**************************************************************Form Reset Funcationality
+$( "#overlay" ).click(function() {
+  	document.getElementById("uploadForm").reset();
+});
+
+
+function edit_template(button) {
 		var button_value = button.value;
 		var button_values = button_value.split("***");
 		
-		$("#p_e_website_url")
+		$("#template_id")
 		.attr("value",button_values[0]);
 		
-		$("#p_e_url_path")
-		.attr("value",button_values[1]);
+		if(button_values[1] == "p_e"){
+			$('[name=template_type]').val( 'p_e' );
+		};
+		
+		if(button_values[1] == "c_e"){
+			$('[name=template_type]').val( 'c_e' );
+		};
+		
+		if(button_values[1] == "p_lp"){
+			$('[name=template_type]').val( 'p_lp' );
+		};
+		
+		if(button_values[1] == "c_lp"){
+			$('[name=template_type]').val( 'c_lp' );
+		};
+		
+		$("#website_url")
+		.attr("value",button_values[2]);
+		
+		$("#template_image_path")
+		.attr("value",button_values[3]);
 }
-
-function p_lp(button) {
-		var button_value = button.value;
-		var button_values = button_value.split("***");
-		
-		$("#p_lp_website_url")
-		.attr("value",button_values[0]);
-		
-		$("#p_lp_url_path")
-		.attr("value",button_values[1]);
-}
-
-function c_e(button) {
-		var button_value = button.value;
-		var button_values = button_value.split("***");
-		
-		$("#c_e_website_url")
-		.attr("value",button_values[0]);
-		
-		$("#c_e_url_path")
-		.attr("value",button_values[1]);
-}
-
-function c_lp(button) {
-		var button_value = button.value;
-		var button_values = button_value.split("***");
-		
-		$("#c_lp_website_url")
-		.attr("value",button_values[0]);
-		
-		$("#c_lp_url_path")
-		.attr("value",button_values[1]);
-}
-
-
 
 </script>
 

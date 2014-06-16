@@ -270,7 +270,7 @@ if(isset($_POST['c_lp_submit'])){
 <!--<meta name="google" content="notranslate">-->
 <meta http-equiv="Content-Language" content="en">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>PLUMDM-HELP</title>
+<title>Plumdm Help</title>
 <link rel="shortcut icon" href="../site_images/plum_logo-favicon.ico" >
 <link href="../stylesheets/plum_help.css" rel="stylesheet" type="text/css" media="screen,projection">
 <link rel="stylesheet" type="text/css" href="../stylesheets/component.css" />

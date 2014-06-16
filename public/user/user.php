@@ -1046,27 +1046,19 @@ $(document).ready(function() {
 
 //**************************************************************Form Reset Funcationality
 $( "#p_e_overlay" ).click(function() {
-  
   	document.getElementById("p_e_form").reset();
-  
 });
 
 $( "#c_e_overlay" ).click(function() {
-  
   	document.getElementById("c_e_form").reset();
-  
 });
 
-$( "#p_lp_overlay" ).click(function() {
-  
+$( "#p_lp_overlay" ).click(function() {  
   	document.getElementById("p_lp_form").reset();
-  
 });
 
 $( "#c_lp_overlay" ).click(function() {
-  
   	document.getElementById("c_lp_form").reset();
-  
 });
 
 //********************************************************On Click Submit Button Loader

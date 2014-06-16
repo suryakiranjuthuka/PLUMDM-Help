@@ -647,6 +647,48 @@ box-shadow: inset 0px 0px 13px 1px #B1B1B1;
     text-shadow:rgba(0,0,0,0.8) 0px -2px 0px,rgba(255,255,255,0.3) 0px 2px 2px;
   }
   
+  
+/* Templates Edit Page Styles */
+.transition1{
+	-webkit-transition: .1s;
+	transition: .1s;
+}
+
+.edit_icons{
+	padding:10px 100px 0px 100px
+}
+
+.edit_icons img{
+	border: 2px solid rgb(102,102,102);
+	position:relative;
+	top:0px;
+}
+
+.edit_icons img:hover{
+	top:3px;
+}
+
+.hide_icon{
+	border-radius:50%;
+	float:left;
+}
+
+.edit_icon{
+	border-radius:50%;
+	float:right;
+}
+
+.edit_icon_button{
+	position:absolute;
+	margin-left:39px;
+	margin-top:-3px;
+	cursor:pointer;
+}
+
+
+
+
+
 
 /* Different Resolution styles */
 
